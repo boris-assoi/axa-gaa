@@ -1,0 +1,970 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"exe",
+				"execute"
+			],
+			[
+				"ne",
+				"newpass"
+			],
+			[
+				"p",
+				"p\tTag"
+			],
+			[
+				"div",
+				"div\tTag"
+			],
+			[
+				"li",
+				"li\tTag"
+			],
+			[
+				"if",
+				"if\tif …"
+			],
+			[
+				"req",
+				"required"
+			],
+			[
+				"php",
+				"php\t<?php … ?>"
+			],
+			[
+				"vente",
+				"vente_date"
+			],
+			[
+				"police",
+				"police_item"
+			],
+			[
+				"client",
+				"client_nom"
+			],
+			[
+				"pol",
+				"pol_date_fin"
+			],
+			[
+				"te",
+				"text-uppercase"
+			],
+			[
+				"police_",
+				"police_item"
+			],
+			[
+				"pol_date",
+				"pol_date_fin"
+			],
+			[
+				"vehicule",
+				"vehicule_id"
+			],
+			[
+				"vhiculema",
+				"vehicule_marque"
+			],
+			[
+				"ba",
+				"batchNom"
+			],
+			[
+				"and",
+				"AND"
+			],
+			[
+				"type",
+				"type_attestation_id"
+			],
+			[
+				"poli",
+				"police_num"
+			],
+			[
+				"pre",
+				"prenom"
+			],
+			[
+				"font",
+				"font-weight"
+			],
+			[
+				"unit",
+				"unit_gestion"
+			],
+			[
+				"att",
+				"attestation_statut"
+			],
+			[
+				"_",
+				"_GET"
+			],
+			[
+				"com",
+				"commercial"
+			],
+			[
+				"typ",
+				"typAtt"
+			],
+			[
+				"nt",
+				"nAttChecker"
+			],
+			[
+				"attestat",
+				"attestation_num"
+			],
+			[
+				"im",
+				"image"
+			],
+			[
+				"for",
+				"for\tfor …"
+			],
+			[
+				"b",
+				"dateBatch"
+			],
+			[
+				"rc",
+				"rcommID"
+			],
+			[
+				"arr",
+				"array\t$… = array (…)"
+			],
+			[
+				"pass",
+				"password"
+			],
+			[
+				"type_attestation",
+				"type_attestation_lib"
+			],
+			[
+				"ty",
+				"type_attestation"
+			],
+			[
+				"attes",
+				"attestation_date"
+			],
+			[
+				"attest",
+				"attestation_num"
+			],
+			[
+				"html",
+				"htmlspecialchars"
+			],
+			[
+				"font-",
+				"font-family"
+			],
+			[
+				"moi",
+				"moisFR"
+			],
+			[
+				"array",
+				"array"
+			],
+			[
+				"arra",
+				"array"
+			],
+			[
+				"form",
+				"form-group"
+			],
+			[
+				"civi",
+				"civil"
+			],
+			[
+				"acom",
+				"acompte_interet"
+			],
+			[
+				"re",
+				"required\tAttr"
+			],
+			[
+				"in",
+				"input-group"
+			],
+			[
+				"due",
+				"dueOff"
+			],
+			[
+				"tota",
+				"totalToPay"
+			],
+			[
+				"amou",
+				"amountPaid"
+			],
+			[
+				"montant",
+				"montant_sollicite"
+			],
+			[
+				"a",
+				"acompte"
+			],
+			[
+				"sub",
+				"subscriberID"
+			],
+			[
+				"op",
+				"option\tTag"
+			],
+			[
+				"su",
+				"subscriber"
+			],
+			[
+				"am",
+				"amount"
+			],
+			[
+				"po",
+				"_POST"
+			],
+			[
+				"trim",
+				"trimestre"
+			],
+			[
+				"ok",
+				"ok2"
+			],
+			[
+				"amo",
+				"amount"
+			],
+			[
+				"amount",
+				"amountInteret"
+			],
+			[
+				"prel",
+				"prelMens"
+			],
+			[
+				"ban",
+				"bankTx"
+			],
+			[
+				"wa",
+				"warrantTx"
+			],
+			[
+				"cifa",
+				"cifae_dossier_fee"
+			],
+			[
+				"ass",
+				"assurance_imp"
+			],
+			[
+				"bank_s",
+				"bank_s_res"
+			],
+			[
+				"bank_c",
+				"bank_c_c"
+			],
+			[
+				"bank",
+				"bank_adh"
+			],
+			[
+				"hidde",
+				"hidden-print"
+			],
+			[
+				"dossier",
+				"dossiersolde"
+			],
+			[
+				"uplo",
+				"upload_name"
+			],
+			[
+				"ac",
+				"action\tAttr"
+			],
+			[
+				"head",
+				"header"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "listCertificate.php",
+			"settings":
+			{
+				"buffer_size": 14445,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "status.php",
+			"settings":
+			{
+				"buffer_size": 13132,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "salesExport.php",
+			"settings":
+			{
+				"buffer_size": 1869,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "reportSales.php",
+			"settings":
+			{
+				"buffer_size": 14234,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/wamp/www/cifae/saves/index.html",
+			"settings":
+			{
+				"buffer_size": 24317,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "inc/models.php",
+			"settings":
+			{
+				"buffer_size": 35524,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "inc/acl.php",
+			"settings":
+			{
+				"buffer_size": 814,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"About"
+			],
+			[
+				"Package Control: ins",
+				"Package Control: Install Package"
+			],
+			[
+				"Pack",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: list",
+				"Package Control: List Packages"
+			],
+			[
+				"Package Control:  u",
+				"Package Control: Upgrade Package"
+			],
+			[
+				"Package Control: li",
+				"Package Control: List Packages"
+			],
+			[
+				"pac con int",
+				"Package Control: Install Package"
+			],
+			[
+				"pack con in ",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: install pack",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: install package",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: in",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 508.0
+	},
+	"console":
+	{
+		"height": 210.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/wamp/www/axa-gaa"
+	],
+	"file_history":
+	[
+		"/D/ftpsync.settings",
+		"/C/Users/boris/Desktop/Desktop/shell_expect.sh",
+		"/C/wamp/www/axa-gaa/exportxls.php",
+		"/C/Users/boris/migration_script.sql",
+		"/C/Users/boris/index.html",
+		"/C/Users/boris/advanced_ip_scanner_MAC.bin",
+		"/C/wamp/www/axa-gaa/connect.php",
+		"/C/wamp/www/axa-gaa/sales.php",
+		"/C/wamp/www/axa-gaa/mySales.php",
+		"/C/wamp/www/axa-gaa/inc/models.php",
+		"/C/wamp/www/axa-gaa/sellCert.php",
+		"/C/wamp/www/axa-gaa/updateCert.php",
+		"/C/wamp/www/axa-gaa/delivery.php",
+		"/C/wamp/www/axa-gaa/toFleet.php",
+		"/C/wamp/www/axa-gaa/status.php",
+		"/C/wamp/www/axa-gaa/addAdmin.php",
+		"/C/wamp/www/axa-gaa/newAdmin.php",
+		"/C/wamp/www/axa-gaa/login.php",
+		"/C/wamp/www/axa-gaa/loginFailed.php",
+		"/C/wamp/www/axa-gaa/listCertificate.php",
+		"/C/wamp/www/axa-gaa/reportSales.php",
+		"/C/wamp/www/axa-gaa/ftpsync.settings",
+		"/C/wamp/www/axa-gaa/inc/models_backup.php",
+		"/C/wamp/www/axa-gaa/inc/connection.php",
+		"/C/Users/boris/Desktop/shell_expect.sh",
+		"/C/Users/boris/AppData/Local/Temp/fz3temp-2/index.php",
+		"/C/wamp/www/axa-gaa/index.php",
+		"/C/wamp/www/axa-gaa/bootstrap/css/bootstrap.css",
+		"/C/wamp/www/axa-gaa/attrib.php",
+		"/C/wamp/bin/apache/apache2.4.9/conf/httpd.conf",
+		"/C/wamp/www/dolibarr-6.0.4/dolibarr-6.0.4/README-FR.md",
+		"/C/wamp/alias/dolibarr.conf",
+		"/C/Windows/System32/drivers/etc/hosts",
+		"/C/wamp/www/dolibarr-6.0.4/dolibarr-6.0.4/htdocs/conf/conf.php",
+		"/C/Users/boris/Desktop/hosts",
+		"/C/Users/boris/OneDrive/Documents/AFDR/Département Communication/Numéro/Contacts.vcf",
+		"/C/wamp/www/axa-gaa/accesDenied.php",
+		"/C/wamp/www/axa-gaa/addCertificate.php",
+		"/C/wamp/www/axa-gaa/attrCertificate.php",
+		"/C/Users/boris/Videos/XSplit Recordings/Temp/XSplitBroadcasterData.xml",
+		"/C/Users/boris/Videos/XSplit Recordings/Temp/FiltersEx.xml",
+		"/C/Users/boris/Videos/XSplit Recordings/Temp/XSplitGameSourceEx.xml",
+		"/C/wamp/www/axa-gaa/newCertificate.php",
+		"/C/wamp/www/axa-gaa/settings.php",
+		"/C/wamp/www/axa-gaa/inc/acl.php",
+		"/C/wamp/www/axa-gaa/salesExport.php",
+		"/C/Users/boris/Downloads/PHPExcel-1.8/PHPExcel-1.8/install.txt",
+		"/C/wamp/www/axa-gaa/changePassword.php",
+		"/C/wamp/www/axa-gaa/confirmed.php",
+		"/C/wamp/www/axa-gaa/newComm.php",
+		"/C/wamp/www/axa-gaa/newSup.php",
+		"/C/wamp/www/axa-gaa/newRComm.php",
+		"/C/wamp/www/axa-gaa/inc/menu.php",
+		"/C/wamp/www/axa-gaa/renewCert.php",
+		"/C/wamp/www/axa-gaa/cancelSale.php",
+		"/C/wamp/www/axa-gaa/certRenewing.php",
+		"/C/wamp/www/axa-gaa/testPHP.php",
+		"/C/wamp/www/axa-gaa/fleet.php",
+		"/C/Users/boris/Documents/Yulcom/Yulbooks/Yulbooks/properties/mysqlDB.properties",
+		"/C/Program Files/yulbooks/properties/mysqlDB.properties",
+		"/C/wamp/www/axa-gaa/print/attest_auto/index.html",
+		"/C/wamp/www/axa-gaa/inc/fleet.php",
+		"/C/wamp/www/axa-gaa/css/datatables.min.css",
+		"/C/wamp/www/axa-gaa/cancelCert.php",
+		"/C/wamp/www/axa-gaa/users.php",
+		"/C/wamp/www/axa-gaa/certUpdating.php",
+		"/C/wamp/www/axa-gaa/print/attest_brune/1.php",
+		"/C/wamp/www/axa-gaa/print/attest_auto/1.php",
+		"/C/wamp/bin/apache/apache2.4.9/error/README",
+		"/C/wamp/bin/apache/apache2.4.9/logs/install.log",
+		"/C/wamp/bin/apache/apache2.4.9/manual/index.html.fr",
+		"/C/wamp/bin/apache/apache2.4.9/manual/license.html",
+		"/C/wamp/bin/php/php5.5.12/wampserver.conf",
+		"/C/wamp/bin/php/php5.5.12/php.ini-development",
+		"/C/wamp/bin/php/php5.5.12/news.txt",
+		"/C/wamp/bin/php/php5.5.12/symfony.bat",
+		"/C/wamp/bin/php/php5.5.12/symfony",
+		"/C/wamp/bin/php/php5.5.12/extras/ssl/openssl.cnf",
+		"/C/wamp/bin/mysql/mysql5.6.17/share/mysql_system_tables_data.sql",
+		"/C/wamp/bin/mysql/mysql5.6.17/share/mysql_system_tables.sql",
+		"/C/wamp/bin/mysql/mysql5.6.17/share/dictionary.txt",
+		"/C/wamp/bin/mysql/mysql5.6.17/docs/ChangeLog",
+		"/C/wamp/bin/mysql/mysql5.6.17/docs/INFO_SRC",
+		"/C/wamp/bin/mysql/mysql5.6.17/COPYING",
+		"/C/wamp/bin/mysql/mysql5.6.17/Backup 1 of wampserver.conf",
+		"/C/wamp/bin/mysql/mysql5.6.17/wampserver.conf",
+		"/C/Users/boris/Downloads/PHPExcel-1.8/PHPExcel-1.8/Documentation/Examples/Calculations/Database/DCOUNT.php",
+		"/C/Program Files (x86)/Moov_WCA/MW40/uninst/unins000.msg",
+		"/C/Users/boris/Downloads/PHPExcel-1.8/PHPExcel-1.8/Classes/PHPExcel/Autoloader.php",
+		"/C/Users/boris/Downloads/PHPExcel-1.8/PHPExcel-1.8/changelog.txt",
+		"/C/wamp/www/PHPExcel-1.8/Examples/39dropdown.php",
+		"/C/wamp/www/PHPExcel-1.8/Documentation/Examples/Calculations/Database/DVAR.php",
+		"/C/wamp/www/PHPExcel-1.8/Documentation/Examples/Calculations/Database/DSTDEVP.php",
+		"/C/wamp/www/PHPExcel-1.8/Documentation/Examples/Calculations/Database/DSTDEV.php",
+		"/C/wamp/www/PHPExcel-1.8/Documentation/Examples/Calculations/Database/DPRODUCT.php",
+		"/C/wamp/www/PHPExcel-1.8/Documentation/Examples/Calculations/Database/DMIN.php",
+		"/C/wamp/www/PHPExcel-1.8/Documentation/Examples/Calculations/Database/DMAX.php",
+		"/C/wamp/www/PHPExcel-1.8/Documentation/Examples/Calculations/Database/DGET.php",
+		"/C/wamp/www/PHPExcel-1.8/Documentation/Examples/Calculations/Database/DCOUNT.php",
+		"/C/wamp/www/PHPExcel-1.8/Documentation/Examples/Calculations/Database/DAVERAGE.php",
+		"/C/wamp/www/PHPExcel-1.8/Examples/runall.php",
+		"/C/wamp/www/axa-gaa/css/bootstrap.css",
+		"/C/wamp/www/axa-gaa/font-awesome/css/font-awesome.css",
+		"/C/wamp/www/axa-gaa/css/sb-admin.css",
+		"/C/wamp/www/axa-gaa/sftp-config.json",
+		"/C/wamp/bin/php/php5.5.12/php.ini",
+		"/C/wamp/www/axa-gaa/css/blocks.css",
+		"/D/Backup files - AXA LG2A - 09102017/dump26102017.sql",
+		"/C/wamp/www/index.php",
+		"/C/Program Files (x86)/EasyPHP-Webserver-14.1b2/www/axa-gaa/addAdmin.php",
+		"/C/Program Files (x86)/EasyPHP-Webserver-14.1b2/www/axa-gaa/inc/connection.php",
+		"/C/Program Files (x86)/EasyPHP-Webserver-14.1b2/binaries/dbserver/my.ini",
+		"/C/Program Files (x86)/EasyPHP-Webserver-14.1b2/www/axa-gaa/sftp-config.json",
+		"/C/Program Files (x86)/EasyPHP-Webserver-14.1b2/www/axa-gaa/inc/models.php",
+		"/C/Program Files (x86)/EasyPHP-Webserver-14.1b2/www/axa-gaa/certUpdating.php",
+		"/C/Program Files (x86)/EasyPHP-Webserver-14.1b2/www/axa-gaa/sales.php",
+		"/C/Program Files (x86)/EasyPHP-Webserver-14.1b2/www/axa-gaa/sellCert.php",
+		"/C/Program Files (x86)/EasyPHP-Webserver-14.1b2/www/axa-gaa/print/attest_auto/1.php",
+		"/C/Program Files (x86)/EasyPHP-Webserver-14.1b2/www/axa-gaa/print/attest_brune/1.php",
+		"/C/Program Files (x86)/EasyPHP-Webserver-14.1b2/www/axa-gaa/status.php",
+		"/C/wamp/www/AXA-GAA/sftp-config.json",
+		"/C/wamp/www/AXA-GAA/status.php",
+		"/C/wamp/www/AXA-GAA/inc/menu.php",
+		"/C/wamp/www/AXA-GAA/attrCertificate.php",
+		"/C/wamp/www/AXA-GAA/print/attest_brune/1.php",
+		"/C/wamp/www/AXA-GAA/print/attest_auto/1.php",
+		"/C/wamp/www/AXA-GAA/addCertificate.php",
+		"/C/wamp/www/AXA-GAA/inc/connection.php"
+	],
+	"find":
+	{
+		"height": 23.0
+	},
+	"find_in_files":
+	{
+		"height": 313.0,
+		"where_history":
+		[
+			"C:\\wamp\\www\\axa-gaa"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"limi",
+			"s_police",
+			"select count",
+			"count",
+			"bindParam",
+			"bind",
+			"in",
+			"list_attes",
+			"s_police",
+			"list_attestation"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"find",
+			"s_att"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 3,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "listCertificate.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 14445,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								747,
+								753
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "status.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 13132,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								655,
+								655
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "salesExport.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1869,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1580,
+								1580
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 144.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "reportSales.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 14234,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4211,
+								4211
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1124.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "/C/wamp/www/cifae/saves/index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 24317,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								10324,
+								10669
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 331.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "inc/models.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 35524,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								56,
+								56
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "inc/acl.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 814,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								188,
+								188
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 22.0
+	},
+	"input":
+	{
+		"height": 107.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.sftp":
+	{
+		"height": 394.0
+	},
+	"output.unsaved_changes":
+	{
+		"height": 94.0
+	},
+	"pinned_build_system": "",
+	"project": "LG2A.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"C:\\wamp\\www\\LG2A-M2\\LG2A Module 2.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 193.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

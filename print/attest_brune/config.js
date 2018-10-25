@@ -1,0 +1,1 @@
+IDRViewer.config = {"pagecount":1,"title":"attest Requête2","author":"akanza","fileName":"attest_brune.pdf","bounds":[[1286,909]],"bookmarks":[],"thumbnailType":"jpg","pageType":"html","pageLabels":[]};

@@ -1,0 +1,1 @@
+IDRViewer.config = {"pagecount":1,"title":"attest Requête","author":"akanza","fileName":"attest_auto.pdf","bounds":[[1286,909]],"bookmarks":[],"thumbnailType":"jpg","pageType":"html","pageLabels":[]};
