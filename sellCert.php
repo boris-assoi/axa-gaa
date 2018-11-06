@@ -123,17 +123,26 @@ try
                                                     </div>
                                                     <div class="form-group"> 
                                                         <label class="control-label" for="exampleInputPassword1">Date d'obtention du permis</label>                                                         
-                                                        <input type="date" class="form-control" name="datePC"> 
+                                                        <select id="" class="form-control text-uppercase" name="cls_pc"> 
+                                                            <?php
+                                                            $request='SELECT lib FROM classe_permis';
+                                                            $req = $bdd->query($request);
+                                                            while ($ok = $req->fetch())
+                                                            {
+                                                                echo "<option class=\"\">".htmlspecialchars($ok['lib'])."</option>";
+                                                            }
+                                                            $req->closeCursor();                        
+                                                        ?> 
                                                     </div>
                                                     <div class="form-group"> 
                                                         <label class="control-label" for="exampleInputPassword1">Statut socio-professionnel</label>                                                         
                                                         <select id="formInput28" class="form-control text-uppercase" name="carGenre"> 
                                                             <?php
-                                                            $request='SELECT lib FROM statut_socio_pro';
+                                                            $request='SELECT lib, info FROM statut_socio_pro';
                                                             $req = $bdd->query($request);
                                                             while ($ok = $req->fetch())
                                                             {
-                                                                echo "<option class=\"\">".htmlspecialchars($ok['lib'])."</option>";
+                                                                echo "<option class=\"\">".htmlspecialchars($ok['lib'])." - ".htmlspecialchars($ok['info'])."</option>";
                                                             }
                                                             $req->closeCursor();                        
                                                         ?> 
@@ -206,21 +215,18 @@ try
                                                     <div class="form-group form-inline"> 
                                                         <label class="control-label" for="exampleInputPassword1">Puissance fiscale</label>
                                                     </br>                                                     
-                                                    <select id="formInput28" class="form-control" name="pf"> 
+                                                    <select id="pf" class="form-control" name="pf">
+                                                        <option>Sélectionner le type de puissance fiscale</option>
                                                         <option>Essence</option>                                                         
                                                         <option>Diesel</option>                                                         
                                                     </select>
-                                                    <select id="formInput28" class="form-control" name="pfValue"> 
-                                                        <option>1 à 2</option>                                                         
-                                                        <option>3 à 6</option>                                                         
-                                                        <option>7 à 9</option>                                                         
-                                                        <option>10 à 11</option>                                                         
-                                                        <option>12 et +</option>
+                                                    <select id="pfValue" class="form-control" name="pfValue"> 
+                                                        <option>Sélectionnez la puissance fiscale</option>
                                                     </select>
                                             </div>
                                             <div class="checkbox"> 
                                                 <label class="control-label"> 
-                                                    <input type="checkbox" value="">       Remorque        
+                                                    <input type="checkbox" value="rem" id="rem" name="remorque">       Remorque        
                                                 </label>                                                 
                                             </div>                                             
                                         </div>                                         
@@ -271,6 +277,23 @@ try
                                 //Do nothing
                             }
                         });
-                    </script>                     
+                    </script>   
+                    <script type="text/javascript">
+                        $(document).ready(function(){
+                            $('#pf').change(function(){
+                                var pf = $(this).val();
+                                $.ajax({
+                                    url : "inc/fetch_pfvalue.php",
+                                    method : "POST",
+                                    data : {pfType:pf},
+                                    dataType : "text",
+                                    success : function(data){
+                                        $('#pfValue').html(data);
+                                    }
+
+                                });
+                            });
+                        });
+                    </script>                  
         </body>         
     </html>

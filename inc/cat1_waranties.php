@@ -22,6 +22,7 @@
         $adresse = $_POST['adresse'];
         $contact = $_POST['contact'];
         $type = $_POST['type'];
+        $datePC = $_POST['datePC'];
 
         //Informations sur la police
         $pol = $_POST['pol'];
@@ -35,8 +36,8 @@
         $chassis = $_POST['chassis'];
         $cat = $_POST['cat'];
         $pf = $_POST['pf'];
+        echo $pf;
         $pfValue = $_POST['pfValue'];
-        echo $pfValue;
         $amount = $_POST['amount'];
 
         //informations sur le type d'attestation
@@ -47,13 +48,17 @@
 
         //Recupération de la prime de base
         $prime = "";
-        $req = $bdd->prepare("SELECT zone1 AS prime FROM g_resp_civ WHERE essence = (SELECT lib FROM essence WHERE label = ?)");
+        $req = $bdd->prepare("SELECT zone1 AS prime FROM prime_rc_cat1, ref_essence WHERE es = ref_essence.id AND ref_essence.label = ?");
         $req->execute(array($pfValue));
         while ($ok = $req->fetch()) {
             $prime = $ok['prime'];
         }
         echo $prime;
-        
+
+        //Détermination de la classe d'ancienneté
+        $currentYear = date('Y');
+        $classePC = $currentYear - $datePC;
+        echo $classePC;
     }
     catch (Exception $e)
     {
