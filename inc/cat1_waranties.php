@@ -15,13 +15,10 @@
         include_once "connection.php";
         include_once "models.php";
 
-        //Informations sur le client
-        $nom = $_POST['nom'];
-        echo $nom;
-        $profession = $_POST['pro'];
-        $adresse = $_POST['adresse'];
-        $contact = $_POST['contact'];
-        $type = $_POST['type'];
+        /*
+        Informations sur le client
+        */
+        //Récupération de la classe d'ancienneté du permis
         $datePC = $_POST['datePC'];
 
         //Informations sur la police
@@ -39,6 +36,8 @@
         echo $pf;
         $pfValue = $_POST['pfValue'];
         $amount = $_POST['amount'];
+        
+        $rem = $_POST['rem'];
 
         //informations sur le type d'attestation
         $typAtt = $_POST['typAtt'];
@@ -55,10 +54,6 @@
         }
         echo $prime;
 
-        //Détermination de la classe d'ancienneté
-        $currentYear = date('Y');
-        $classePC = $currentYear - $datePC;
-        echo $classePC;
     }
     catch (Exception $e)
     {

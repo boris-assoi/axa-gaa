@@ -122,10 +122,25 @@ try
                                                         <input type="text" class="form-control" name="nom" placeholder="Entrer le nom du client"> 
                                                     </div>
                                                     <div class="form-group"> 
-                                                        <label class="control-label" for="exampleInputPassword1">Date d'obtention du permis</label>                                                         
-                                                        <select id="" class="form-control text-uppercase" name="cls_pc"> 
+                                                        <label class="control-label" for="exampleInputPassword1">Classe d'ancienneté du permis</label>                                                         
+                                                        <select id="formInput28" class="form-control text-uppercase" name="type"> 
                                                             <?php
                                                             $request='SELECT lib FROM classe_permis';
+                                                            $req = $bdd->query($request);
+                                                            while ($ok = $req->fetch())
+                                                            {
+                                                                echo "<option class=\"\">".htmlspecialchars($ok['lib'])."</option>";    
+                                                            }
+                                                            $req->closeCursor();                        
+                                                        ?> 
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group form-inline"> 
+                                                        <label class="control-label" for="exampleInputPassword1">Statut socio-professionnel</label>
+                                                        <br>
+                                                        <select id="status-pro" class="form-control text-uppercase" name="status-pro"> 
+                                                            <?php
+                                                            $request='SELECT lib, info FROM statut_socio_pro';
                                                             $req = $bdd->query($request);
                                                             while ($ok = $req->fetch())
                                                             {
@@ -133,20 +148,8 @@ try
                                                             }
                                                             $req->closeCursor();                        
                                                         ?> 
-                                                    </div>
-                                                    <div class="form-group"> 
-                                                        <label class="control-label" for="exampleInputPassword1">Statut socio-professionnel</label>                                                         
-                                                        <select id="formInput28" class="form-control text-uppercase" name="carGenre"> 
-                                                            <?php
-                                                            $request='SELECT lib, info FROM statut_socio_pro';
-                                                            $req = $bdd->query($request);
-                                                            while ($ok = $req->fetch())
-                                                            {
-                                                                echo "<option class=\"\">".htmlspecialchars($ok['lib'])." - ".htmlspecialchars($ok['info'])."</option>";
-                                                            }
-                                                            $req->closeCursor();                        
-                                                        ?> 
-                                                        </select>                                                         
+                                                        </select>
+                                                        <span class="badge info" id="info-status-pro"></span> 
                                                     </div>                                                     
                                                     <div class="form-group"> 
                                                         <label class="control-label" for="exampleInputPassword1">Profession</label>                                                         
@@ -198,19 +201,20 @@ try
                                                         <label class="control-label" for="exampleInputPassword1">Numéro de chassis</label>                                                         
                                                         <input type="text" class="form-control" name="chassis" placeholder="Entrer le numéro de chassis du véhicule"> 
                                                     </div>                                                     
-                                                    <div class="form-group"> 
+                                                    <div class="form-group form-inline"> 
                                                         <label class="control-label" for="formInput28">Catégorie du véhicule</label>                                                         
-                                                        <select id="formInput28" class="form-control" name="cat"> 
+                                                        <select id="catcar" class="form-control" name="cat"> 
                                                             <?php
                                                             $request='SELECT cat_vehicule_id FROM categorie_vehicule';
                                                             $req = $bdd->query($request);
                                                             while ($ok = $req->fetch())
                                                             {
-                                                                echo "<option class=\"\"> Catégorie ".htmlspecialchars($ok['cat_vehicule_id'])."</option>";    
+                                                                echo "<option class=\"\">".htmlspecialchars($ok['cat_vehicule_id'])."</option>";    
                                                             }
                                                             $req->closeCursor();                        
                                                         ?> 
                                                         </select>                                                         
+                                                        <div class="alert alert-info" id="cat-desc"></div>                                                         
                                                     </div>                                                     
                                                     <div class="form-group form-inline"> 
                                                         <label class="control-label" for="exampleInputPassword1">Puissance fiscale</label>
@@ -226,7 +230,7 @@ try
                                             </div>
                                             <div class="checkbox"> 
                                                 <label class="control-label"> 
-                                                    <input type="checkbox" value="rem" id="rem" name="remorque">       Remorque        
+                                                    <input type="checkbox" value="rem" id="rem" name="remorque">Remorque        
                                                 </label>                                                 
                                             </div>                                             
                                         </div>                                         
@@ -277,7 +281,7 @@ try
                                 //Do nothing
                             }
                         });
-                    </script>   
+                    </script>                     
                     <script type="text/javascript">
                         $(document).ready(function(){
                             $('#pf').change(function(){
@@ -294,6 +298,40 @@ try
                                 });
                             });
                         });
-                    </script>                  
+                    </script>
+                    <script type="text/javascript">
+                        $(document).ready(function(){
+                            $('#status-pro').change(function(){
+                                var spro = $(this).val();
+                                $.ajax({
+                                    url : "inc/fetch_info_status_pro.php",
+                                    method : "POST",
+                                    data : {stat:spro},
+                                    dataType : "text",
+                                    success : function(data){
+                                        $('#info-status-pro').html(data);
+                                    }
+
+                                });
+                            });
+                        });
+                    </script>                     
+                    <script type="text/javascript">
+                        $(document).ready(function(){
+                            $('#catcar').change(function(){
+                                var catcar = $(this).val();
+                                $.ajax({
+                                    url : "inc/fetch_categorie_vehicule.php",
+                                    method : "POST",
+                                    data : {cat:catcar},
+                                    dataType : "text",
+                                    success : function(data){
+                                        $('#cat-desc').html(data);
+                                    }
+
+                                });
+                            });
+                        });
+                    </script>                     
         </body>         
     </html>
