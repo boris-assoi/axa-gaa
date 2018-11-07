@@ -121,9 +121,9 @@ try
                                                         <label class="control-label" for="exampleInputPassword1">Nom du client</label>                                                         
                                                         <input type="text" class="form-control" name="nom" placeholder="Entrer le nom du client"> 
                                                     </div>
-                                                    <div class="form-group"> 
+                                                    <div class="form-group form-inline"> 
                                                         <label class="control-label" for="exampleInputPassword1">Classe d'ancienneté du permis</label>                                                         
-                                                        <select id="formInput28" class="form-control text-uppercase" name="type"> 
+                                                        <select id="classe-permis" class="form-control text-uppercase" name="classe-permis"> 
                                                             <?php
                                                             $request='SELECT lib FROM classe_permis';
                                                             $req = $bdd->query($request);
@@ -134,6 +134,7 @@ try
                                                             $req->closeCursor();                        
                                                         ?> 
                                                         </select>
+                                                        <div class="alert alert-info" id="classe-desc"></div>
                                                     </div>
                                                     <div class="form-group form-inline"> 
                                                         <label class="control-label" for="exampleInputPassword1">Statut socio-professionnel</label>
@@ -149,7 +150,7 @@ try
                                                             $req->closeCursor();                        
                                                         ?> 
                                                         </select>
-                                                        <span class="badge info" id="info-status-pro"></span> 
+                                                        <div class="alert alert-info" id="info-status-pro"></div>
                                                     </div>                                                     
                                                     <div class="form-group"> 
                                                         <label class="control-label" for="exampleInputPassword1">Profession</label>                                                         
@@ -286,15 +287,15 @@ try
                         $(document).ready(function(){
                             $('#pf').change(function(){
                                 var pf = $(this).val();
+                                var type = 'puissance-fiscale';
                                 $.ajax({
-                                    url : "inc/fetch_pfvalue.php",
+                                    url : "inc/fetch_datas.php",
                                     method : "POST",
-                                    data : {pfType:pf},
+                                    data : {pfType:pf,type:type},
                                     dataType : "text",
                                     success : function(data){
                                         $('#pfValue').html(data);
                                     }
-
                                 });
                             });
                         });
@@ -303,15 +304,15 @@ try
                         $(document).ready(function(){
                             $('#status-pro').change(function(){
                                 var spro = $(this).val();
+                                var type = 'socio-pro';
                                 $.ajax({
-                                    url : "inc/fetch_info_status_pro.php",
+                                    url : "inc/fetch_datas.php",
                                     method : "POST",
-                                    data : {stat:spro},
+                                    data : {stat:spro,type:type},
                                     dataType : "text",
                                     success : function(data){
                                         $('#info-status-pro').html(data);
                                     }
-
                                 });
                             });
                         });
@@ -320,18 +321,35 @@ try
                         $(document).ready(function(){
                             $('#catcar').change(function(){
                                 var catcar = $(this).val();
+                                var type = 'cat';
                                 $.ajax({
-                                    url : "inc/fetch_categorie_vehicule.php",
+                                    url : "inc/fetch_datas.php",
                                     method : "POST",
-                                    data : {cat:catcar},
+                                    data : {cat:catcar,type:type},
                                     dataType : "text",
                                     success : function(data){
                                         $('#cat-desc').html(data);
                                     }
-
                                 });
                             });
                         });
-                    </script>                     
+                    </script> 
+                    <script type="text/javascript">
+                        $(document).ready(function(){
+                            $('#classe-permis').change(function(){
+                                var classe = $(this).val();
+                                var type = 'cls-pc';
+                                $.ajax({
+                                    url : "inc/fetch_datas.php",
+                                    method : "POST",
+                                    data : {classe:classe,type:type},
+                                    dataType : "text",
+                                    success : function(data){
+                                        $('#classe-desc').html(data);
+                                    }
+                                });
+                            });
+                        });
+                    </script>                    
         </body>         
     </html>
