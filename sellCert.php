@@ -123,7 +123,7 @@ try
                                                     </div>
                                                     <div class="form-group form-inline"> 
                                                         <label class="control-label" for="exampleInputPassword1">Classe d'ancienneté du permis</label>                                                         
-                                                        <select id="classe-permis" class="form-control text-uppercase" name="classe-permis"> 
+                                                        <select id="classe-permis" class="form-control text-uppercase" name="classe_permis"> 
                                                             <?php
                                                             $request='SELECT lib FROM classe_permis';
                                                             $req = $bdd->query($request);
@@ -231,7 +231,7 @@ try
                                             </div>
                                             <div class="checkbox"> 
                                                 <label class="control-label"> 
-                                                    <input type="checkbox" value="rem" id="rem" name="remorque">Remorque        
+                                                    <input type="checkbox" value="rem" id="rem" name="rem">Remorque        
                                                 </label>                                                 
                                             </div>                                             
                                         </div>                                         

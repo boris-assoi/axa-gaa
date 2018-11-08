@@ -19,40 +19,58 @@
         Informations sur le client
         */
         //Récupération de la classe d'ancienneté du permis
-        $datePC = $_POST['datePC'];
+        $classe_permis = $_POST['classe_permis'];
 
-        //Informations sur la police
-        $pol = $_POST['pol'];
-        $poldf = $_POST['poldf'];
-        $poldt = $_POST['poldt'];
+        //Récupération du statut socio-professionnel
+        $statut_pro = $_POST['status-pro'];
 
-        //Information sur le véhicule
-        $carGenre = $_POST['carGenre'];
-        $carMake = $_POST['carMake'];
-        $imat = $_POST['imat'];
-        $chassis = $_POST['chassis'];
-        $cat = $_POST['cat'];
+        /*
+        Information sur le véhicule
+        */
+        //Récupération du type de puissance fiscale
         $pf = $_POST['pf'];
-        echo $pf;
-        $pfValue = $_POST['pfValue'];
-        $amount = $_POST['amount'];
+        $pf_table = "ref_".$pf;
         
+        //Récupération de la valeur de la puissance fiscale
+        $pfValue = $_POST['pfValue'];
+
+        //Vérification de l'existence d'une remorque        
         $rem = $_POST['rem'];
 
-        //informations sur le type d'attestation
-        $typAtt = $_POST['typAtt'];
-
-        //Informatiions sur la vente
-        $vType = $_POST['vType'];
+        //Valeur de pourcentage annexe à appliquer
+        $prime_annexe = "";
 
         //Recupération de la prime de base
         $prime = "";
-        $req = $bdd->prepare("SELECT zone1 AS prime FROM prime_rc_cat1, ref_essence WHERE es = ref_essence.id AND ref_essence.label = ?");
+        $req = $bdd->prepare("SELECT zone1 AS prime FROM prime_rc_cat1, ".$pf_table." WHERE es = ".$pf_table.".id AND ".$pf_table.".label = ?");
         $req->execute(array($pfValue));
         while ($ok = $req->fetch()) {
             $prime = $ok['prime'];
         }
-        echo $prime;
+
+        //Ajout pour la remorque
+        if (!empty($rem)) {
+            $prime_annexe += 10;
+        }
+
+        //Ajout pour la classe d'ancienneté
+        if ($classe_permis == "classe 2") {
+            $prime_annexe += (-5);
+        }
+
+        //Ajout pour le statut socio-professionnel
+        if ($statut_pro == "A" || $statut_pro == "B" || $statut_pro == "C") {
+            $prime_annexe += (-5);
+        } elseif ($statut_pro == "D" || $statut_pro == "E") {
+            $prime_annexe += (-10);
+        }
+
+        $prime_rc = $prime + ($prime * $prime_annexe / 100);
+
+        echo "Calcul de la prime pour la catégorie 1 <br>";
+        echo "Prime de base : ".$prime."<br>";
+        echo "Prime annexe : ".$prime_annexe."<br>";
+        echo "Le montant de la prime :".$prime_rc;
 
     }
     catch (Exception $e)
