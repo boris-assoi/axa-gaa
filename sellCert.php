@@ -150,7 +150,7 @@ try
                                                             $req->closeCursor();                        
                                                         ?> 
                                                         </select>
-                                                        <div class="alert alert-info" id="info-status-pro"></div>
+                                                        <i class="fa fa-lg fa-question-circle" data-toggle="tooltip" data-placement="auto" title="example" id="info-status-pro"></i>
                                                     </div>                                                     
                                                     <div class="form-group"> 
                                                         <label class="control-label" for="exampleInputPassword1">Profession</label>                                                         
@@ -205,6 +205,7 @@ try
                                                     <div class="form-group form-inline"> 
                                                         <label class="control-label" for="formInput28">Catégorie du véhicule</label>                                                         
                                                         <select id="catcar" class="form-control" name="cat"> 
+                                                            <option>Sélectionnez la catégorie</option>
                                                             <?php
                                                             $request='SELECT cat_vehicule_id FROM categorie_vehicule';
                                                             $req = $bdd->query($request);
@@ -218,8 +219,7 @@ try
                                                         <div class="alert alert-info" id="cat-desc"></div>                                                         
                                                     </div>                                                     
                                                     <div class="form-group form-inline"> 
-                                                        <label class="control-label" for="exampleInputPassword1">Puissance fiscale</label>
-                                                    </br>                                                     
+                                                        <label class="control-label" for="exampleInputPassword1">Puissance fiscale</label><br>                                                     
                                                     <select id="pf" class="form-control" name="pf">
                                                         <option>Sélectionner le type de puissance fiscale</option>
                                                         <option>Essence</option>                                                         
@@ -228,24 +228,27 @@ try
                                                     <select id="pfValue" class="form-control" name="pfValue"> 
                                                         <option>Sélectionnez la puissance fiscale</option>
                                                     </select>
-                                            </div>
-                                            <div class="checkbox"> 
-                                                <label class="control-label"> 
-                                                    <input type="checkbox" value="rem" id="rem" name="rem">Remorque        
-                                                </label>                                                 
-                                            </div>                                             
-                                        </div>                                         
-                                        <div class="form-group"> 
-                                            <label class="control-label" for="exampleInputPassword1">Montant de la police</label>                                             
-                                            <input type="number" class="form-control" name="amount" placeholder="Entrer le montant"> 
-                                        </div>                                         
-                                        <input type="text" hidden="" value="1" name="vType"> 
-                                        <button type="submit" class="btn btn-success">Vendre</button>                                         
-                                        <a href="JavaScript:window.history.back()" class="hidden-print"> 
-                                            <button type="button" class="btn btn-danger">Annuler</button>                                             
-                                        </a>                                         
-                                    </form>                                     
-                                    <div class="text-right"></div>                                     
+                                                    </div>
+                                                    <div class="form-group"> 
+                                                        <label class="control-label">Le véhicule possède-t-il une remorque? </label> 
+                                                        <input type="checkbox" value="rem" id="rem" name="rem">                                             
+                                                    </div> 
+                                                    <div class="form-group"> 
+                                                            <label class="control-label" for="exampleInputPassword1">Ajouter une garantie tierce complète ou tierce collision </label>                                                         
+                                                            <input type="checkbox" value="defense" id="defense" name="defense">
+                                                    </div>                                        
+                                                    <div class="form-group"> 
+                                                        <label class="control-label" for="exampleInputPassword1">Montant de la police</label>                                             
+                                                        <input type="number" class="form-control" name="amount" placeholder="Entrer le montant"> 
+                                                    </div>                                         
+                                                    <input type="text" hidden="" value="1" name="vType"> 
+                                                    <button type="submit" class="btn btn-success">Vendre</button>                                         
+                                                    <a href="JavaScript:window.history.back()" class="hidden-print"> 
+                                                        <button type="button" class="btn btn-danger">Annuler</button>                                             
+                                                    </a>                                         
+                                            </form>                                     
+                                            <div class="text-right"></div>                                              
+                                        </div>                                    
                                 </div>                                 
                             </div>                             
                         </div>                         
@@ -282,7 +285,12 @@ try
                                 //Do nothing
                             }
                         });
-                    </script>                     
+                    </script>
+                    <script>
+                        $(document).ready(function(){
+                            $('[data-toggle="tooltip"]').tooltip(); 
+                        });
+                    </script>                    
                     <script type="text/javascript">
                         $(document).ready(function(){
                             $('#pf').change(function(){
@@ -311,7 +319,7 @@ try
                                     data : {stat:spro,type:type},
                                     dataType : "text",
                                     success : function(data){
-                                        $('#info-status-pro').html(data);
+                                        $('#info-status-pro').prop('title',data);
                                     }
                                 });
                             });

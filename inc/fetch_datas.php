@@ -46,7 +46,7 @@
                 $req = $bdd->prepare('SELECT info FROM statut_socio_pro WHERE lib = LOWER(?)');
                 $req -> execute(array($stat));
                 while ($ok = $req->fetch()) {
-                    $output .= '<span>'.$ok['info'].'</span>';
+                    $output .= $ok['info'];
                 }
                 break;
 

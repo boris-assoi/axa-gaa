@@ -35,7 +35,11 @@
         $pfValue = $_POST['pfValue'];
 
         //Vérification de l'existence d'une remorque        
-        $rem = $_POST['rem'];
+        (!empty($_POST['rem'])) ? $rem = $_POST['rem']:$rem = '';
+
+        /*
+        *CALCUL DE LA GARANTIE RESPONSABILITE CIVILE
+        */
 
         //Valeur de pourcentage annexe à appliquer
         $prime_annexe = "";
@@ -57,20 +61,30 @@
         if ($classe_permis == "classe 2") {
             $prime_annexe += (-5);
         }
-
+        
+        $prime_stt_pro = '';
         //Ajout pour le statut socio-professionnel
-        if ($statut_pro == "A" || $statut_pro == "B" || $statut_pro == "C") {
+        if ($statut_pro == "a" || $statut_pro == "b" || $statut_pro == "c") {
             $prime_annexe += (-5);
-        } elseif ($statut_pro == "D" || $statut_pro == "E") {
+        } elseif ($statut_pro == "d" || $statut_pro == "e") {
             $prime_annexe += (-10);
         }
 
         $prime_rc = $prime + ($prime * $prime_annexe / 100);
 
-        echo "Calcul de la prime pour la catégorie 1 <br>";
+        echo "Calcul de la prime pour la garantie de la responsabilité civile <br>";
         echo "Prime de base : ".$prime."<br>";
         echo "Prime annexe : ".$prime_annexe."<br>";
         echo "Le montant de la prime :".$prime_rc;
+
+        /*
+        * FIN DE CALCUL DE LA GARANTIE DE LA RESPONSABILITE CIVILE
+        */
+
+        /*
+        * CALCUL DE LA GARANTIE DEFENSE ET RECOURS
+        */
+        
 
     }
     catch (Exception $e)
