@@ -25,6 +25,18 @@
         $statut_pro = $_POST['status-pro'];
 
         /*
+        * Informations sur la police
+        */
+        //Récupération de la date de début d'effet
+        (!empty($_POST['poldf'])) ? $rem = date($_POST['poldf']):$poldf = '';
+
+        //Récupération de la date de fin d'effet
+        (!empty($_POST['poldt'])) ? $rem = date($_POST['poldt']):$poldt = '';
+
+        //Calcul de la durée de la police
+        $pol_duration = $poldt - $poldf;
+        
+        /*
         Information sur le véhicule
         */
         //Récupération du type de puissance fiscale
