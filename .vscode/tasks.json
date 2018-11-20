@@ -8,6 +8,12 @@
             "script": "install",
             "path": "assets/jquery-confirm-v3.3.0/jquery-confirm-master/",
             "problemMatcher": []
+        },
+        {
+            "type": "npm",
+            "script": "test",
+            "path": "assets/jquery-confirm-v3.3.0/jquery-confirm-master/",
+            "problemMatcher": []
         }
     ]
 }

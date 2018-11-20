@@ -13,7 +13,7 @@
         */
 
         include_once "connection.php";
-        include_once "models.php";
+        include_once "models.php"; 
 
         /*
         Informations sur le client
@@ -28,14 +28,15 @@
         * Informations sur la police
         */
         //Récupération de la date de début d'effet
-        (!empty($_POST['poldf'])) ? $rem = date($_POST['poldf']):$poldf = '';
+        (!empty($_POST['poldf'])) ? $poldf = new DateTime($_POST['poldf'], new DateTimeZone('GMT+0')) : $poldf = '';
 
         //Récupération de la date de fin d'effet
-        (!empty($_POST['poldt'])) ? $rem = date($_POST['poldt']):$poldt = '';
+        (!empty($_POST['poldt'])) ? $poldt = new DateTime($_POST['poldt'], new DateTimeZone('GMT+0')) : $poldt = '';
 
         //Calcul de la durée de la police
-        $pol_duration = $poldt - $poldf;
-        
+        $pol_duration = $poldt->diff($poldf);;
+        echo $pol_duration->format('%d');
+
         /*
         Information sur le véhicule
         */
@@ -50,7 +51,7 @@
         (!empty($_POST['rem'])) ? $rem = $_POST['rem']:$rem = '';
 
         /*
-        *CALCUL DE LA GARANTIE RESPONSABILITE CIVILE
+        *CALCUL DE LA GARANTIE RESPONSABILITE CIVILE : prime_rc
         */
 
         //Valeur de pourcentage annexe à appliquer
@@ -63,6 +64,7 @@
         while ($ok = $req->fetch()) {
             $prime = $ok['prime'];
         }
+        $req->closeCursor();
 
         //Ajout pour la remorque
         if (!empty($rem)) {
@@ -94,9 +96,14 @@
         */
 
         /*
-        * CALCUL DE LA GARANTIE DEFENSE ET RECOURS
+        * CALCUL DE LA GARANTIE DEFENSE ET RECOURS : prime_dr
         */
-        
+        $prime_dr = '';
+        //Récupération du paramètre dans le formulaire
+        if(!empty($_POST['defense'])){
+            $req = $bdd->prepare("SELECT prime FROM g_def_rec,  WHERE type_garantie = ");
+            $req->execute(array($pfValue));
+        }
 
     }
     catch (Exception $e)

@@ -102,109 +102,76 @@ try
                                                             $req->closeCursor();
                                                         ?> 
                                                         </select>                                                         
-                                                    </div>                                                     
-                                                    <div class="form-group"> 
-                                                        <label class="control-label" for="formInput28">Sélectionner le type de client</label>                                                         
-                                                        <select id="formInput28" class="form-control" name="type"> 
-                                                            <?php
-                                                            $request='SELECT type_client_lib FROM type_client';
-                                                            $req = $bdd->query($request);
-                                                            while ($ok = $req->fetch())
-                                                            {
-                                                                echo "<option class=\"\">".htmlspecialchars($ok['type_client_lib'])."</option>";    
-                                                            }
-                                                            $req->closeCursor();                        
-                                                        ?> 
-                                                        </select>                                                         
-                                                    </div>                                                     
-                                                    <div class="form-group"> 
-                                                        <label class="control-label" for="exampleInputPassword1">Nom du client</label>                                                         
-                                                        <input type="text" class="form-control" name="nom" placeholder="Entrer le nom du client"> 
-                                                    </div>
-                                                    <div class="form-group form-inline"> 
-                                                        <label class="control-label" for="exampleInputPassword1">Classe d'ancienneté du permis</label>                                                         
-                                                        <select id="classe-permis" class="form-control text-uppercase" name="classe_permis"> 
-                                                            <?php
-                                                            $request='SELECT lib FROM classe_permis';
-                                                            $req = $bdd->query($request);
-                                                            while ($ok = $req->fetch())
-                                                            {
-                                                                echo "<option class=\"\">".htmlspecialchars($ok['lib'])."</option>";    
-                                                            }
-                                                            $req->closeCursor();                        
-                                                        ?> 
-                                                        </select>
-                                                        <div class="alert alert-info" id="classe-desc"></div>
-                                                    </div>
-                                                    <div class="form-group form-inline"> 
-                                                        <label class="control-label" for="exampleInputPassword1">Statut socio-professionnel</label>
-                                                        <br>
-                                                        <select id="status-pro" class="form-control text-uppercase" name="status-pro"> 
-                                                            <?php
-                                                            $request='SELECT lib, info FROM statut_socio_pro';
-                                                            $req = $bdd->query($request);
-                                                            while ($ok = $req->fetch())
-                                                            {
-                                                                echo "<option class=\"\">".htmlspecialchars($ok['lib'])."</option>";
-                                                            }
-                                                            $req->closeCursor();                        
-                                                        ?> 
-                                                        </select>
-                                                        <i class="fa fa-lg fa-question-circle" data-toggle="tooltip" data-placement="auto" title="example" id="info-status-pro"></i>
-                                                    </div>                                                     
-                                                    <div class="form-group"> 
-                                                        <label class="control-label" for="exampleInputPassword1">Profession</label>                                                         
-                                                        <input type="text" class="form-control" placeholder="Profession du client" name="pro"> 
-                                                    </div>                                                     
-                                                    <div class="form-group"> 
-                                                        <label class="control-label" for="exampleInputPassword1">Adresse</label>                                                         
-                                                        <input type="text" class="form-control" name="adresse" placeholder="Adresse du client"> 
-                                                    </div>                                                     
-                                                    <div class="form-group"> 
-                                                        <label class="control-label" for="exampleInputPassword1">Contact</label>                                                         
-                                                        <input type="text" class="form-control" name="contact" placeholder="Contact du client"> 
-                                                    </div>                                                     
-                                                    <div class="form-group"> 
-                                                        <label class="control-label" for="exampleInputPassword1">Police N°</label>                                                         
-                                                        <input type="text" class="form-control" name="pol" maxlength="10" placeholder="Entrer le numéro de la police"> 
-                                                    </div>                                                     
-                                                    <div class="form-group"> 
-                                                        <label class="control-label" for="exampleInputPassword1">Date de début de la police</label>                                                         
-                                                        <input type="date" class="form-control" placeholder="Entrer la date de début de la police" name="poldf"> 
-                                                    </div>                                                     
-                                                    <div class="form-group"> 
-                                                        <label class="control-label" for="exampleInputPassword1">Date de fin de la police</label>                                                         
-                                                        <input type="date" class="form-control" placeholder="Entrer la date de fin de la police" name="poldt"> 
-                                                    </div>                                                     
-                                                    <div class="form-group"> 
-                                                        <label class="control-label" for="exampleInputPassword1">Genre du véhicule</label>                                                         
-                                                        <select id="formInput28" class="form-control" name="carGenre"> 
-                                                            <?php
-                                                            $request='SELECT type_vehicule_lib FROM type_vehicule';
-                                                            $req = $bdd->query($request);
-                                                            while ($ok = $req->fetch())
-                                                            {
-                                                                echo "<option class=\"\">".htmlspecialchars($ok['type_vehicule_lib'])."</option>";
-                                                            }
-                                                            $req->closeCursor();                        
-                                                        ?> 
-                                                        </select>                                                         
-                                                    </div>                                                     
-                                                    <div class="form-group"> 
-                                                        <label class="control-label" for="exampleInputPassword1">Marque du véhicule</label>                                                         
-                                                        <input type="text" class="form-control" placeholder="Entrer la marque du véhicule" name="carMake"> 
-                                                    </div>                                                     
-                                                    <div class="form-group"> 
-                                                        <label class="control-label" for="exampleInputPassword1">Immatriculation du véhicule</label>                                                         
-                                                        <input type="text" class="form-control" name="imat" placeholder="Entrer le numéro d'immatriculation du véhicule"> 
-                                                    </div>                                                     
-                                                    <div class="form-group"> 
-                                                        <label class="control-label" for="exampleInputPassword1">Numéro de chassis</label>                                                         
-                                                        <input type="text" class="form-control" name="chassis" placeholder="Entrer le numéro de chassis du véhicule"> 
-                                                    </div>                                                     
-                                                    <div class="form-group form-inline"> 
-                                                        <label class="control-label" for="formInput28">Catégorie du véhicule</label>                                                         
-                                                        <select id="catcar" class="form-control" name="cat"> 
+                                                    </div> 
+                                                    <fieldset>
+                                                        <legend>Informations du client</legend>                                               
+                                                        <div class="form-group"> 
+                                                            <label class="control-label" for="formInput28">Sélectionner le type de client</label>                                                         
+                                                            <select id="formInput28" class="form-control" name="type"> 
+                                                                <?php
+                                                                $request='SELECT type_client_lib FROM type_client';
+                                                                $req = $bdd->query($request);
+                                                                while ($ok = $req->fetch())
+                                                                {
+                                                                    echo "<option class=\"\">".htmlspecialchars($ok['type_client_lib'])."</option>";    
+                                                                }
+                                                                $req->closeCursor();                        
+                                                            ?> 
+                                                            </select>                                                         
+                                                        </div>                                                     
+                                                        <div class="form-group"> 
+                                                            <label class="control-label" for="exampleInputPassword1">Nom du client</label>                                                         
+                                                            <input type="text" class="form-control" name="nom" placeholder="Entrer le nom du client"> 
+                                                        </div>
+                                                        <div class="form-group form-inline">              
+                                                            <select id="classe-permis" class="form-control text-uppercase" name="classe_permis">
+                                                                <option>Sélectionnez la classe d'ancienneté</option>
+                                                                <?php
+                                                                $request='SELECT lib FROM classe_permis';
+                                                                $req = $bdd->query($request);
+                                                                while ($ok = $req->fetch())
+                                                                {
+                                                                    echo "<option class=\"\">".htmlspecialchars($ok['lib'])."</option>";    
+                                                                }
+                                                                $req->closeCursor();                        
+                                                            ?> 
+                                                            </select>
+                                                            <div class="alert alert-info" id="classe-desc"></div>
+                                                            <select id="status-pro" class="form-control text-uppercase" name="status-pro"> 
+                                                                <option>Sélectionnez le statut socio-professionnel</option>
+                                                                <?php
+                                                                $request='SELECT lib, info FROM statut_socio_pro';
+                                                                $req = $bdd->query($request);
+                                                                while ($ok = $req->fetch())
+                                                                {
+                                                                    echo "<option class=\"\">".htmlspecialchars($ok['lib'])."</option>";
+                                                                }
+                                                                $req->closeCursor();                        
+                                                            ?> 
+                                                            </select>
+                                                            <i class="fa fa-lg fa-question-circle" data-toggle="tooltip" data-placement="auto" title="example" id="info-status-pro"></i>
+                                                            <input type="text" class="form-control" placeholder="Profession du client" name="pro"> 
+                                                            <input type="text" class="form-control" name="adresse" placeholder="Adresse du client"> 
+                                                            <input type="text" class="form-control" name="contact" placeholder="Contact du client"> 
+                                                        </div> 
+                                                    </fieldset>
+                                                    <fieldset>
+                                                        <legend>Informations sur la police</legend>                                                  
+                                                        <div class="form-group"> 
+                                                            <label class="control-label" for="exampleInputPassword1">Police N°</label>                                                         
+                                                            <input type="text" class="form-control" name="pol" maxlength="10" placeholder="Entrer le numéro de la police"> 
+                                                        </div>                                                     
+                                                        <div class="form-group form-inline"> 
+                                                            <label class="control-label" for="exampleInputPassword1">Date de début de la police</label>                                                         
+                                                            <input type="date" class="form-control" placeholder="Entrer la date de début de la police" name="poldf">
+                                                            <label class="control-label" for="exampleInputPassword1">Date de fin de la police</label>                                                         
+                                                            <input type="date" class="form-control" placeholder="Entrer la date de fin de la police" name="poldt"> 
+                                                        </div> 
+                                                    </fieldset>
+                                                    <fieldset>
+                                                        <legend>Informations du véhicule</legend>                                                 
+                                                        <div class="form-group form-inline">
+                                                            <select id="catcar" class="form-control text-uppercase" name="cat"> 
                                                             <option>Sélectionnez la catégorie</option>
                                                             <?php
                                                             $request='SELECT cat_vehicule_id FROM categorie_vehicule';
@@ -214,29 +181,57 @@ try
                                                                 echo "<option class=\"\">".htmlspecialchars($ok['cat_vehicule_id'])."</option>";    
                                                             }
                                                             $req->closeCursor();                        
-                                                        ?> 
-                                                        </select>                                                         
-                                                        <div class="alert alert-info" id="cat-desc"></div>                                                         
-                                                    </div>                                                     
-                                                    <div class="form-group form-inline"> 
-                                                        <label class="control-label" for="exampleInputPassword1">Puissance fiscale</label><br>                                                     
-                                                    <select id="pf" class="form-control" name="pf">
-                                                        <option>Sélectionner le type de puissance fiscale</option>
-                                                        <option>Essence</option>                                                         
-                                                        <option>Diesel</option>                                                         
-                                                    </select>
-                                                    <select id="pfValue" class="form-control" name="pfValue"> 
-                                                        <option>Sélectionnez la puissance fiscale</option>
-                                                    </select>
-                                                    </div>
-                                                    <div class="form-group"> 
-                                                        <label class="control-label">Le véhicule possède-t-il une remorque? </label> 
-                                                        <input type="checkbox" value="rem" id="rem" name="rem">                                             
-                                                    </div> 
-                                                    <div class="form-group"> 
-                                                            <label class="control-label" for="exampleInputPassword1">Ajouter une garantie tierce complète ou tierce collision </label>                                                         
-                                                            <input type="checkbox" value="defense" id="defense" name="defense">
-                                                    </div>                                        
+                                                            ?> 
+                                                            </select>                                                         
+                                                            <div class="alert alert-info" id="cat-desc"></div>   
+                                                            <select id="formInput28" class="form-control text-uppercase" name="carGenre">
+                                                                <option>Sélectionnez le genre du véhicule</option>
+                                                                <?php
+                                                                $request='SELECT type_vehicule_lib FROM type_vehicule';
+                                                                $req = $bdd->query($request);
+                                                                while ($ok = $req->fetch())
+                                                                {
+                                                                    echo "<option class=\"\">".htmlspecialchars($ok['type_vehicule_lib'])."</option>";
+                                                                }
+                                                                $req->closeCursor();                        
+                                                            ?> 
+                                                            </select>                                                         
+                                                            <input type="text" class="form-control" placeholder="Marque" name="carMake"> 
+                                                            <input type="text" class="form-control" name="imat" placeholder="Immatriculation"> 
+                                                            <input type="text" class="form-control" name="chassis" placeholder="Numéro de chassis"> 
+                                                        </div>                                                     
+                                                        <div class="form-group form-inline"> 
+                                                            <label class="control-label" for="exampleInputPassword1">Puissance fiscale</label><br>                                                     
+                                                        <select id="pf" class="form-control" name="pf">
+                                                            <option>Sélectionner le type de puissance fiscale</option>
+                                                            <option>Essence</option>                                                         
+                                                            <option>Diesel</option>                                                         
+                                                        </select>
+                                                        <select id="pfValue" class="form-control" name="pfValue"> 
+                                                            <option>Sélectionnez la puissance fiscale</option>
+                                                        </select>
+                                                        </div>
+                                                        <div class="form-group"> 
+                                                            <label class="control-label">Le véhicule possède-t-il une remorque? </label> 
+                                                            <input type="checkbox" value="rem" id="rem" name="rem">                                             
+                                                        </div>
+                                                    </fieldset>
+                                                    <fieldset>
+                                                        <legend><input type="checkbox" value="rem" id="def-rec"> Garantie défense et recours</legend>
+                                                        <div class="form-group form-inline"> 
+                                                                <select class="form-control text-uppercase" name="defense" id="defense" enable="false">
+                                                                <option>Sélectionnez le type de garantie</option>
+                                                                <?php
+                                                                $request='SELECT lib FROM type_g_def_rec';
+                                                                $req = $bdd->query($request);
+                                                                while ($ok = $req->fetch())
+                                                                {
+                                                                    echo "<option class=\"\">".htmlspecialchars($ok['lib'])."</option>";
+                                                                }
+                                                                $req->closeCursor();                        
+                                                            ?>
+                                                        </div>
+                                                    </fieldset>                                       
                                                     <div class="form-group"> 
                                                         <label class="control-label" for="exampleInputPassword1">Montant de la police</label>                                             
                                                         <input type="number" class="form-control" name="amount" placeholder="Entrer le montant"> 
@@ -358,6 +353,13 @@ try
                                 });
                             });
                         });
-                    </script>                    
+                    </script>
+                    <script type="text/javascript">
+                        $(document).ready(function(){
+                            $('#def-rec').change(function(){
+                                $('#defense').prop('enabled','enabled');
+                            })
+                        })
+                    </script>                  
         </body>         
     </html>
