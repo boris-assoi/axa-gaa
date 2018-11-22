@@ -211,15 +211,19 @@ try
                                                             <option>Sélectionnez la puissance fiscale</option>
                                                         </select>
                                                         </div>
+                                                        <div class="form-group form-inline"> 
+                                                            <label class="control-label">Valeur du véhicule</label> 
+                                                            <input type="text" class="form-control" placeholder="Valeur catalogue" name="valCat">                                             
+                                                        </div>
                                                         <div class="form-group"> 
                                                             <label class="control-label">Le véhicule possède-t-il une remorque? </label> 
                                                             <input type="checkbox" value="rem" id="rem" name="rem">                                             
                                                         </div>
                                                     </fieldset>
                                                     <fieldset>
-                                                        <legend><input type="checkbox" value="rem" id="def-rec"> Garantie défense et recours</legend>
+                                                        <legend><input type="checkbox" value="def-rec" id="def-rec"> Garantie défense et recours</legend>
                                                         <div class="form-group form-inline"> 
-                                                                <select class="form-control text-uppercase" name="defense" id="defense" enable="false">
+                                                            <select class="form-control text-uppercase" name="defense" id="defense" enable="false">
                                                                 <option>Sélectionnez le type de garantie</option>
                                                                 <?php
                                                                 $request='SELECT lib FROM type_g_def_rec';
@@ -229,9 +233,90 @@ try
                                                                     echo "<option class=\"\">".htmlspecialchars($ok['lib'])."</option>";
                                                                 }
                                                                 $req->closeCursor();                        
-                                                            ?>
+                                                                ?>
+                                                            </select>
                                                         </div>
-                                                    </fieldset>                                       
+                                                    </fieldset>
+                                                    <fieldset>
+                                                        <legend><input type="checkbox" value="" id="rem-ant"> Garantie remboursement anticipé</legend>
+                                                        <div class="form-group form-inline"> 
+                                                            <select class="form-control text-uppercase" name="remb" id="remb">
+                                                                <option>Sélectionnez le type de garantie</option>
+                                                                <?php
+                                                                $request='SELECT lib FROM prime_g_rem_ant';
+                                                                $req = $bdd->query($request);
+                                                                while ($ok = $req->fetch())
+                                                                {
+                                                                    echo "<option class=\"\">".htmlspecialchars($ok['lib'])."</option>";
+                                                                }
+                                                                $req->closeCursor();                        
+                                                                ?>
+                                                            </select>
+                                                        </div>
+                                                    </fieldset>
+                                                    <fieldset>
+                                                        <legend><input type="checkbox" value="" id="bris-glace"> Garantie bris de glace</legend>
+                                                        <div class="form-group form-inline"> 
+                                                            <select class="form-control text-uppercase" name="bris" id="bris">
+                                                                <option>Sélectionnez l'option de la garantie</option>
+                                                                <?php
+                                                                $request='SELECT lib FROM option_g_bri_gla';
+                                                                $req = $bdd->query($request);
+                                                                while ($ok = $req->fetch())
+                                                                {
+                                                                    echo "<option class=\"\">".htmlspecialchars($ok['lib'])."</option>";
+                                                                }
+                                                                $req->closeCursor();                        
+                                                                ?>
+                                                            </select>
+                                                        </div>
+                                                    </fieldset>
+                                                    <fieldset>
+                                                        <legend><input type="checkbox" value="" id="domID"> Garantie dommages</legend>
+                                                        <div class="form-group form-inline"> 
+                                                            <select class="form-control text-uppercase" name="dom" id="dom">
+                                                                <option>Sélectionnez l'option de la garantie</option>
+                                                                <?php
+                                                                $request='SELECT lib FROM type_g_dom';
+                                                                $req = $bdd->query($request);
+                                                                while ($ok = $req->fetch())
+                                                                {
+                                                                    echo "<option class=\"\">".htmlspecialchars($ok['lib'])."</option>";
+                                                                }
+                                                                $req->closeCursor();                        
+                                                                ?>
+                                                            </select>
+                                                        </div>
+                                                    </fieldset> 
+                                                    <fieldset>
+                                                        <legend><input type="checkbox" value="" id="secRouID"> Garantie sécurité routière</legend>
+                                                        <div class="form-group form-inline"> 
+                                                            <select class="form-control text-uppercase" name="sec_rou_cap" id="sec_rou_cap">
+                                                                <option>Sélectionnez le capital garanti</option>
+                                                                <?php
+                                                                $request='SELECT lib FROM capital_garantie_g_sec_rou';
+                                                                $req = $bdd->query($request);
+                                                                while ($ok = $req->fetch())
+                                                                {
+                                                                    echo "<option class=\"\">".htmlspecialchars($ok['lib'])."</option>";
+                                                                }
+                                                                $req->closeCursor();                        
+                                                                ?>
+                                                            </select>
+                                                            <select class="form-control text-uppercase" name="sec_rou_opt" id="sec_rou_opt">
+                                                                <option>Sélectionnez l'option'</option>
+                                                                <?php
+                                                                $request='SELECT lib FROM option_g_sec_rou';
+                                                                $req = $bdd->query($request);
+                                                                while ($ok = $req->fetch())
+                                                                {
+                                                                    echo "<option class=\"\">".htmlspecialchars($ok['lib'])."</option>";
+                                                                }
+                                                                $req->closeCursor();                        
+                                                                ?>
+                                                            </select>
+                                                        </div>
+                                                    </fieldset>                                    
                                                     <div class="form-group"> 
                                                         <label class="control-label" for="exampleInputPassword1">Montant de la police</label>                                             
                                                         <input type="number" class="form-control" name="amount" placeholder="Entrer le montant"> 
