@@ -31,11 +31,12 @@
         (!empty($_POST['poldf'])) ? $poldf = new DateTime($_POST['poldf'], new DateTimeZone('GMT+0')) : $poldf = '';
 
         //Récupération de la date de fin d'effet
-        (!empty($_POST['poldt'])) ? $poldt = new DateTime($_POST['poldt'], new DateTimeZone('GMT+0')) : $poldt = '';
+        (!empty($_POST['poldt'])) ? $poldt = new DateTime($_POST['poldt'].'+1 day', new DateTimeZone('GMT+0')) : $poldt = '';
 
         //Calcul de la durée de la police
-        $pol_duration = $poldf->diff($poldt);;
-        echo $pol_duration->format('%m mois');
+        $pol_duration = $poldf->diff($poldt);
+        $pol_duration_m = ceil($pol_duration->format('%a')/30);
+        echo $pol_duration->format('%a').'<br>';
 
 
         /*
@@ -88,7 +89,7 @@
             $prime_annexe += (-10);
         }
 
-        $prime_rc = $prime + ($prime * $prime_annexe / 100);
+        $prime_rc = ceil(($prime + ($prime * $prime_annexe / 100)) / 365 * $pol_duration->days);
 
         echo "Calcul de la prime pour la garantie de la RESPONSABILITE CIVILE <br>";
         echo "Prime de base : ".$prime."<br>";
@@ -140,6 +141,29 @@
         */
 
         /*
+        * CALCUL DE LA GARANTIE SECURITE ROUTIERE : prime_sr
+        */
+        $prime_sr = '';
+        //Récupération du paramètre dans le formulaire
+        if(!empty($_POST['remb'])){
+            $req = $bdd->prepare("SELECT prime FROM option_g_sec_rou WHERE lib =?");
+            $req->execute(array($_POST['sec_rou_opt']));
+            while ($ok = $req->fetch()) {
+                $prime_sr += $ok['prime'];
+            }
+            $req->closeCursor();
+        }
+
+        echo "Calcul de la prime pour la garantie de SECURITE ROUTIERE<br>";
+        echo "Prime de base : ".$prime_sr."<br>";
+        /*
+        * FIN DE CALCUL DE LA GARANTIE SECURITE ROUTIERE
+        */
+
+        //TOTAL PRIME POUR LE TIERS DE BASE : $prime_tb
+        $prime_tb = $prime_rc + $prime_dr + $prime_ra + $prime_sr;
+
+        /*
         * CALCUL DE LA GARANTIE BRIS DE GLACE : prime_bg
         */
         $prime_bg = '';
@@ -164,11 +188,11 @@
         */
         $prime_dom = '';
         //Récupération du paramètre dans le formulaire
-        if(!empty($_POST['remb'])){
+        if(!empty($_POST['dom'])){
             $req = $bdd->prepare("SELECT prime FROM g_dom, type_g_dom WHERE `g_dom`.`type` = `type_g_dom`.`id` AND `type_g_dom`.`lib` = LOWER(?)");
-            $req->execute(array($_POST['remb']));
+            $req->execute(array($_POST['dom']));
             while ($ok = $req->fetch()) {
-                $prime_dom += $ok['prime'];
+                $prime_dom += ceil($ok['prime'] * $prime_tb / 100);
             }
             $req->closeCursor();
         }
@@ -200,36 +224,25 @@
         */
 
         /*
-        * CALCUL DE LA GARANTIE SECURITE ROUTIERE : prime_sr
-        */
-        $prime_sr = '';
-        //Récupération du paramètre dans le formulaire
-        if(!empty($_POST['remb'])){
-            $req = $bdd->prepare("SELECT prime FROM option_g_sec_rou WHERE lib =?");
-            $req->execute(array($_POST['sec_rou_opt']));
-            while ($ok = $req->fetch()) {
-                $prime_sr += $ok['prime'];
-            }
-            $req->closeCursor();
-        }
-
-        echo "Calcul de la prime pour la garantie de SECURITE ROUTIERE<br>";
-        echo "Prime de base : ".$prime_sr."<br>";
-        /*
-        * FIN DE CALCUL DE LA GARANTIE SECURITE ROUTIERE
-        */
-
-        /*
         * CALCUL DE LA GARANTIE IMMOBILISATION : prime_im
         */
         $prime_im = '';
         //Récupération du paramètre dans le formulaire
         if(!empty($_POST['remb'])){
-            $req = $bdd->prepare("SELECT prime FROM option_g_sec_rou WHERE lib =?");
-            $req->execute(array($_POST['sec_rou_opt']));
+            $type_contrat = '';
+            if($pol_duration_m >= 3 && $pol_duration_m < 6){
+                $type_contrat = 1;
+            }elseif ($pol_duration_m > 6 && $pol_duration_m < 12) {
+                $type_contrat = 2;
+            }elseif ($pol_duration_m >= 12) {
+                $type_contrat = 3;
+            }
+            $req = $bdd->prepare("SELECT prime FROM g_imm WHERE contrat = ?");
+            $req->execute(array($type_contrat));
             while ($ok = $req->fetch()) {
                 $prime_im += $ok['prime'];
             }
+            echo $pol_duration_m;
             $req->closeCursor();
         }
 
