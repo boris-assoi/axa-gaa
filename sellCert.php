@@ -73,50 +73,101 @@ try
                                                     <h3>SOUSCRIPTEUR</h3>
                                                     <fieldset>
                                                         <h2>Identification du souscripteur</h2>
-                                                        <p class="desc">Entrer les informations du souscripteur s'il vous plait</p>
+                                                        <p class="desc">Entrez les informations du souscripteur s'il vous plait</p>
                                                         <div class="fieldset-content">
+                                                            <div class="form-group">
+                                                                <label class="form-label">Client</label>
+                                                                <select class="form-control text-uppercase" name="type"> 
+                                                                    <?php
+                                                                        $request='SELECT type_client_lib FROM type_client';
+                                                                        $req = $bdd->query($request);
+                                                                        while ($ok = $req->fetch())
+                                                                        {
+                                                                            echo "<option class=\"\">".htmlspecialchars($ok['type_client_lib'])."</option>";    
+                                                                        }
+                                                                        $req->closeCursor();                        
+                                                                    ?> 
+                                                                </select>
+                                                                <span class="text-input">Type de client</span>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <input type="text" name="nom" id="last_name"/>
+                                                                <span class="text-input">Nom du client</span>
+                                                            </div>                                                            
                                                             <div class="form-row">
-                                                                <label class="form-label">Nom</label>
                                                                 <div class="form-flex">
                                                                     <div class="form-group">
-                                                                        <input type="text" name="first_name" id="first_name" />
-                                                                        <span class="text-input">First</span>
+                                                                        <input type="email" name="email" id="email" />
+                                                                        <span class="text-input">Email</span></span>
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <input type="text" name="last_name" id="last_name" />
-                                                                        <span class="text-input">Last</span>
+                                                                        <input type="text" name="phone" id="phone" />
+                                                                        <span class="text-input">Téléphone</span></span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>                                                            
+                                                            <div class="form-row">
+                                                                <div class="form-flex">
+                                                                    <div class="form-group">
+                                                                        <input type="email" name="pro" id="email" />
+                                                                        <span class="text-input">Profession</span></span>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <input type="text" name="adresse" id="phone" />
+                                                                        <span class="text-input">Adresse</span></span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-row">
+                                                                <div class="form-flex">
+                                                                    <div class="form-group">
+                                                                        <select id="classe-permis" class="form-control text-uppercase" name="classe_permis">
+                                                                            <option>Sélectionnez la classe d'ancienneté</option>
+                                                                            <?php
+                                                                            $request='SELECT lib FROM classe_permis';
+                                                                            $req = $bdd->query($request);
+                                                                            while ($ok = $req->fetch())
+                                                                            {
+                                                                                echo "<option class=\"\">".htmlspecialchars($ok['lib'])."</option>";    
+                                                                            }
+                                                                            $req->closeCursor();                        
+                                                                        ?> 
+                                                                        </select>
+                                                                        <span class="text-input">Classe d'ancienneté</span>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <select id="status-pro" class="form-control text-uppercase" name="status-pro"> 
+                                                                            <option>Sélectionnez le statut socio-professionnel</option>
+                                                                            <?php
+                                                                            $request='SELECT lib, info FROM statut_socio_pro';
+                                                                            $req = $bdd->query($request);
+                                                                            while ($ok = $req->fetch())
+                                                                            {
+                                                                                echo "<option class=\"\">".htmlspecialchars($ok['lib'])."</option>";
+                                                                            }
+                                                                            $req->closeCursor();                        
+                                                                        ?> 
+                                                                        </select>
+                                                                        <span class="text-input">Statut socio-professionnel</span>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
-                                                                <label for="email" class="form-label">Email</label>
-                                                                <input type="email" name="email" id="email" />
-                                                                <span class="text-input">Example  :<span>  Jeff@gmail.com</span></span>
+                                                                <label class="form-label">Police</label>
+                                                                <input type="text" name="pol" maxlength="10" placeholder="Entrer le numéro de la police"> 
+                                                                <span class="text-input">Numéro de police</span></span>
                                                             </div>
-                                                            <div class="form-group">
-                                                                <label for="phone" class="form-label">Phone</label>
-                                                                <input type="text" name="phone" id="phone" />
-                                                            </div>
-                                                            <div class="form-date">
-                                                                <label for="birth_date" class="form-label">Birth Date</label>
-                                                                <div class="form-date-group">
-                                                                    <div class="form-date-item">
-                                                                        <select id="birth_month" name="birth_month"></select>
-                                                                        <span class="text-input">MM</span>
+                                                            <div class="form-row">
+                                                                <div class="form-flex">
+                                                                    <div class="form-group">
+                                                                        <input type="date" name="poldf"/>
+                                                                        <span class="text-input">Date d'effet de la police</span></span>
                                                                     </div>
-                                                                    <div class="form-date-item">
-                                                                        <select id="birth_date" name="birth_date"></select>
-                                                                        <span class="text-input">DD</span>
-                                                                    </div>
-                                                                    <div class="form-date-item">
-                                                                        <select id="birth_year" name="birth_year"></select>
-                                                                        <span class="text-input">YYYY</span>
+                                                                    <div class="form-group">
+                                                                        <input type="date" name="poldt"/>
+                                                                        <span class="text-input">Date d'échéance de la police</span></span>
                                                                     </div>
                                                                 </div>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="ssn" class="form-label">SSN</label>
-                                                                <input type="text" name="ssn" id="ssn" />
                                                             </div>
                                                         </div>
                                                     </fieldset>
@@ -127,47 +178,84 @@ try
                                                         <p class="desc">Entrez les informations du véhicule s'il vous plait</p>
                                                         <div class="fieldset-content">
                                                             <div class="form-row">
-                                                                <label class="form-label">Name</label>
                                                                 <div class="form-flex">
                                                                     <div class="form-group">
-                                                                        <input type="text" name="first_name" id="first_name" />
-                                                                        <span class="text-input">First</span>
+                                                                        <select id="catcar" class="form-control text-uppercase" name="cat"> 
+                                                                            <option>Sélectionnez la catégorie</option>
+                                                                            <?php
+                                                                                $request='SELECT cat_vehicule_id FROM categorie_vehicule';
+                                                                                $req = $bdd->query($request);
+                                                                                while ($ok = $req->fetch())
+                                                                                {
+                                                                                    echo "<option class=\"\">".htmlspecialchars($ok['cat_vehicule_id'])."</option>";    
+                                                                                }
+                                                                                $req->closeCursor();                        
+                                                                            ?> 
+                                                                        </select>
+                                                                        <span class="text-input">Catégorie</span>
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <input type="text" name="last_name" id="last_name" />
-                                                                        <span class="text-input">Last</span>
+                                                                        <select id="formInput28" class="form-control text-uppercase" name="carGenre">
+                                                                            <option>Sélectionnez le genre du véhicule</option>
+                                                                            <?php
+                                                                                $request='SELECT type_vehicule_lib FROM type_vehicule';
+                                                                                $req = $bdd->query($request);
+                                                                                while ($ok = $req->fetch())
+                                                                                {
+                                                                                    echo "<option class=\"\">".htmlspecialchars($ok['type_vehicule_lib'])."</option>";
+                                                                                }
+                                                                                $req->closeCursor();                        
+                                                                                ?> 
+                                                                        </select>
+                                                                        <span class="text-input">Genre</span>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="form-group">
-                                                                <label for="email" class="form-label">Email</label>
-                                                                <input type="email" name="email" id="email" />
-                                                                <span class="text-input">Example  :<span>  Jeff@gmail.com</span></span>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="phone" class="form-label">Phone</label>
-                                                                <input type="text" name="phone" id="phone" />
-                                                            </div>
-                                                            <div class="form-date">
-                                                                <label for="birth_date" class="form-label">Birth Date</label>
-                                                                <div class="form-date-group">
-                                                                    <div class="form-date-item">
-                                                                        <select id="birth_month" name="birth_month"></select>
-                                                                        <span class="text-input">MM</span>
+                                                            <div class="form-row">
+                                                                <div class="form-flex">
+                                                                    <div class="form-group">
+                                                                        <input type="text" name="carMake">
+                                                                        <span class="text-input">Marque</span>
                                                                     </div>
-                                                                    <div class="form-date-item">
-                                                                        <select id="birth_date" name="birth_date"></select>
-                                                                        <span class="text-input">DD</span>
+                                                                    <div class="form-group">
+                                                                        <input type="text" name="imat">
+                                                                        <span class="text-input">Numéro d'immatriculation</span>
                                                                     </div>
-                                                                    <div class="form-date-item">
-                                                                        <select id="birth_year" name="birth_year"></select>
-                                                                        <span class="text-input">YYYY</span>
+                                                                    <div class="form-group">
+                                                                        <input type="text" name="chassis">
+                                                                        <span class="text-input">Numéro de chassis</span>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="form-group">
-                                                                <label for="ssn" class="form-label">SSN</label>
-                                                                <input type="text" name="ssn" id="ssn" />
+                                                            <div class="form-row">
+                                                                <div class="form-flex">
+                                                                    <div class="form-group">
+                                                                        <select id="pf" class="form-control" name="pf">
+                                                                            <option>Sélectionner le type de puissance fiscale</option>
+                                                                            <option>Essence</option>                                                         
+                                                                            <option>Diesel</option>                                                         
+                                                                        </select>
+                                                                        <span class="text-input">Type de puissance fiscale</span>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <select id="pfValue" class="form-control" name="pfValue"> 
+                                                                            <option>Sélectionnez</option>
+                                                                        </select>
+                                                                        <span class="text-input">Puissance fiscale</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-row">
+                                                                <div class="form-flex">
+                                                                    <div class="form-group">
+                                                                        <input type="text" name="valCat">
+                                                                        <span class="text-input">Valeur catalogue</span>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                       <input type="text" name="valVen">
+                                                                        <span class="text-input">Valeur vénale</span>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </fieldset>
@@ -195,33 +283,9 @@ try
                                                                 <input type="email" name="email" id="email" />
                                                                 <span class="text-input">Example  :<span>  Jeff@gmail.com</span></span>
                                                             </div>
-                                                            <div class="form-group">
-                                                                <label for="phone" class="form-label">Phone</label>
-                                                                <input type="text" name="phone" id="phone" />
-                                                            </div>
-                                                            <div class="form-date">
-                                                                <label for="birth_date" class="form-label">Birth Date</label>
-                                                                <div class="form-date-group">
-                                                                    <div class="form-date-item">
-                                                                        <select id="birth_month" name="birth_month"></select>
-                                                                        <span class="text-input">MM</span>
-                                                                    </div>
-                                                                    <div class="form-date-item">
-                                                                        <select id="birth_date" name="birth_date"></select>
-                                                                        <span class="text-input">DD</span>
-                                                                    </div>
-                                                                    <div class="form-date-item">
-                                                                        <select id="birth_year" name="birth_year"></select>
-                                                                        <span class="text-input">YYYY</span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="ssn" class="form-label">SSN</label>
-                                                                <input type="text" name="ssn" id="ssn" />
-                                                            </div>
                                                         </div>
                                                     </fieldset>
+                                                    
                                                 </div>
                                             </form>
                                             <div class="text-right"></div>                                              

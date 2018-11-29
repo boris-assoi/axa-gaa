@@ -200,14 +200,14 @@ input[type=search]::-webkit-search-cancel-button,input[type=search]::-webkit-sea
 {
     -webkit-appearance: none;
 }
-
+/*
 fieldset
 {
     padding: .35em .625em .75em;
     margin: 0 2px;
     border: 1px solid silver;
 }
-
+*/
 legend
 {
     padding: 0;
@@ -3364,7 +3364,7 @@ table td[class*=col-],table th[class*=col-]
         border-bottom: 0;
     }
 }
-
+/* 
 fieldset
 {
     min-width: 0;
@@ -3372,7 +3372,7 @@ fieldset
     margin: 0;
     border: 0;
 }
-
+ */
 legend
 {
     display: block;

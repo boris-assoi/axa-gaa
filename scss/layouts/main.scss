@@ -31,7 +31,7 @@ p.desc {
     }
 }
 
-input {
+input, select {
     width: 100%;
     display: block;
     border: 1px solid #ebebeb;
@@ -107,8 +107,8 @@ input {
     }
     .content,
     .actions {
-        float: right;
-        width: 1090px;
+        float: left;
+        width: 1000px;
     }
 }
 .content {

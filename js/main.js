@@ -1,7 +1,4 @@
 (function($) {
-
-
-
     var form = $("#signup-form");
     form.validate({
         errorPlacement: function errorPlacement(error, element) {
@@ -73,16 +70,6 @@
         equalTo: ""
     });
 
-    $.dobPicker({
-        daySelector: '#birth_date',
-        monthSelector: '#birth_month',
-        yearSelector: '#birth_year',
-        dayDefault: '',
-        monthDefault: '',
-        yearDefault: '',
-        minimumAge: 0,
-        maximumAge: 120
-    });
     var marginSlider = document.getElementById('slider-margin');
     if (marginSlider != undefined) {
         noUiSlider.create(marginSlider, {

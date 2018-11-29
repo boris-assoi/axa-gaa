@@ -104,16 +104,16 @@
         <legend>Informations du véhicule</legend>                                                 
         <div class="form-group form-inline">
             <select id="catcar" class="form-control text-uppercase" name="cat"> 
-            <option>Sélectionnez la catégorie</option>
-            <?php
-            $request='SELECT cat_vehicule_id FROM categorie_vehicule';
-            $req = $bdd->query($request);
-            while ($ok = $req->fetch())
-            {
-                echo "<option class=\"\">".htmlspecialchars($ok['cat_vehicule_id'])."</option>";    
-            }
-            $req->closeCursor();                        
-            ?> 
+                <option>Sélectionnez la catégorie</option>
+                <?php
+                $request='SELECT cat_vehicule_id FROM categorie_vehicule';
+                $req = $bdd->query($request);
+                while ($ok = $req->fetch())
+                {
+                    echo "<option class=\"\">".htmlspecialchars($ok['cat_vehicule_id'])."</option>";    
+                }
+                $req->closeCursor();                        
+                ?> 
             </select>                                                         
             <div class="alert alert-info" id="cat-desc"></div>   
             <select id="formInput28" class="form-control text-uppercase" name="carGenre">
