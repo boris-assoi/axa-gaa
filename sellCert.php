@@ -13,6 +13,7 @@ try
 
     include_once "inc/connection.php";
     include_once "inc/models.php";
+    include_once "inc/utilities.php";
 ?> 
     <!DOCTYPE html> 
     <html lang="en"> 
@@ -76,6 +77,44 @@ try
                                                         <p class="desc">Entrez les informations du souscripteur s'il vous plait</p>
                                                         <div class="fieldset-content">
                                                             <div class="form-group">
+                                                                <label class="form-label">Attestation</label>
+                                                                <select id="typAtt" class="form-control" name="typAtt"> 
+                                                                    <?php
+                                                                    $request="SELECT * FROM type_attestation ORDER BY type_attestation_lib ASC";
+                                                                    $req = $bdd->query($request);
+                                                                    while ($ok = $req->fetch())
+                                                                    {
+                                                                        echo "<option class=\"text-uppercase\">".htmlspecialchars($ok['type_attestation_lib'])."</option>";    
+                                                                    }
+                                                                    $req->closeCursor();
+                                                                ?> 
+                                                                </select>
+                                                                <span class="text-input">
+                                                                    <span class="text-uppercase"> <span> - Disponibilité - </span> <?php
+                                                                    $req  = $bdd->prepare($models['dispoAuto']);
+                                                                    $req -> execute(array($_SESSION['userID']));
+                                                                    $ok = $req->fetch();
+                                                                    echo "Automobile : <span class=\"badge alert-success text-uppercase\">".htmlspecialchars($ok['nbre'])."</span>";
+                                                                    $req->closeCursor();
+                                                                    
+                                                                ?> <?php
+                                                                    $req  = $bdd->prepare($models['dispoBrune']);
+                                                                    $req -> execute(array($_SESSION['userID']));
+                                                                    $ok = $req->fetch();
+                                                                    echo "Brune CEDEAO: <span class=\"badge alert-success text-uppercase\">".htmlspecialchars($ok['nbre'])."</span>";
+                                                                    $req->closeCursor();
+                                                                    
+                                                                ?> <?php
+                                                                    $req  = $bdd->prepare($models['dispoVerte']);
+                                                                    $req -> execute(array($_SESSION['userID']));
+                                                                    $ok = $req->fetch();
+                                                                    echo "Carte Verte : <span class=\"badge alert-success text-uppercase\">".htmlspecialchars($ok['nbre'])."</span>";
+                                                                    $req->closeCursor();
+                                                                    
+                                                                ?> </span> 
+                                                                </span>
+                                                            </div>
+                                                            <div class="form-group">
                                                                 <label class="form-label">Client</label>
                                                                 <select class="form-control text-uppercase" name="type"> 
                                                                     <?php
@@ -93,24 +132,16 @@ try
                                                             <div class="form-group">
                                                                 <input type="text" name="nom" id="last_name"/>
                                                                 <span class="text-input">Nom du client</span>
-                                                            </div>                                                            
+                                                            </div>                                                           
                                                             <div class="form-row">
                                                                 <div class="form-flex">
                                                                     <div class="form-group">
-                                                                        <input type="email" name="email" id="email" />
-                                                                        <span class="text-input">Email</span></span>
+                                                                        <input type="text" name="pro" id="email" />
+                                                                        <span class="text-input">Profession</span></span>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <input type="text" name="phone" id="phone" />
                                                                         <span class="text-input">Téléphone</span></span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>                                                            
-                                                            <div class="form-row">
-                                                                <div class="form-flex">
-                                                                    <div class="form-group">
-                                                                        <input type="email" name="pro" id="email" />
-                                                                        <span class="text-input">Profession</span></span>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <input type="text" name="adresse" id="phone" />
@@ -214,6 +245,10 @@ try
                                                             <div class="form-row">
                                                                 <div class="form-flex">
                                                                     <div class="form-group">
+                                                                        <input type="date" name="dateCirculation" id="dateCirculation">
+                                                                        <span class="text-input">Date de mise en circulation</span>
+                                                                    </div>
+                                                                    <div class="form-group">
                                                                         <input type="text" name="carMake">
                                                                         <span class="text-input">Marque</span>
                                                                     </div>
@@ -248,11 +283,11 @@ try
                                                             <div class="form-row">
                                                                 <div class="form-flex">
                                                                     <div class="form-group">
-                                                                        <input type="text" name="valCat">
+                                                                        <input type="text" name="valCat" id="val-cat">
                                                                         <span class="text-input">Valeur catalogue</span>
                                                                     </div>
                                                                     <div class="form-group">
-                                                                       <input type="text" name="valVen">
+                                                                        <input type="text" name="valVen" id="val-ven" disabled="disabled">
                                                                         <span class="text-input">Valeur vénale</span>
                                                                     </div>
                                                                 </div>
@@ -260,28 +295,28 @@ try
                                                         </div>
                                                     </fieldset>
 
-                                                    <h3>Set Financial Goals</h3>
+                                                    <h3>FORMULE</h3>
                                                     <fieldset>
-                                                        <h2>Set Financial Goals</h2>
-                                                        <p class="desc">Set up your money limit to reach the future plan</p>
+                                                        <h2>Formule des garanties</h2>
+                                                        <p class="desc">Choisissez la garantie en fonction des garanties associées</p>
                                                         <div class="fieldset-content">
                                                             <div class="form-row">
-                                                                <label class="form-label">Name</label>
                                                                 <div class="form-flex">
-                                                                    <div class="form-group">
-                                                                        <input type="text" name="first_name" id="first_name" />
-                                                                        <span class="text-input">First</span>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <input type="text" name="last_name" id="last_name" />
-                                                                        <span class="text-input">Last</span>
+                                                                    <div class="middle">
+                                                                        <label>
+                                                                            <input type="radio" name="radio" checked/>
+                                                                            <div class="front-end box">
+                                                                                <span>Front-end</span>
+                                                                            </div>
+                                                                        </label>
+                                                                        <label>
+                                                                            <input type="radio" name="radio"/>
+                                                                            <div class="back-end box">
+                                                                                <span>Back-end</span>
+                                                                            </div>
+                                                                        </label>
                                                                     </div>
                                                                 </div>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="email" class="form-label">Email</label>
-                                                                <input type="email" name="email" id="email" />
-                                                                <span class="text-input">Example  :<span>  Jeff@gmail.com</span></span>
                                                             </div>
                                                         </div>
                                                     </fieldset>

@@ -51,6 +51,20 @@
             }
         });
     });
+     $('#val-cat').change(function () {
+         var valCat = $(this).val();
+         var dateCirculation = $('#dateCirculation').val();
+         var type = 'valeur-venale';
+         $.ajax({
+             url: "inc/fetch_datas.php",
+             method: "POST",
+             data: { valCat: valCat, dateCirculation: dateCirculation, type: type },
+             dataType: "text",
+             success: function (data) {
+                 $('#val-ven').prop('value', data);
+             }
+         });
+     });
     $('#def-rec').change(function () {
         $('#defense').prop('enabled', 'enabled');
     });

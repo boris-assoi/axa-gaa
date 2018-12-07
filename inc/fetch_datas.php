@@ -5,6 +5,7 @@
         session_start();
 
         include_once "acl.php";
+        include_once "utilities.php";
 
         /*
         if (!in_array($_SESSION['type'], $acl_mod_com)) {
@@ -35,6 +36,16 @@
         //recupération de la classe d'ancienneté du permis
         if (!empty($_POST['classe'])) {
             $classe = $_POST['classe'];
+        }
+
+        //Recupération de la valeur catalogue
+        if (!empty($_POST['valCat'])) {
+            $valCat = $_POST['valCat'];
+        }
+
+        //Recupération de la date de mise en circulation
+        if (!empty($_POST['dateCirculation'])) {
+            $dateCirc = new DateTime($_POST['dateCirculation'], new DateTimeZone('GMT+0'));
         }
 
         //Variable contenant les valeurs à restituer
@@ -77,6 +88,9 @@
                     $output .= '<span>'.$ok['cat_vehicule_desc'].'</span>';
                 }
                 break;
+
+            case 'valeur-venale':
+                $output = valeurVenale($valCat, $dateCirc);
             
             default:
                 # code...
