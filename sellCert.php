@@ -29,6 +29,10 @@ try
             <!-- Custom CSS -->             
             <link href="css/sb-admin.css" rel="stylesheet"> 
             <link href="css/jquery-confirm.css" rel="stylesheet"> 
+            <!-- SmartWizard CSS -->
+            <link href="dist/css/smart_wizard.css" rel="stylesheet" type="text/css" />
+            <!-- SmartWizard CSS Theme -->
+            <link href="dist/css/smart_wizard_theme_circles.min.css" rel="stylesheet" type="text/css" />
             <!-- Custom Fonts -->             
             <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"> 
             <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->             
@@ -343,10 +347,13 @@ try
 ?> 
                     <!-- /#wrapper -->                     
                     <!-- jQuery -->                     
-                    <script src="js/jquery.js"></script>                     
+                    <script type="text/javascript" src="js/jquery.js"></script>                     
                     <!-- Bootstrap Core JavaScript -->                     
-                    <script src="js/bootstrap.min.js"></script>                     
-                    <script src="js/jquery-confirm.js"></script>                     
+                    <script type="text/javascript" src="js/bootstrap.min.js"></script>  
+                    <!-- JQuery Confirm JavaScript -->                    
+                    <script type="text/javascript" src="js/jquery-confirm.js"></script> 
+                    <!-- SmartWizard JavaScript -->  
+                    <script type="text/javascript" src="dist/js/jquery.smartWizard.min.js">                   
                     <script type="text/javascript">
                         $('input[type=submit]').confirm({
                             columnClass: 'col-md-4 col-md-offset-4',
