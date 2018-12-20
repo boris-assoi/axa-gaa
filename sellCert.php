@@ -25,6 +25,8 @@ try
             <title>AXA LG2A</title>             
             <!-- Bootstrap Core CSS -->
             <link href="css/bootstrap.min.css" rel="stylesheet" /> 
+            <!-- Favicon -->
+            <link rel="shortcut icon" type="image/x-icon" href="images/logo_32_32.ico" />
             <!-- Custom CSS -->                          
             <link rel="stylesheet" type="text/css" href="css/login-style.css" /> 
             <link href="css/sb-admin.css" rel="stylesheet"> 
