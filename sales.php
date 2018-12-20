@@ -54,7 +54,13 @@ try
         <link href="css/jquery-confirm.css" rel="stylesheet">
         <script src="js/jquery-confirm.js"></script>        
         <link href="css/bootstrap.min.css" rel="stylesheet"> 
-        <!-- Custom CSS -->         
+         <!-- Include SmartWizard CSS -->
+        <link href="dist/css/smart_wizard.css" rel="stylesheet" type="text/css" />
+        <!-- Optional SmartWizard theme -->
+        <link href="dist/css/smart_wizard_theme_circles.css" rel="stylesheet" type="text/css" />
+        <link href="dist/css/smart_wizard_theme_arrows.css" rel="stylesheet" type="text/css" />
+        <link href="dist/css/smart_wizard_theme_dots.css" rel="stylesheet" type="text/css" /> 
+        <!-- Custom CSS -->        
         <link href="css/sb-admin.css" rel="stylesheet"> 
         <!-- Custom Fonts -->         
         <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"> 
@@ -101,9 +107,204 @@ try
                                                     <input type="text" class="form-control" name="find" value=<?php echo "\"".$find."\"" ?>>
                                                 </div>
                                                 <button type="submit" class="btn btn-warning"><i class="fa fa-fw fa-search"></i> Rechercher</button>
-                                                <a href="sellCert.php" class="hidden-print">
-                                                    <button type="button" class="btn btn-success"><i class="fa fa-fw fa-plus"></i> Nouvelle vente</button>
-                                                </a>
+                                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalTest"><i class="fa fa-fw fa-plus"></i> Nouvelle vente</button>
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="modalTest" tabindex="-1" role="dialog" aria-labelledby="modalTestLabel" aria-hidden="true">
+                                                    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                        <h5 class="modal-title" id="modalTestLabel">Vente de police</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                        <!-- Smart Wizard HTML -->
+                                                        <div id="smartwizard">
+                                                            <ul>
+                                                                <li><a href="#step-1">Souscripteur<br /><small>Informations du souscripteur</small></a></li>
+                                                                <li><a href="#step-2">Police<br /><small>Informations de la police</small></a></li>
+                                                                <li><a href="#step-3">Véhicule<br /><small>Informations sur le véhicule</small></a></li>
+                                                                <li><a href="#step-4">Formule<br /><small>Choix de la formule</small></a></li>
+                                                                <li><a href="#step-5">Confirmation<br /><small>Confirmer la vente</small></a></li>
+                                                            </ul>
+
+                                                            <div>
+                                                                <div id="step-1" class="">
+                                                                    <div class="form-group"> 
+                                                                        <label class="control-label" for="formInput28">Sélectionner le type d'attestation</label>                                                         
+                                                                        <span class="text-uppercase"> <span> - Disponibilité - </span> <?php
+                                                                            $req  = $bdd->prepare($models['dispoAuto']);
+                                                                            $req -> execute(array($_SESSION['userID']));
+                                                                            $ok = $req->fetch();
+                                                                            echo "Automobile : <span class=\"badge alert-success text-uppercase\">".htmlspecialchars($ok['nbre'])."</span>";
+                                                                            $req->closeCursor();
+                                                                            
+                                                                        ?> <?php
+                                                                            $req  = $bdd->prepare($models['dispoBrune']);
+                                                                            $req -> execute(array($_SESSION['userID']));
+                                                                            $ok = $req->fetch();
+                                                                            echo "Brune CEDEAO: <span class=\"badge alert-success text-uppercase\">".htmlspecialchars($ok['nbre'])."</span>";
+                                                                            $req->closeCursor();
+                                                                            
+                                                                        ?> <?php
+                                                                            $req  = $bdd->prepare($models['dispoVerte']);
+                                                                            $req -> execute(array($_SESSION['userID']));
+                                                                            $ok = $req->fetch();
+                                                                            echo "Carte Verte : <span class=\"badge alert-success text-uppercase\">".htmlspecialchars($ok['nbre'])."</span>";
+                                                                            $req->closeCursor();
+                                                                            
+                                                                        ?> </span> 
+                                                                        <select id="typAtt" class="form-control" name="typAtt"> 
+                                                                            <?php
+                                                                            $request="SELECT * FROM type_attestation ORDER BY type_attestation_lib ASC";
+                                                                            $req = $bdd->query($request);
+                                                                            while ($ok = $req->fetch())
+                                                                            {
+                                                                                echo "<option class=\"text-uppercase\">".htmlspecialchars($ok['type_attestation_lib'])."</option>";    
+                                                                            }
+                                                                            $req->closeCursor();
+                                                                        ?> 
+                                                                        </select>                                                         
+                                                                    </div> 
+                                                                    <fieldset>
+                                                                        <legend>Informations du client</legend>                                               
+                                                                        <div class="form-group"> 
+                                                                            <label class="control-label" for="formInput28">Sélectionner le type de client</label>                                                         
+                                                                            <select id="formInput28" class="form-control" name="type"> 
+                                                                                <?php
+                                                                                $request='SELECT type_client_lib FROM type_client';
+                                                                                $req = $bdd->query($request);
+                                                                                while ($ok = $req->fetch())
+                                                                                {
+                                                                                    echo "<option class=\"\">".htmlspecialchars($ok['type_client_lib'])."</option>";    
+                                                                                }
+                                                                                $req->closeCursor();                        
+                                                                            ?> 
+                                                                            </select>                                                         
+                                                                        </div>                                                     
+                                                                        <div class="form-group"> 
+                                                                            <label class="control-label" for="exampleInputPassword1">Nom du client</label>                                                         
+                                                                            <input type="text" class="form-control" name="nom" placeholder="Entrer le nom du client"> 
+                                                                        </div>
+                                                                        <div class="form-group form-inline">              
+                                                                            <select id="classe-permis" class="form-control text-uppercase" name="classe_permis">
+                                                                                <option>Sélectionnez la classe d'ancienneté</option>
+                                                                                <?php
+                                                                                $request='SELECT lib FROM classe_permis';
+                                                                                $req = $bdd->query($request);
+                                                                                while ($ok = $req->fetch())
+                                                                                {
+                                                                                    echo "<option class=\"\">".htmlspecialchars($ok['lib'])."</option>";    
+                                                                                }
+                                                                                $req->closeCursor();                        
+                                                                            ?> 
+                                                                            </select>
+                                                                            <div class="alert alert-info" id="classe-desc"></div>
+                                                                            <select id="status-pro" class="form-control text-uppercase" name="status-pro"> 
+                                                                                <option>Sélectionnez le statut socio-professionnel</option>
+                                                                                <?php
+                                                                                $request='SELECT lib, info FROM statut_socio_pro';
+                                                                                $req = $bdd->query($request);
+                                                                                while ($ok = $req->fetch())
+                                                                                {
+                                                                                    echo "<option class=\"\">".htmlspecialchars($ok['lib'])."</option>";
+                                                                                }
+                                                                                $req->closeCursor();                        
+                                                                            ?> 
+                                                                            </select>
+                                                                            <i class="fa fa-lg fa-question-circle" data-toggle="tooltip" data-placement="auto" title="example" id="info-status-pro"></i>
+                                                                            <input type="text" class="form-control" placeholder="Profession du client" name="pro"> 
+                                                                            <input type="text" class="form-control" name="adresse" placeholder="Adresse du client"> 
+                                                                            <input type="text" class="form-control" name="contact" placeholder="Contact du client"> 
+                                                                        </div> 
+                                                                    </fieldset>
+                                                                </div>
+                                                                <div id="step-2" class="">
+                                                                    <fieldset>
+                                                                        <legend>Informations sur la police</legend>                                                  
+                                                                        <div class="form-group"> 
+                                                                            <label class="control-label" for="exampleInputPassword1">Police N°</label>                                                         
+                                                                            <input type="text" class="form-control" name="pol" maxlength="10" placeholder="Entrer le numéro de la police"> 
+                                                                        </div>                                                     
+                                                                        <div class="form-group form-inline"> 
+                                                                            <label class="control-label" for="exampleInputPassword1">Date de début de la police</label>                                                         
+                                                                            <input type="date" class="form-control" placeholder="Entrer la date de début de la police" name="poldf">
+                                                                            <label class="control-label" for="exampleInputPassword1">Date de fin de la police</label>                                                         
+                                                                            <input type="date" class="form-control" placeholder="Entrer la date de fin de la police" name="poldt"> 
+                                                                        </div> 
+                                                                    </fieldset>
+                                                                </div>
+                                                                <div id="step-3" class="">
+                                                                    <fieldset>
+                                                                        <legend>Informations du véhicule</legend>                                                 
+                                                                        <div class="form-group form-inline">
+                                                                            <select id="catcar" class="form-control text-uppercase" name="cat"> 
+                                                                                <option>Sélectionnez la catégorie</option>
+                                                                                <?php
+                                                                                $request='SELECT cat_vehicule_id FROM categorie_vehicule';
+                                                                                $req = $bdd->query($request);
+                                                                                while ($ok = $req->fetch())
+                                                                                {
+                                                                                    echo "<option class=\"\">".htmlspecialchars($ok['cat_vehicule_id'])."</option>";    
+                                                                                }
+                                                                                $req->closeCursor();                        
+                                                                                ?> 
+                                                                            </select>                                                         
+                                                                            <div class="alert alert-info" id="cat-desc"></div>   
+                                                                            <select id="formInput28" class="form-control text-uppercase" name="carGenre">
+                                                                                <option>Sélectionnez le genre du véhicule</option>
+                                                                                <?php
+                                                                                $request='SELECT type_vehicule_lib FROM type_vehicule';
+                                                                                $req = $bdd->query($request);
+                                                                                while ($ok = $req->fetch())
+                                                                                {
+                                                                                    echo "<option class=\"\">".htmlspecialchars($ok['type_vehicule_lib'])."</option>";
+                                                                                }
+                                                                                $req->closeCursor();                        
+                                                                            ?> 
+                                                                            </select>                                                         
+                                                                            <input type="text" class="form-control" placeholder="Marque" name="carMake"> 
+                                                                            <input type="text" class="form-control" name="imat" placeholder="Immatriculation"> 
+                                                                            <input type="text" class="form-control" name="chassis" placeholder="Numéro de chassis"> 
+                                                                        </div>                                                     
+                                                                        <div class="form-group form-inline"> 
+                                                                            <label class="control-label" for="exampleInputPassword1">Puissance fiscale</label><br>                                                     
+                                                                        <select id="pf" class="form-control" name="pf">
+                                                                            <option>Sélectionner le type de puissance fiscale</option>
+                                                                            <option>Essence</option>                                                         
+                                                                            <option>Diesel</option>                                                         
+                                                                        </select>
+                                                                        <select id="pfValue" class="form-control" name="pfValue"> 
+                                                                            <option>Sélectionnez la puissance fiscale</option>
+                                                                        </select>
+                                                                        </div>
+                                                                        <div class="form-group form-inline"> 
+                                                                            <label class="control-label">Valeur du véhicule</label> 
+                                                                            <input type="text" class="form-control" placeholder="Valeur catalogue" name="valCat">                                             
+                                                                        </div>
+                                                                        <div class="form-group"> 
+                                                                            <label class="control-label">Le véhicule possède-t-il une remorque? </label> 
+                                                                            <input type="checkbox" value="rem" id="rem" name="rem">                                             
+                                                                        </div>
+                                                                    </fieldset>
+                                                                </div>
+                                                                <div id="step-4" class="">
+                                                                    Choix de la formule
+                                                                </div>
+                                                                <div id="step-5" class="">
+                                                                    Confirmation
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                </div>
                                                 <?php 
                                                     if (in_array($_SESSION['type'], $acl_sales)) {
                                                         ?>
@@ -276,6 +477,52 @@ try
                                 <script type="text/javascript" src="js/datatables.min.js"></script>
                                 <!-- jquery Confirm -->
                                 <script type="text/javascript" src="js/jquery-confirm.js"></script>
+                                <!-- Include SmartWizard JavaScript source -->
+                                <script type="text/javascript" src="dist/js/jquery.smartWizard.min.js"></script>
+
+                                <script type="text/javascript">
+                                    $(document).ready(function(){
+
+                                        // Step show event
+                                        $("#smartwizard").on("showStep", function(e, anchorObject, stepNumber, stepDirection, stepPosition) {
+                                        //alert("You are on step "+stepNumber+" now");
+                                        if(stepPosition === 'first'){
+                                            $("#prev-btn").addClass('disabled');
+                                        }else if(stepPosition === 'final'){
+                                            $("#next-btn").addClass('disabled');
+                                        }else{
+                                            $("#prev-btn").removeClass('disabled');
+                                            $("#next-btn").removeClass('disabled');
+                                        }
+                                        });
+
+                                        // Toolbar extra buttons
+                                        var btnFinish = $('<button></button>').text('Terminer')
+                                                                        .addClass('btn btn-info')
+                                                                        .on('click', function(){ alert('Finish Clicked'); });
+                                        var btnCancel = $('<button></button>').text('Annuler')
+                                                                        .addClass('btn btn-danger')
+                                                                        .on('click', function(){ $('#smartwizard').smartWizard("reset"); });
+
+                                        // Smart Wizard 1
+                                        $('#smartwizard').smartWizard({
+                                                selected: 0,
+                                                theme: 'arrows',
+                                                transitionEffect:'fade',
+                                                showStepURLhash: false,
+                                                toolbarSettings: {toolbarPosition: 'bottom',
+                                                                toolbarExtraButtons: [btnFinish, btnCancel]
+                                                                },
+                                                lang: {
+                                                next: "Suivant",
+                                                previous: "Précédent",
+                                                finish: "Terminer"
+                                                }
+                                        });
+
+                                    });
+                                </script>
+                                <!-- JQuery Confirm-->
                                 <script type="text/javascript">
                                 $('a.printatt').confirm({
                                     //var att = document.getElementByClassName();
@@ -338,7 +585,8 @@ try
                                          }
                                      }
                                  });
-                                </script> 
+                                </script>
+                                <!-- DataTable --> 
                                 <script>
                                     $(document).ready(function(){
                                         $('#viewTable').DataTable({
@@ -366,6 +614,90 @@ try
                                             }
                                         });
                                     });
-                                </script>                                 
+                                </script>
+                                <!-- Informations Tooltip -->
+                                <script>
+                                    $(document).ready(function(){
+                                        $('[data-toggle="tooltip"]').tooltip(); 
+                                    });
+                                </script>
+
+                                <!-- Messages d'informations pour les champs -->   
+
+                                <!-- Puissance Fiscale -->
+                                <script type="text/javascript">
+                                    $(document).ready(function(){
+                                        $('#pf').change(function(){
+                                            var pf = $(this).val();
+                                            var type = 'puissance-fiscale';
+                                            $.ajax({
+                                                url : "inc/fetch_datas.php",
+                                                method : "POST",
+                                                data : {pfType:pf,type:type},
+                                                dataType : "text",
+                                                success : function(data){
+                                                    $('#pfValue').html(data);
+                                                }
+                                            });
+                                        });
+                                    });
+                                </script>
+
+                                <!-- Statut socio-professionnel -->
+                                <script type="text/javascript">
+                                    $(document).ready(function(){
+                                        $('#status-pro').change(function(){
+                                            var spro = $(this).val();
+                                            var type = 'socio-pro';
+                                            $.ajax({
+                                                url : "inc/fetch_datas.php",
+                                                method : "POST",
+                                                data : {stat:spro,type:type},
+                                                dataType : "text",
+                                                success : function(data){
+                                                    $('#info-status-pro').prop('title',data);
+                                                }
+                                            });
+                                        });
+                                    });
+                                </script> 
+
+                                <!-- Catégorie -->                    
+                                <script type="text/javascript">
+                                    $(document).ready(function(){
+                                        $('#catcar').change(function(){
+                                            var catcar = $(this).val();
+                                            var type = 'cat';
+                                            $.ajax({
+                                                url : "inc/fetch_datas.php",
+                                                method : "POST",
+                                                data : {cat:catcar,type:type},
+                                                dataType : "text",
+                                                success : function(data){
+                                                    $('#cat-desc').html(data);
+                                                }
+                                            });
+                                        });
+                                    });
+                                </script> 
+
+                                <!-- Classe du permis de conduire -->
+                                <script type="text/javascript">
+                                    $(document).ready(function(){
+                                        $('#classe-permis').change(function(){
+                                            var classe = $(this).val();
+                                            var type = 'cls-pc';
+                                            $.ajax({
+                                                url : "inc/fetch_datas.php",
+                                                method : "POST",
+                                                data : {classe:classe,type:type},
+                                                dataType : "text",
+                                                success : function(data){
+                                                    $('#classe-desc').html(data);
+                                                }
+                                            });
+                                        });
+                                    });
+                                </script>                                
     </body>     
 </html>
