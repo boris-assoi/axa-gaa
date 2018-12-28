@@ -276,3 +276,39 @@ h1{
 .table-sales td{
     font-size: 12px;
 }
+
+/* Custom for forms */
+input, select{
+    width: 100%;
+    display: block;
+    border: 1px solid #ebebeb;
+    height: 50px;
+    box-sizing: border-box;
+    padding : 0 20px;
+    margin: 5px 5px;
+}
+
+.text-input{
+    font-size: 12px;
+    color: #999;
+    display: block;
+    margin-top: 5px;
+    padding-left: 10px;
+}
+
+.form-group{
+    margin: 0px 20px;
+}
+
+.form-group:nth-child(1){
+    margin: 0px;
+}
+
+legend{
+    padding-top: 20px;
+}
+
+/* Rendu FLEX */
+.flex-container{
+    display: flex;
+}

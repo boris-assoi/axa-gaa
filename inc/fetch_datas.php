@@ -46,7 +46,7 @@
                 $req = $bdd->prepare('SELECT info FROM statut_socio_pro WHERE lib = LOWER(?)');
                 $req -> execute(array($stat));
                 while ($ok = $req->fetch()) {
-                    $output .= $ok['info'];
+                    $output .= '<span>'.$ok['info'].'</span>';
                 }
                 break;
 
@@ -54,7 +54,6 @@
             case 'puissance-fiscale':
                 $req = $bdd->prepare('SELECT label FROM '.$pfType);
                 $req -> execute(array($pfType));
-                $output = '<option value="">Sélectionnez la puissance fiscale</option>';
                 while ($ok = $req->fetch()) {
                     $output .= '<option value="'.$ok['label'].'">'.$ok['label'].'</option>';
                 }
