@@ -37,6 +37,12 @@
             $classe = $_POST['classe'];
         }
 
+        //Récupération des informations de la police (date d'effet, durée en jours)
+        (!empty($_POST['poldf'])) ? $poldf = new DateTime($_POST['poldf'], new DateTimeZone('GMT+0')) : $poldf = '';
+
+        (!empty($_POST['poltime'])) ? $poltime = DateInterval::createFromDateString($_POST['poltime']. 'days')  : $poltime = '';
+
+
         //Variable contenant les valeurs à restituer
         $output = '';
 
@@ -75,6 +81,11 @@
                 while ($ok = $req->fetch()) {
                     $output .= '<span>'.$ok['cat_vehicule_desc'].'</span>';
                 }
+                break;
+            //calcul de la date d'échéance de la police
+            case 'echeance-police':
+                $poldt = $poldf->add($poltime);
+                $output = $poldt->format('d/m/Y');
                 break;
             
             default:

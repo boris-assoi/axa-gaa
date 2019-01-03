@@ -57,9 +57,9 @@ try
          <!-- Include SmartWizard CSS -->
         <link href="dist/css/smart_wizard.css" rel="stylesheet" type="text/css" />
         <!-- Optional SmartWizard theme -->
-        <link href="dist/css/smart_wizard_theme_circles.css" rel="stylesheet" type="text/css" />
-        <link href="dist/css/smart_wizard_theme_arrows.css" rel="stylesheet" type="text/css" />
-        <link href="dist/css/smart_wizard_theme_dots.css" rel="stylesheet" type="text/css" /> 
+        <link href="dist/css/smart_wizard_theme_circles.min.css" rel="stylesheet" type="text/css" />
+        <link href="dist/css/smart_wizard_theme_arrows.min.css" rel="stylesheet" type="text/css" />
+        <link href="dist/css/smart_wizard_theme_dots.min.css" rel="stylesheet" type="text/css" /> 
         <!-- Custom CSS -->        
         <link href="css/sb-admin.css" rel="stylesheet"> 
         <!-- Custom Fonts -->         
@@ -187,50 +187,47 @@ try
                                                                                 <input type="text" name="nom">      
                                                                                 <label class="text-input">Nom</label>    
                                                                             </div>
-                                                                        </div>
-                                                                        <div class="form-group form-inline">              
-                                                                            <select id="classe-permis" class="text-uppercase" name="classe_permis">
-                                                                                <?php
-                                                                                $request='SELECT lib FROM classe_permis';
-                                                                                $req = $bdd->query($request);
-                                                                                while ($ok = $req->fetch())
-                                                                                {
-                                                                                    echo "<option class=\"\">".htmlspecialchars($ok['lib'])."</option>";    
-                                                                                }
-                                                                                $req->closeCursor();                        
-                                                                            ?> 
-                                                                            </select>
-                                                                            <label class="text-input">Classe d'ancienneté</label>
-                                                                            <div class="alert alert-info" id="classe-desc"></div>
-                                                                            <select id="statut-pro" class="text-uppercase" name="statut-pro">
-                                                                                <?php
-                                                                                $request='SELECT lib, info FROM statut_socio_pro';
-                                                                                $req = $bdd->query($request);
-                                                                                while ($ok = $req->fetch())
-                                                                                {
-                                                                                    echo "<option class=\"\">".htmlspecialchars($ok['lib'])."</option>";
-                                                                                }
-                                                                                $req->closeCursor();                        
-                                                                            ?> 
-                                                                            </select>
-                                                                            <label class="text-input">Statut socio-professionnel</label>
-                                                                            <div class="alert alert-info" id="statut-desc"></div>
-                                                                            <div class="flex-container">
-                                                                                <div class="form-group">
-                                                                                    <input type="text" name="pro">
-                                                                                    <label class="text-input">Profession</label>
-                                                                                </div>
-                                                                                <div class="form-group">
-                                                                                    <input type="text" name="adresse">
-                                                                                    <label class="text-input">Adresse</label>
-                                                                                </div>
-                                                                                <div class="form-group">
-                                                                                    <input type="text" name="contact"> 
-                                                                                    <label class="text-input">Contact</label>
-                                                                                </div>
-                                                                                
+                                                                        </div>        
+                                                                        <select id="classe-permis" class="text-uppercase" name="classe_permis">
+                                                                            <?php
+                                                                            $request='SELECT lib FROM classe_permis';
+                                                                            $req = $bdd->query($request);
+                                                                            while ($ok = $req->fetch())
+                                                                            {
+                                                                                echo "<option class=\"\">".htmlspecialchars($ok['lib'])."</option>";    
+                                                                            }
+                                                                            $req->closeCursor();                        
+                                                                        ?> 
+                                                                        </select>
+                                                                        <label class="text-input">Classe d'ancienneté</label>
+                                                                        <div class="alert alert-info" id="classe-desc"></div>
+                                                                        <select id="statut-pro" class="text-uppercase" name="statut-pro">
+                                                                            <?php
+                                                                            $request='SELECT lib, info FROM statut_socio_pro';
+                                                                            $req = $bdd->query($request);
+                                                                            while ($ok = $req->fetch())
+                                                                            {
+                                                                                echo "<option class=\"\">".htmlspecialchars($ok['lib'])."</option>";
+                                                                            }
+                                                                            $req->closeCursor();                        
+                                                                        ?> 
+                                                                        </select>
+                                                                        <label class="text-input">Statut socio-professionnel</label>
+                                                                        <div class="alert alert-info" id="statut-desc"></div>
+                                                                        <div class="flex-container">
+                                                                            <div class="form-group">
+                                                                                <input type="text" name="pro">
+                                                                                <label class="text-input">Profession</label>
                                                                             </div>
-                                                                        </div> 
+                                                                            <div class="form-group">
+                                                                                <input type="text" name="adresse">
+                                                                                <label class="text-input">Adresse</label>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <input type="text" name="contact"> 
+                                                                                <label class="text-input">Contact</label>
+                                                                            </div>
+                                                                        </div>
                                                                     </fieldset>
                                                                 </div>
                                                                 <div id="step-2" class="">
@@ -242,15 +239,15 @@ try
                                                                                 <label class="text-input">Police N°</label>
                                                                             </div>
                                                                             <div class="form-group">                                                         
-                                                                                <input type="date" name="poldf">
+                                                                                <input type="date" name="poldf" id="poldf">
                                                                                 <label class="text-input">Date de début de la police</label>
                                                                             </div>
                                                                             <div class="form-group">                                                         
-                                                                                <input type="text" name="poltime"> 
+                                                                                <input type="text" name="poltime" id="poltime"> 
                                                                                 <label class="text-input">Durée de la police (jours)</label>
                                                                             </div>
                                                                             <div class="form-group">                                                         
-                                                                                <input type="date" name="poldt" disabled> 
+                                                                                <input type="text" name="poldt" id="poldt" disabled>
                                                                                 <label class="text-input">Date de fin de la police</label>
                                                                             </div>
                                                                         </div> 
@@ -258,8 +255,8 @@ try
                                                                 </div>
                                                                 <div id="step-3" class="">
                                                                     <fieldset>
-                                                                        <legend>Informations du véhicule</legend>                                                 
-                                                                        <div class="flex-container">
+                                                                        <legend>Informations du véhicule</legend>
+                                                                            <div>
                                                                                 <select id="catcar" class="text-uppercase" name="cat">
                                                                                     <?php
                                                                                     $request='SELECT cat_vehicule_id FROM categorie_vehicule';
@@ -271,20 +268,22 @@ try
                                                                                     $req->closeCursor();                        
                                                                                     ?> 
                                                                                 </select>
-                                                                                <label class="text-input">Catégorie</label>                                                        
+                                                                                <label class="text-input">Catégorie</label>                                                       
                                                                                 <div class="alert alert-info" id="cat-desc"></div>   
-                                                                                <select class="text-uppercase" name="carGenre">
-                                                                                    <?php
-                                                                                    $request='SELECT type_vehicule_lib FROM type_vehicule';
-                                                                                    $req = $bdd->query($request);
-                                                                                    while ($ok = $req->fetch())
-                                                                                    {
-                                                                                        echo "<option class=\"\">".htmlspecialchars($ok['type_vehicule_lib'])."</option>";
-                                                                                    }
-                                                                                    $req->closeCursor();                        
-                                                                                ?> 
-                                                                                </select>
-                                                                                <label class="text-input">Genre</label>
+                                                                            </div> 
+                                                                            <select class="text-uppercase" name="carGenre">
+                                                                                <?php
+                                                                                $request='SELECT type_vehicule_lib FROM type_vehicule';
+                                                                                $req = $bdd->query($request);
+                                                                                while ($ok = $req->fetch())
+                                                                                {
+                                                                                    echo "<option class=\"\">".htmlspecialchars($ok['type_vehicule_lib'])."</option>";
+                                                                                }
+                                                                                $req->closeCursor();                        
+                                                                            ?> 
+                                                                            </select>
+                                                                            <label class="text-input">Genre</label>
+                                                                            <div class="flex-container">
                                                                                 <div class="form-group">                                                         
                                                                                     <input type="text" name="carMake"> 
                                                                                     <label class="text-input">Marque</label>
@@ -296,26 +295,34 @@ try
                                                                                 <div class="form-group">                                                         
                                                                                     <input type="text" name="chassis"> 
                                                                                     <label class="text-input">Numéro de chassis</label>
-                                                                                </div>                                                
-                                                                            <div class="form-group">                                                   
-                                                                            <select id="pf" name="pf">
-                                                                                <option>Essence</option>                                                         
-                                                                                <option>Diesel</option>                                                         
-                                                                            </select>
-                                                                            <label class="text-input">Type de puissance fiscale</label>
-                                                                            <select id="pfValue" name="pfValue">
-                                                                            </select>
-                                                                            <label class="text-input">Puissance fiscale</label>
+                                                                                </div>
+                                                                                <div class="form-group">                                                         
+                                                                                    <input type="date" name="datecirc"> 
+                                                                                    <label class="text-input">Date de mise en circulation</label>
+                                                                                </div>
                                                                             </div>
-                                                                            <div class="form-group"> 
-                                                                                <input type="text" name="valCat"> 
+                                                                            <div class="flex-container">                                              
+                                                                                <div class="form-group">                                                   
+                                                                                    <select id="pf" name="pf">
+                                                                                        <option>Essence</option>                                                         
+                                                                                        <option>Diesel</option>                                                         
+                                                                                    </select>
+                                                                                    <label class="text-input">Type de puissance fiscale</label>
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <select id="pfValue" name="pfValue" >
+                                                                                    </select>
+                                                                                    <label class="text-input">Puissance fiscale</label>
+                                                                                </div> 
+                                                                                <div class="form-group"> 
+                                                                                    <input type="text" name="valCat"> 
                                                                                     <label class="text-input">Valeur catalogue du véhicule</label>                                             
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <input type="checkbox" value="rem" id="rem" name="rem">
+                                                                                    <label class="text-input">Remorque</label>                                         
+                                                                                </div>
                                                                             </div>
-                                                                            <div class="form-group">
-                                                                                <input type="checkbox" value="rem" id="rem" name="rem">
-                                                                                <label class="text-input">Remorque</label>                                         
-                                                                            </div>
-                                                                        </div>
                                                                     </fieldset>
                                                                 </div>
                                                                 <div id="step-4" class="">
@@ -650,7 +657,7 @@ try
                                     });
                                 </script>
 
-                                <!-- Messages d'informations pour les champs -->   
+                                <!-- Messages informations pour les champs -->   
 
                                 <!-- Puissance Fiscale -->
                                 <script type="text/javascript">
@@ -726,6 +733,26 @@ try
                                             });
                                         });
                                     });
-                                </script>                             
+                                </script> 
+
+                                <!-- Calcul de valeur vénale -->
+                                <script type="text/javascript">
+                                    $(document).ready(function(){
+                                        $('#poltime').change(function(){
+                                            var poltime = $(this).val();
+                                            var poldf = $('#poldf').val();
+                                            var type = 'echeance-police';
+                                            $.ajax({
+                                                url : "inc/fetch_datas.php",
+                                                method : "POST",
+                                                data : {poldf:poldf, poltime:poltime, type:type},
+                                                dataType : "text",
+                                                success : function(data){
+                                                    $('#poldt').val(data);
+                                                }
+                                            });
+                                        });
+                                    });
+                                </script>                            
     </body>     
 </html>
