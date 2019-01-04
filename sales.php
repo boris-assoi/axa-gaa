@@ -106,7 +106,7 @@ try
                                                     <label>Entrer votre recherche : </label>
                                                     <input type="text" class="form-control" name="find" value=<?php echo "\"".$find."\"" ?>>
                                                 </div>
-                                                <button type="submit" class="btn btn-warning"><i class="fa fa-fw fa-search"></i> Rechercher</button>
+                                                <button type="submit" class="btn btn-warning"><i class="fa fa-fw fa-search"></i></button>
                                                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalTest"><i class="fa fa-fw fa-plus"></i> Nouvelle vente</button>
                                                 <!-- Modal -->
                                                 <div class="modal fade" id="modalTest" tabindex="-1" role="dialog" aria-labelledby="modalTestLabel" aria-hidden="true">
@@ -279,7 +279,7 @@ try
                                                                                 {
                                                                                     echo "<option class=\"\">".htmlspecialchars($ok['type_vehicule_lib'])."</option>";
                                                                                 }
-                                                                                $req->closeCursor();                        
+                                                                                $req->closeCursor();
                                                                             ?> 
                                                                             </select>
                                                                             <label class="text-input">Genre</label>
@@ -297,7 +297,7 @@ try
                                                                                     <label class="text-input">Numéro de chassis</label>
                                                                                 </div>
                                                                                 <div class="form-group">                                                         
-                                                                                    <input type="date" name="datecirc"> 
+                                                                                    <input type="date" name="dateCirc" id="dateCirc"> 
                                                                                     <label class="text-input">Date de mise en circulation</label>
                                                                                 </div>
                                                                             </div>
@@ -315,8 +315,12 @@ try
                                                                                     <label class="text-input">Puissance fiscale</label>
                                                                                 </div> 
                                                                                 <div class="form-group"> 
-                                                                                    <input type="text" name="valCat"> 
-                                                                                    <label class="text-input">Valeur catalogue du véhicule</label>                                             
+                                                                                    <input type="text" name="valCat" id="valCat"> 
+                                                                                    <label class="text-input">Valeur catalogue </label>                                             
+                                                                                </div> 
+                                                                                <div class="form-group"> 
+                                                                                    <input type="text" name="valVen" id="valVen" disabled> 
+                                                                                    <label class="text-input">Valeur vénale</label>                                             
                                                                                 </div>
                                                                                 <div class="form-group">
                                                                                     <input type="checkbox" value="rem" id="rem" name="rem">
@@ -735,7 +739,27 @@ try
                                     });
                                 </script> 
 
-                                <!-- Calcul de valeur vénale -->
+                                <!-- Calcul de la date de fin de la police | Sur le champ de la date du début -->
+                                <script type="text/javascript">
+                                    $(document).ready(function(){
+                                        $('#poldf').change(function(){
+                                            var poldf = $(this).val();
+                                            var poltime = $('#poltime').val();
+                                            var type = 'echeance-police';
+                                            $.ajax({
+                                                url : "inc/fetch_datas.php",
+                                                method : "POST",
+                                                data : {poldf:poldf, poltime:poltime, type:type},
+                                                dataType : "text",
+                                                success : function(data){
+                                                    $('#poldt').val(data);
+                                                }
+                                            });
+                                        });
+                                    });
+                                </script>
+
+                                <!-- Calcul de la date de fin de la police | Sur le champ de la durée -->
                                 <script type="text/javascript">
                                     $(document).ready(function(){
                                         $('#poltime').change(function(){
@@ -753,6 +777,26 @@ try
                                             });
                                         });
                                     });
-                                </script>                            
+                                </script>
+                                
+                                <!-- Calcul de la valeur vénale -->
+                                <script type="text/javascript">
+                                    $(document).ready(function(){
+                                        $('#valCat').change(function(){
+                                            var valCat = $(this).val();
+                                            var dateCirc = $('#dateCirc').val();
+                                            var type = 'valeur-venale';
+                                            $.ajax({
+                                                url : "inc/fetch_datas.php",
+                                                method : "POST",
+                                                data : {valCat:valCat, dateCirc:dateCirc, type:type},
+                                                dataType : "text",
+                                                success : function(data){
+                                                    $('#valVen').val(data);
+                                                }
+                                            });
+                                        });
+                                    });
+                                </script>
     </body>     
 </html>

@@ -39,9 +39,13 @@
 
         //Récupération des informations de la police (date d'effet, durée en jours)
         (!empty($_POST['poldf'])) ? $poldf = new DateTime($_POST['poldf'], new DateTimeZone('GMT+0')) : $poldf = '';
-
         (!empty($_POST['poltime'])) ? $poltime = DateInterval::createFromDateString($_POST['poltime']. 'days')  : $poltime = '';
 
+        //Récupération des informations pour le calcul de la valeur vénale du véhicule
+        if (!empty($_POST['valCat'])) {
+            $valCat = $_POST['valCat'];
+        }
+        (!empty($_POST['dateCirc'])) ? $dateCirc = new DateTime($_POST['dateCirc'], new DateTimeZone('GMT+0')) : $dateCirc = '';
 
         //Variable contenant les valeurs à restituer
         $output = '';
@@ -82,12 +86,42 @@
                     $output .= '<span>'.$ok['cat_vehicule_desc'].'</span>';
                 }
                 break;
+
             //calcul de la date d'échéance de la police
             case 'echeance-police':
                 $poldt = $poldf->add($poltime);
                 $output = $poldt->format('d/m/Y');
                 break;
-            
+
+            //Calcul de la valeur vénale du véhicule
+            case 'valeur-venale':
+                    //Nombre d'années de circulation $An
+                    //Date d'aujourd'hui $dateToday
+                    $dateToday = new DateTime('now', new DateTimeZone('GMT+0'));
+                    $dureePermis = $dateToday->diff($dateCirc);
+                    $An = $dureePermis->format('%y');
+
+                    //Calcul de la valeur vénale $Vv
+                    $Vv = $valCat;
+                    for($i = 1; $i <= $An; $i++){
+                        if ($i == 1) {
+                            $Vv = $Vv - ($Vv * 25 / 100);
+                        } elseif ($i == 2) {
+                            $Vv = $Vv - ($Vv * 20 / 100);
+                        } elseif ($i > 2 && $i <= 7) {
+                            $Vv = $Vv - ($Vv * 15 / 100);
+                        } elseif ($i > 7) {
+                            $Vv = $Vv - ($Vv * 10 / 100);
+                        }
+                    }
+
+                    if ($VV < 800000) {
+                        $Vv = 800000;
+                    }
+
+                    $output = $Vv;
+                    break;
+
             default:
                 # code...
                 break;
