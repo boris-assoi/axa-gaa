@@ -41,10 +41,12 @@
         (!empty($_POST['poldf'])) ? $poldf = new DateTime($_POST['poldf'], new DateTimeZone('GMT+0')) : $poldf = '';
         (!empty($_POST['poltime'])) ? $poltime = DateInterval::createFromDateString($_POST['poltime']. 'days')  : $poltime = '';
 
-        //Récupération des informations pour le calcul de la valeur vénale du véhicule
+        //Récupération de la valeur catalogue du véhicule
         if (!empty($_POST['valCat'])) {
             $valCat = $_POST['valCat'];
         }
+
+        //Récupération de la date de mise en circulation du véhicule
         (!empty($_POST['dateCirc'])) ? $dateCirc = new DateTime($_POST['dateCirc'], new DateTimeZone('GMT+0')) : $dateCirc = '';
 
         //Variable contenant les valeurs à restituer
@@ -105,17 +107,17 @@
                     $Vv = $valCat;
                     for($i = 1; $i <= $An; $i++){
                         if ($i == 1) {
-                            $Vv = $Vv - ($Vv * 25 / 100);
+                            $Vv = ceil($Vv - ($Vv * 25 / 100));
                         } elseif ($i == 2) {
-                            $Vv = $Vv - ($Vv * 20 / 100);
+                            $Vv = ceil($Vv - ($Vv * 20 / 100));
                         } elseif ($i > 2 && $i <= 7) {
-                            $Vv = $Vv - ($Vv * 15 / 100);
-                        } elseif ($i > 7) {
-                            $Vv = $Vv - ($Vv * 10 / 100);
+                            $Vv = ceil($Vv - ($Vv * 15 / 100));
+                        } elseif ($i > 7 && $i <= 19) {
+                            $Vv = ceil($Vv - ($Vv * 10 / 100));
                         }
                     }
 
-                    if ($VV < 800000) {
+                    if ($Vv < 800000) {
                         $Vv = 800000;
                     }
 

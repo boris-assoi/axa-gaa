@@ -93,8 +93,7 @@ try
                 </div>
                 <!-- /.row -->                             
                             <div class="row"> 
-                                <div class="col-lg-12">
-</div>                                 
+                                <div class="col-lg-12"></div>                                 
                             </div>                             
                             <!-- /.row -->                             
                             <div class="row"> 
@@ -134,14 +133,14 @@ try
                                                                     <div class="form-group"> 
                                                                         <select id="typAtt" name="typAtt" class="flex-container"> 
                                                                             <?php
-                                                                            $request="SELECT * FROM type_attestation ORDER BY type_attestation_lib ASC";
-                                                                            $req = $bdd->query($request);
-                                                                            while ($ok = $req->fetch())
-                                                                            {
-                                                                                echo "<option class=\"text-uppercase\">".htmlspecialchars($ok['type_attestation_lib'])."</option>";    
-                                                                            }
-                                                                            $req->closeCursor();
-                                                                        ?> 
+                                                                                $request="SELECT * FROM type_attestation ORDER BY type_attestation_lib ASC";
+                                                                                $req = $bdd->query($request);
+                                                                                while ($ok = $req->fetch())
+                                                                                {
+                                                                                    echo "<option class=\"text-uppercase\">".htmlspecialchars($ok['type_attestation_lib'])."</option>";    
+                                                                                }
+                                                                                $req->closeCursor();
+                                                                            ?> 
                                                                         </select>
                                                                         <label class="text-input"> <span> - Disponibilité - </span> <?php
                                                                             $req  = $bdd->prepare($models['dispoAuto']);
@@ -170,7 +169,7 @@ try
                                                                         <legend class="text-uppercase">Informations du client</legend>                                               
                                                                         <div class="flex-container">
                                                                             <div class="form-group">                                                
-                                                                                <select name="type"> 
+                                                                                <select name="typelient" id="typeClient"> 
                                                                                     <?php
                                                                                     $request='SELECT type_client_lib FROM type_client';
                                                                                     $req = $bdd->query($request);
@@ -184,7 +183,7 @@ try
                                                                                 <label class="text-input">Type de client</label>
                                                                             </div>
                                                                             <div class="form-group">                                                     
-                                                                                <input type="text" name="nom">      
+                                                                                <input type="text" name="nomClient" id="nomClient">      
                                                                                 <label class="text-input">Nom</label>    
                                                                             </div>
                                                                         </div>        
@@ -216,15 +215,15 @@ try
                                                                         <div class="alert alert-info" id="statut-desc"></div>
                                                                         <div class="flex-container">
                                                                             <div class="form-group">
-                                                                                <input type="text" name="pro">
+                                                                                <input type="text" name="pro" id="pro">
                                                                                 <label class="text-input">Profession</label>
                                                                             </div>
                                                                             <div class="form-group">
-                                                                                <input type="text" name="adresse">
+                                                                                <input type="text" name="adresse" id="adresse">
                                                                                 <label class="text-input">Adresse</label>
                                                                             </div>
                                                                             <div class="form-group">
-                                                                                <input type="text" name="contact"> 
+                                                                                <input type="text" name="contact" id="contact"> 
                                                                                 <label class="text-input">Contact</label>
                                                                             </div>
                                                                         </div>
@@ -235,7 +234,7 @@ try
                                                                         <legend>Informations sur la police</legend>                                                  
                                                                         <div class="flex-container">
                                                                             <div class="form-group">                                                         
-                                                                                <input type="text" name="pol" maxlength="10">
+                                                                                <input type="text" name="pol" maxlength="10" id="pol">
                                                                                 <label class="text-input">Police N°</label>
                                                                             </div>
                                                                             <div class="form-group">                                                         
@@ -271,7 +270,7 @@ try
                                                                                 <label class="text-input">Catégorie</label>                                                       
                                                                                 <div class="alert alert-info" id="cat-desc"></div>   
                                                                             </div> 
-                                                                            <select class="text-uppercase" name="carGenre">
+                                                                            <select class="text-uppercase" name="carGenre" id="carGenre">
                                                                                 <?php
                                                                                 $request='SELECT type_vehicule_lib FROM type_vehicule';
                                                                                 $req = $bdd->query($request);
@@ -285,15 +284,15 @@ try
                                                                             <label class="text-input">Genre</label>
                                                                             <div class="flex-container">
                                                                                 <div class="form-group">                                                         
-                                                                                    <input type="text" name="carMake"> 
+                                                                                    <input type="text" name="carMake"  id="carMake"> 
                                                                                     <label class="text-input">Marque</label>
                                                                                 </div>
                                                                                 <div class="form-group">                                                         
-                                                                                    <input type="text" name="imat"> 
+                                                                                    <input type="text" name="imat" id="imat"> 
                                                                                     <label class="text-input">Numéro d'immatriculation</label>
                                                                                 </div>
                                                                                 <div class="form-group">                                                         
-                                                                                    <input type="text" name="chassis"> 
+                                                                                    <input type="text" name="chassis" id="chassis"> 
                                                                                     <label class="text-input">Numéro de chassis</label>
                                                                                 </div>
                                                                                 <div class="form-group">                                                         
@@ -330,7 +329,32 @@ try
                                                                     </fieldset>
                                                                 </div>
                                                                 <div id="step-4" class="">
-                                                                    Choix de la formule
+                                                                    <div class="flex-container">
+                                                                        <div class="form-group">
+                                                                            <input type="radio" value="rem" id="t-simple" name="formule">
+                                                                            <label class="text-input">Tiers simple</label>                                         
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <input type="radio" value="rem" id="t-base" name="formule">
+                                                                            <label class="text-input">Tiers de base</label>                                         
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <input type="radio" value="rem" id="t-complet" name="formule">
+                                                                            <label class="text-input">Tiers complet</label>                                         
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <input type="radio" value="rem" id="t-ameliore" name="formule">
+                                                                            <label class="text-input">Tiers amélioré</label>                                         
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <input type="radio" value="rem" id="tc-complete" name="formule">
+                                                                            <label class="text-input">Tierce complète</label>                                         
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <input type="radio" value="rem" id="tc-collision" name="formule">
+                                                                            <label class="text-input">Tierce collision</label>                                         
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
                                                                 <div id="step-5" class="">
                                                                     Confirmation
@@ -661,142 +685,7 @@ try
                                     });
                                 </script>
 
-                                <!-- Messages informations pour les champs -->   
-
-                                <!-- Puissance Fiscale -->
-                                <script type="text/javascript">
-                                    $(document).ready(function(){
-                                        $('#pf').change(function(){
-                                            var pf = $(this).val();
-                                            var type = 'puissance-fiscale';
-                                            $.ajax({
-                                                url : "inc/fetch_datas.php",
-                                                method : "POST",
-                                                data : {pfType:pf,type:type},
-                                                dataType : "text",
-                                                success : function(data){
-                                                    $('#pfValue').html(data);
-                                                }
-                                            });
-                                        });
-                                    });
-                                </script>
-
-                                <!-- Statut socio-professionnel -->
-                                <script type="text/javascript">
-                                    $(document).ready(function(){
-                                        $('#statut-pro').change(function(){
-                                            var spro = $(this).val();
-                                            var type = 'socio-pro';
-                                            $.ajax({
-                                                url : "inc/fetch_datas.php",
-                                                method : "POST",
-                                                data : {stat:spro,type:type},
-                                                dataType : "text",
-                                                success : function(data){
-                                                    $('#statut-desc').html(data);
-                                                }
-                                            });
-                                        });
-                                    });
-                                </script> 
-
-                                <!-- Catégorie -->                    
-                                <script type="text/javascript">
-                                    $(document).ready(function(){
-                                        $('#catcar').change(function(){
-                                            var catcar = $(this).val();
-                                            var type = 'cat';
-                                            $.ajax({
-                                                url : "inc/fetch_datas.php",
-                                                method : "POST",
-                                                data : {cat:catcar,type:type},
-                                                dataType : "text",
-                                                success : function(data){
-                                                    $('#cat-desc').html(data);
-                                                }
-                                            });
-                                        });
-                                    });
-                                </script> 
-
-                                <!-- Classe du permis de conduire -->
-                                <script type="text/javascript">
-                                    $(document).ready(function(){
-                                        $('#classe-permis').change(function(){
-                                            var classe = $(this).val();
-                                            var type = 'cls-pc';
-                                            $.ajax({
-                                                url : "inc/fetch_datas.php",
-                                                method : "POST",
-                                                data : {classe:classe,type:type},
-                                                dataType : "text",
-                                                success : function(data){
-                                                    $('#classe-desc').html(data);
-                                                }
-                                            });
-                                        });
-                                    });
-                                </script> 
-
-                                <!-- Calcul de la date de fin de la police | Sur le champ de la date du début -->
-                                <script type="text/javascript">
-                                    $(document).ready(function(){
-                                        $('#poldf').change(function(){
-                                            var poldf = $(this).val();
-                                            var poltime = $('#poltime').val();
-                                            var type = 'echeance-police';
-                                            $.ajax({
-                                                url : "inc/fetch_datas.php",
-                                                method : "POST",
-                                                data : {poldf:poldf, poltime:poltime, type:type},
-                                                dataType : "text",
-                                                success : function(data){
-                                                    $('#poldt').val(data);
-                                                }
-                                            });
-                                        });
-                                    });
-                                </script>
-
-                                <!-- Calcul de la date de fin de la police | Sur le champ de la durée -->
-                                <script type="text/javascript">
-                                    $(document).ready(function(){
-                                        $('#poltime').change(function(){
-                                            var poltime = $(this).val();
-                                            var poldf = $('#poldf').val();
-                                            var type = 'echeance-police';
-                                            $.ajax({
-                                                url : "inc/fetch_datas.php",
-                                                method : "POST",
-                                                data : {poldf:poldf, poltime:poltime, type:type},
-                                                dataType : "text",
-                                                success : function(data){
-                                                    $('#poldt').val(data);
-                                                }
-                                            });
-                                        });
-                                    });
-                                </script>
-                                
-                                <!-- Calcul de la valeur vénale -->
-                                <script type="text/javascript">
-                                    $(document).ready(function(){
-                                        $('#valCat').change(function(){
-                                            var valCat = $(this).val();
-                                            var dateCirc = $('#dateCirc').val();
-                                            var type = 'valeur-venale';
-                                            $.ajax({
-                                                url : "inc/fetch_datas.php",
-                                                method : "POST",
-                                                data : {valCat:valCat, dateCirc:dateCirc, type:type},
-                                                dataType : "text",
-                                                success : function(data){
-                                                    $('#valVen').val(data);
-                                                }
-                                            });
-                                        });
-                                    });
-                                </script>
+                                <!-- Message informations -->
+                                <script type="text/javascript" src="js/ajax-info.js"></script>
     </body>     
 </html>

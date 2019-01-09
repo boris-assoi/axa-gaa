@@ -1,5 +1,4 @@
 <?php
-    //Calcul de la garantie de la responsabilité civile
     try
     {
         session_start();
@@ -15,45 +14,96 @@
         include_once "connection.php";
         include_once "models.php"; 
 
+
+        /* 
+        * INFORMATIONS SUR L'ATTESTATION
+        */
+        //Recupération du type d'attestation
+        (!empty($_POST['typAtt'])) ? $typAtt = $_POST['typAtt'] : $typAtt = "";        
+
         /*
         * INFORMATIONS SUR LE CLIENT
         */
-        //Récupération de la classe d'ancienneté du permis
-        $classe_permis = $_POST['classe_permis'];
+        //Recupération du type de client
+        (!empty($_POST['typeClient'])) ? $typeClient = $_POST['typeClient'] : $typeClient = "";
+        
+        //Recupération du nom du client
+        (!empty($_POST['nomClient'])) ? $nomClient = $_POST['nomClient'] : $nomClient = "";
 
-        //Récupération du statut socio-professionnel
-        $statut_pro = $_POST['status-pro'];
+        //Recupération de la classe d'ancienneté du permis de conduire du client
+        (!empty($_POST['classe_permis'])) ? $classe_permis = $_POST['classe_permis'] : $classe_permis = "";
+
+        //Recupération du statut socio-professionnel du client
+        (!empty($_POST['statut_pro'])) ? $statut_pro = $_POST['statut_pro'] : $statut_pro = "";
+
+        //Recupération de la profession du client
+        (!empty($_POST['pro'])) ? $pro = $_POST['pro'] : $pro = "";
+
+        //Recupération de l'adresse du client
+        (!empty($_POST['adresse'])) ? $adresse = $_POST['adresse'] : $adresse = "";
+
+        //Recupération du contact du client
+        (!empty($_POST['contact'])) ? $contact = $_POST['contact'] : $contact = "";
 
         /*
         * INFORMATIONS SUR LA POLICE
         */
+        //Recupération du numéro de police
+        (!empty($_POST['pol'])) ? $pol = $_POST['pol'] : $pol = "";
+
         //Récupération de la date de début d'effet
         (!empty($_POST['poldf'])) ? $poldf = new DateTime($_POST['poldf'], new DateTimeZone('GMT+0')) : $poldf = '';
 
         //Récupération de la date de fin d'effet
         (!empty($_POST['poldt'])) ? $poldt = new DateTime($_POST['poldt'].'+1 day', new DateTimeZone('GMT+0')) : $poldt = '';
 
-        //Calcul de la durée de la police
-        $pol_duration = $poldf->diff($poldt);
-        $pol_duration_m = ceil($pol_duration->format('%a')/30);
-        echo $pol_duration->format('%a').'<br>';
+        //Récupération de la durée de la police
+        (!empty($_POST['poltime'])) ? $poltime = DateInterval::createFromDateString($_POST['poltime']. 'days')  : $poltime = '';
 
 
         /*
         * INFORMATIONS SUR LE VEHICULE
         */
-        //Récupération du type de puissance fiscale
-        $pf = $_POST['pf'];
+        //Recupération de la catégorie du véhicule
+        (!empty($_POST['catCar'])) ? $catCar = $_POST['catCar'] : $catCar = "";
+
+        //Recupération du genre
+        (!empty($_POST['carGenre'])) ? $carGenre = $_POST['carGenre'] : $carGenre = "";
+
+        //Recupération de la marque
+        (!empty($_POST['carMake'])) ? $carMake = $_POST['carMake'] : $carMake = "";
+
+        //Recupération du numéro d'immatriculation
+        (!empty($_POST['imat'])) ? $imat = $_POST['imat'] : $imat = "";
+
+        //Recupération de la date de mise en circulation
+        (!empty($_POST['dateCirc'])) ? $dateCirc = $_POST['dateCirc'] : $dateCirc = "";
+
+        //Recupération de la puissance fiscale
+        (!empty($_POST['pf'])) ? $pf = $_POST['pf'] : $pf = "";
         $pf_table = "ref_".$pf;
         
-        //Récupération de la valeur de la puissance fiscale
-        $pfValue = $_POST['pfValue'];
+        //Recupération de la valeur de la puissance fiscale
+        (!empty($_POST['pfValue'])) ? $pfValue = $_POST['pfValue'] : $pfValue = "";
 
-        //Récupération de la valeur catalogue du véhicule
-        $valCat = $_POST['valCat'];
+        //Recupération de la valeur catalogue
+        (!empty($_POST['valCat'])) ? $valCat = $_POST['valCat'] : $valCat = "";
+
+        //Recupération de la valeur vénale
+        (!empty($_POST['valVen'])) ? $valVen = $_POST['valVen'] : $valVen = "";
 
         //Vérification de l'existence d'une remorque        
-        (!empty($_POST['rem'])) ? $rem = $_POST['rem']:$rem = '';
+        (!empty($_POST['rem'])) ? $rem = $_POST['rem'] : $rem = '';
+
+        /* 
+        * INFORMATIONS SUR LA FORMULE DE GARANTIES
+        */
+        //Récupération de la garantie sélectionnée
+        (!empty($_POST['formule'])) ? $formule = $_POST['formule'] : $formule = "";
+
+        /* 
+        * CALCUL DES MONTANTS DE GARANTIES
+        */
 
         /*
         *CALCUL DE LA GARANTIE RESPONSABILITE CIVILE : prime_rc
