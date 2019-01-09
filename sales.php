@@ -121,11 +121,12 @@ try
                                                         <!-- Smart Wizard HTML -->
                                                         <div id="smartwizard">
                                                             <ul>
-                                                                <li><a href="#step-1">Souscripteur<br /><small>Informations du souscripteur</small></a></li>
-                                                                <li><a href="#step-2">Police<br /><small>Informations de la police</small></a></li>
-                                                                <li><a href="#step-3">Véhicule<br /><small>Informations sur le véhicule</small></a></li>
+                                                                <li><a href="#step-1">Souscripteur<br /><small>Détails du souscripteur</small></a></li>
+                                                                <li><a href="#step-2">Police<br /><small>Détails de la police</small></a></li>
+                                                                <li><a href="#step-3">Véhicule<br /><small>Détails sur le véhicule</small></a></li>
                                                                 <li><a href="#step-4">Formule<br /><small>Choix de la formule</small></a></li>
-                                                                <li><a href="#step-5">Confirmation<br /><small>Confirmer la vente</small></a></li>
+                                                                <li><a href="#step-5">Détails de la formule<br /><small>Compléments de la formule</small></a></li>
+                                                                <li><a href="#step-5">Résumé<br /><small>Détails de la vente</small></a></li>
                                                             </ul>
 
                                                             <div>
@@ -331,32 +332,37 @@ try
                                                                 <div id="step-4" class="">
                                                                     <div class="flex-container">
                                                                         <div class="form-group">
-                                                                            <input type="radio" value="rem" id="t-simple" name="formule">
+                                                                            <input type="radio" value="t-simple" id="t-simple" name="formule">
                                                                             <label class="text-input">Tiers simple</label>                                         
                                                                         </div>
                                                                         <div class="form-group">
-                                                                            <input type="radio" value="rem" id="t-base" name="formule">
+                                                                            <input type="radio" value="t-base" id="t-base" name="formule">
                                                                             <label class="text-input">Tiers de base</label>                                         
                                                                         </div>
                                                                         <div class="form-group">
-                                                                            <input type="radio" value="rem" id="t-complet" name="formule">
+                                                                            <input type="radio" value="t-complet" id="t-complet" name="formule">
                                                                             <label class="text-input">Tiers complet</label>                                         
                                                                         </div>
                                                                         <div class="form-group">
-                                                                            <input type="radio" value="rem" id="t-ameliore" name="formule">
+                                                                            <input type="radio" value="t-ameliore" id="t-ameliore" name="formule">
                                                                             <label class="text-input">Tiers amélioré</label>                                         
                                                                         </div>
                                                                         <div class="form-group">
-                                                                            <input type="radio" value="rem" id="tc-complete" name="formule">
+                                                                            <input type="radio" value="tc-complete" id="tc-complete" name="formule">
                                                                             <label class="text-input">Tierce complète</label>                                         
                                                                         </div>
                                                                         <div class="form-group">
-                                                                            <input type="radio" value="rem" id="tc-collision" name="formule">
+                                                                            <input type="radio" value="tc-collision" id="tc-collision" name="formule">
                                                                             <label class="text-input">Tierce collision</label>                                         
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                                 <div id="step-5" class="">
+                                                                    <div>
+                                                                    
+                                                                    </div>
+                                                                </div>
+                                                                <div id="step-6" class="">
                                                                     Confirmation
                                                                 </div>
                                                             </div>

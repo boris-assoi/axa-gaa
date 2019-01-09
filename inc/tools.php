@@ -141,10 +141,7 @@
 
         $prime_rc = ceil(($prime + ($prime * $prime_annexe / 100)) / 365 * $pol_duration->days);
 
-        echo "Calcul de la prime pour la garantie de la RESPONSABILITE CIVILE <br>";
-        echo "Prime de base : ".$prime."<br>";
-        echo "Prime annexe : ".$prime_annexe."<br>";
-        echo "Le montant de la prime :".$prime_rc."<br>";
+        $data['prime_rc'] = $prime_rc;
 
         /*
         * FIN DE CALCUL DE LA GARANTIE DE LA RESPONSABILITE CIVILE
@@ -164,8 +161,7 @@
             $req->closeCursor();
         }
 
-        echo "Calcul de la prime pour la garantie de DEFENSE ET RECOURS<br>";
-        echo "Prime de base : ".$prime_dr."<br>";
+        $data['prime_dr'] = $prime_dr;
         /*
         * FIN DE CALCUL DE LA GARANTIE DEFENSE ET RECOURS
         */
@@ -184,8 +180,7 @@
             $req->closeCursor();
         }
 
-        echo "Calcul de la prime pour la garantie de REMBOURSEMENT ANTICIPE<br>";
-        echo "Prime de base : ".$prime_ra."<br>";
+         $data['prime_ra'] = $prime_ra;
         /*
         * FIN DE CALCUL DE LA GARANTIE REMBOURSEMENT ANTICIPE
         */
@@ -204,8 +199,7 @@
             $req->closeCursor();
         }
 
-        echo "Calcul de la prime pour la garantie de SECURITE ROUTIERE<br>";
-        echo "Prime de base : ".$prime_sr."<br>";
+         $data['prime_sr'] = $prime_sr;
         /*
         * FIN DE CALCUL DE LA GARANTIE SECURITE ROUTIERE
         */
@@ -227,8 +221,7 @@
             $req->closeCursor();
         }
 
-        echo "Calcul de la prime pour la garantie BRIS DE GLACE<br>";
-        echo "Prime de base : ".$prime_bg."<br>";
+         $data['prime_bg'] = $prime_bg;
         /*
         * FIN DE CALCUL DE LA GARANTIE BRIS DE GLACE
         */

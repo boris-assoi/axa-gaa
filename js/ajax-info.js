@@ -93,7 +93,7 @@ $(document).ready(function(){
     });
 
     //Calcul de la valeur vénale
-    $('#valCat').change(function () {
+    $('#valCat').focus(function () {
         var valCat = $(this).val();
         var dateCirc = $('#dateCirc').val();
         var type = 'valeur-venale';
@@ -107,6 +107,18 @@ $(document).ready(function(){
             }
         });
     });
+
+    //Affichage des champs selon les formules
+    $('input[name=formule]').change(function(){
+        switch ($('input[name=fomule]:checked').val()) {
+            case 't-simple':
+                
+                break;
+        
+            default:
+                break;
+        }
+    })
 
     //Calcul des garanties
     $('#step-5').focus(function(){
@@ -133,7 +145,7 @@ $(document).ready(function(){
         var valCat = $('#valCat').val();
         var valVen = $('#valVen').val();
         var rem = $('#rem').val();
-        var formule = document.getElementsByName('formule').val();
+        var formule = $('input[name=formule]:checked').val();
         $.ajax({
             url: "inc/cat1_waranties.php",
             method: POST,
@@ -165,7 +177,7 @@ $(document).ready(function(){
             },
             dataType : "JSON",
             success: function(data){
-                
+
             }
         });
     })
