@@ -70,7 +70,6 @@
                     $output .= '<option value="'.$ok['label'].'">'.$ok['label'].'</option>';
                 }
                 break;
-            
             //Récupération des valeurs de puissance fiscale
             case 'cls-pc':
                 $req = $bdd->prepare('SELECT info FROM classe_permis WHERE lib = LOWER(?)');

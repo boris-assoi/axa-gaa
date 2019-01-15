@@ -126,7 +126,7 @@ try
                                                                 <li><a href="#step-3">Véhicule<br /><small>Détails sur le véhicule</small></a></li>
                                                                 <li><a href="#step-4">Formule<br /><small>Choix de la formule</small></a></li>
                                                                 <li><a href="#step-5">Détails de la formule<br /><small>Compléments de la formule</small></a></li>
-                                                                <li><a href="#step-5">Résumé<br /><small>Détails de la vente</small></a></li>
+                                                                <li><a href="#step-6">Résumé<br /><small>Détails de la vente</small></a></li>
                                                             </ul>
 
                                                             <div>
@@ -268,8 +268,11 @@ try
                                                                                     $req->closeCursor();                        
                                                                                     ?> 
                                                                                 </select>
-                                                                                <label class="text-input">Catégorie</label>                                                       
-                                                                                <div class="alert alert-info" id="cat-desc"></div>   
+                                                                                <label class="text-input">Catégorie</label>
+                                                                                <div class="alert alert-info alert-dismissable">
+                                                                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                                                                    <i class="fa fa-info-circle"></i>  <strong id="cat-desc"></strong> <a href="#" class="alert-link"></a> 
+                                                                                </div>   
                                                                             </div> 
                                                                             <select class="text-uppercase" name="carGenre" id="carGenre">
                                                                                 <?php
@@ -358,8 +361,115 @@ try
                                                                     </div>
                                                                 </div>
                                                                 <div id="step-5" class="">
-                                                                    <div>
-                                                                    
+                                                                    <div class="flex-container" id="dr" style="display: none">
+                                                                        <!-- Détails de la garantie DEFENSE ET RECOURS -->
+                                                                        <fieldset>
+                                                                            <legend>Défense et recours</legend>
+                                                                            <div class="form-group">
+                                                                                <input type="checkbox" value="1" id="defense" name="defense">
+                                                                                <label class="text-input">Ajouter Garantie Tierce Complète ou Tierce Collision</label>
+                                                                            </div>
+                                                                        </fieldset>
+                                                                    </div>
+                                                                    <div class="flex-container" id="ra" style="display: none">
+                                                                        <!-- Détails de la garantie REMBOURSEMENT ANTICIPE -->
+                                                                        <fieldset>
+                                                                            <legend>Remboursement anticipé</legend>
+                                                                            <div class="form-group">
+                                                                                <select name="remb" id="remb" class="text-uppercase">
+                                                                                    <?php
+                                                                                        $request='SELECT lib FROM prime_g_rem_ant';
+                                                                                        $req = $bdd->query($request);
+                                                                                        while ($ok = $req->fetch())
+                                                                                        {
+                                                                                            echo "<option class=\"\">".htmlspecialchars($ok['lib'])."</option>";    
+                                                                                        }
+                                                                                        $req->closeCursor();                        
+                                                                                    ?> 
+                                                                                </select>
+                                                                                <label class="text-input">Type de prime pour la garantie</label>
+                                                                            </div>
+                                                                        </fieldset>
+                                                                    </div>
+                                                                    <div class="flex-container" id="bg" style="display: none">
+                                                                        <!-- Détails de la garantie BRIS DE GLACE -->
+                                                                        <fieldset>
+                                                                            <legend>Bris de glace</legend>
+                                                                            <div class="form-group">
+                                                                                <select name="remb" id="remb" class="text-uppercase">
+                                                                                    <?php
+                                                                                        $request='SELECT lib FROM option_g_bri_gla';
+                                                                                        $req = $bdd->query($request);
+                                                                                        while ($ok = $req->fetch())
+                                                                                        {
+                                                                                            echo "<option class=\"\">".htmlspecialchars($ok['lib'])."</option>";    
+                                                                                        }
+                                                                                        $req->closeCursor();                        
+                                                                                    ?> 
+                                                                                </select>
+                                                                                <label class="text-input">Options de la garantie</label>
+                                                                            </div>
+                                                                        </fieldset>
+                                                                    </div>
+                                                                    <div class="flex-container" id="dommage" style="display: none">
+                                                                        <!-- Détails de la garantie DOMMAGES -->
+                                                                        <fieldset>
+                                                                            <legend>Dommages</legend>
+                                                                            <div class="form-group">
+                                                                                <select name="dom" id="dom" class="text-uppercase">
+                                                                                    <?php
+                                                                                        $request='SELECT lib FROM type_g_dom';
+                                                                                        $req = $bdd->query($request);
+                                                                                        while ($ok = $req->fetch())
+                                                                                        {
+                                                                                            echo "<option class=\"\">".htmlspecialchars($ok['lib'])."</option>";    
+                                                                                        }
+                                                                                        $req->closeCursor();                        
+                                                                                    ?> 
+                                                                                </select>
+                                                                                <label class="text-input">Options de la garantie</label>
+                                                                            </div>
+                                                                        </fieldset>
+                                                                    </div>
+                                                                    <div class="flex-container" id="sr" style="display: none">
+                                                                        <!-- Détails de la garantie DOMMAGES -->
+                                                                        <fieldset>
+                                                                            <legend>Sécurité routière</legend>
+                                                                            <div class="form-group">
+                                                                                <select name="sec_rou_opt" id="sec_rou_opt" class="text-uppercase">
+                                                                                    <?php
+                                                                                        $request='SELECT lib FROM option_g_sec_rou';
+                                                                                        $req = $bdd->query($request);
+                                                                                        while ($ok = $req->fetch())
+                                                                                        {
+                                                                                            echo "<option class=\"\">".htmlspecialchars($ok['lib'])."</option>";    
+                                                                                        }
+                                                                                        $req->closeCursor();                        
+                                                                                    ?> 
+                                                                                </select>
+                                                                                <label class="text-input">Options de la garantie</label>
+                                                                            </div>
+                                                                        </fieldset>
+                                                                    </div>
+                                                                    <div class="flex-container" id="immo" style="display: none">
+                                                                        <!-- Détails de la garantie IMMOBILISATION -->
+                                                                        <fieldset>
+                                                                            <legend>Immobilisation</legend>
+                                                                            <div class="form-group">
+                                                                                <select name="sec_rou_opt" id="sec_rou_opt" class="text-uppercase">
+                                                                                    <?php
+                                                                                        $request='SELECT lib FROM option_g_sec_rou';
+                                                                                        $req = $bdd->query($request);
+                                                                                        while ($ok = $req->fetch())
+                                                                                        {
+                                                                                            echo "<option class=\"\">".htmlspecialchars($ok['lib'])."</option>";    
+                                                                                        }
+                                                                                        $req->closeCursor();                        
+                                                                                    ?> 
+                                                                                </select>
+                                                                                <label class="text-input">Options de la garantie</label>
+                                                                            </div>
+                                                                        </fieldset>
                                                                     </div>
                                                                 </div>
                                                                 <div id="step-6" class="">

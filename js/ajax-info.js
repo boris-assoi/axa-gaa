@@ -109,10 +109,11 @@ $(document).ready(function(){
     });
 
     //Affichage des champs selon les formules
-    $('input[name=formule]').change(function(){
-        switch ($('input[name=fomule]:checked').val()) {
+    $('input[name=formule]').click(function(){
+        switch ($(this).val()) {
             case 't-simple':
-                
+                $('#dr').css("display", "block");
+                console.log($(this).val());
                 break;
         
             default:
@@ -147,7 +148,7 @@ $(document).ready(function(){
         var rem = $('#rem').val();
         var formule = $('input[name=formule]:checked').val();
         $.ajax({
-            url: "inc/cat1_waranties.php",
+            url: "inc/tools.php",
             method: POST,
             data:{
                 typAtt: typAtt,
@@ -181,4 +182,5 @@ $(document).ready(function(){
             }
         });
     })
+
 });

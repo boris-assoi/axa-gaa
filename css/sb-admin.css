@@ -306,6 +306,7 @@ input, select{
 
 legend{
     padding-top: 20px;
+    text-transform: uppercase;
 }
 
 /* Rendu FLEX */
