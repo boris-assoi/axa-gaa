@@ -98,7 +98,7 @@ try
                                                     <label>Entrer votre recherche : </label>
                                                     <input type="text" class="form-control" name="find" value=<?php echo "\"".$find."\"" ?>>
                                                 </div>
-                                                <button type="submit" class="btn btn-warning"><i class="fa fa-fw fa-search"></i> Rechercher</button>
+                                                <button type="submit" class="btn btn-warning"><i class="fa fa-fw fa-search"></i></button>
                                                 <a href="sellCert.php" class="hidden-print">
                                                     <button type="button" class="btn btn-success"><i class="fa fa-fw fa-plus"></i> Nouvelle vente</button>
                                                 </a>

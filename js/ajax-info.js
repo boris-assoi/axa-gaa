@@ -61,7 +61,7 @@ $(document).ready(function(){
     });
 
     //Calcul de la date de fin de la police | Sur le champ de la date du début
-    $('#poldf').change(function () {
+    $('#poldf').change(function DateFinPoliceParDateDebut() {
         var poldf = $(this).val();
         var poltime = $('#poltime').val();
         var type = 'echeance-police';
@@ -77,7 +77,7 @@ $(document).ready(function(){
     });
 
     //Calcul de la date de fin de la police | Sur le champ de la durée
-    $('#poltime').change(function () {
+    $('#poltime').change(function DateFinPoliceParDuree() {
         var poltime = $(this).val();
         var poldf = $('#poldf').val();
         var type = 'echeance-police';
@@ -93,7 +93,7 @@ $(document).ready(function(){
     });
 
     //Calcul de la valeur vénale
-    $('#valCat').focus(function () {
+    $('#valCat').click(function calculValeurVenale() {
         var valCat = $(this).val();
         var dateCirc = $('#dateCirc').val();
         var type = 'valeur-venale';
@@ -109,12 +109,16 @@ $(document).ready(function(){
     });
 
     //Affichage des champs selon les formules
-    $('input[name=formule]').click(function(){
+    $('input[name=formule]').click(function afficherGaranties(){
         switch ($(this).val()) {
             case 't-simple':
                 $('#dr').css("display", "block");
-                console.log($(this).val());
+                $('#ra').css("display", "none");
                 break;
+
+            case 't-base':
+                $('#dr').css("display", "none");
+                $('#ra').css("display", "block");
         
             default:
                 break;
@@ -122,7 +126,7 @@ $(document).ready(function(){
     })
 
     //Calcul des garanties
-    $('#step-5').focus(function(){
+    $('#testPHP').click(function(){
         var typAtt = $('#typAtt').val();
         var typeClient = $('#typeClient').val();
         var nomClient = $('#nomClient').val();
@@ -148,7 +152,7 @@ $(document).ready(function(){
         var rem = $('#rem').val();
         var formule = $('input[name=formule]:checked').val();
         $.ajax({
-            url: "inc/tools.php",
+            url: "testPHP.php",
             method: POST,
             data:{
                 typAtt: typAtt,
@@ -178,7 +182,7 @@ $(document).ready(function(){
             },
             dataType : "JSON",
             success: function(data){
-
+                alert('prime :' + data.prime_dr);
             }
         });
     })

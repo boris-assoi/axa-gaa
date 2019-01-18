@@ -106,7 +106,7 @@ try
                                                     <input type="text" class="form-control" name="find" value=<?php echo "\"".$find."\"" ?>>
                                                 </div>
                                                 <button type="submit" class="btn btn-warning"><i class="fa fa-fw fa-search"></i></button>
-                                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalTest"><i class="fa fa-fw fa-plus"></i> Nouvelle vente</button>
+                                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalTest" id="testPHP"><i class="fa fa-fw fa-plus"></i> Nouvelle vente</button>
                                                 <!-- Modal -->
                                                 <div class="modal fade" id="modalTest" tabindex="-1" role="dialog" aria-labelledby="modalTestLabel" aria-hidden="true">
                                                     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
@@ -134,7 +134,7 @@ try
                                                                     <div class="form-group"> 
                                                                         <select id="typAtt" name="typAtt" class="flex-container"> 
                                                                             <?php
-                                                                                $request="SELECT * FROM type_attestation ORDER BY type_attestation_lib ASC";
+                                                                                $request="SELECT type_attestation_lib FROM type_attestation ORDER BY type_attestation_lib ASC";
                                                                                 $req = $bdd->query($request);
                                                                                 while ($ok = $req->fetch())
                                                                                 {
@@ -203,7 +203,7 @@ try
                                                                         <div class="alert alert-info" id="classe-desc"></div>
                                                                         <select id="statut-pro" class="text-uppercase" name="statut-pro">
                                                                             <?php
-                                                                            $request='SELECT lib, info FROM statut_socio_pro';
+                                                                            $request='SELECT lib FROM statut_socio_pro';
                                                                             $req = $bdd->query($request);
                                                                             while ($ok = $req->fetch())
                                                                             {
@@ -378,11 +378,11 @@ try
                                                                             <div class="form-group">
                                                                                 <select name="remb" id="remb" class="text-uppercase">
                                                                                     <?php
-                                                                                        $request='SELECT lib FROM prime_g_rem_ant';
+                                                                                        $request='SELECT id, lib FROM prime_g_rem_ant';
                                                                                         $req = $bdd->query($request);
                                                                                         while ($ok = $req->fetch())
                                                                                         {
-                                                                                            echo "<option class=\"\">".htmlspecialchars($ok['lib'])."</option>";    
+                                                                                            echo "<option class=\"\" value=\"".htmlspecialchars($ok['id'])."\">".htmlspecialchars($ok['lib'])."</option>";    
                                                                                         }
                                                                                         $req->closeCursor();                        
                                                                                     ?> 
@@ -396,7 +396,7 @@ try
                                                                         <fieldset>
                                                                             <legend>Bris de glace</legend>
                                                                             <div class="form-group">
-                                                                                <select name="remb" id="remb" class="text-uppercase">
+                                                                                <select name="bris" id="bris" class="text-uppercase">
                                                                                     <?php
                                                                                         $request='SELECT lib FROM option_g_bri_gla';
                                                                                         $req = $bdd->query($request);
@@ -418,11 +418,11 @@ try
                                                                             <div class="form-group">
                                                                                 <select name="dom" id="dom" class="text-uppercase">
                                                                                     <?php
-                                                                                        $request='SELECT lib FROM type_g_dom';
+                                                                                        $request='SELECT id, lib FROM type_g_dom';
                                                                                         $req = $bdd->query($request);
                                                                                         while ($ok = $req->fetch())
                                                                                         {
-                                                                                            echo "<option class=\"\">".htmlspecialchars($ok['lib'])."</option>";    
+                                                                                            echo "<option class=\"\" value=\"".htmlspecialchars($ok['id'])."\">".htmlspecialchars($ok['lib'])."</option>";    
                                                                                         }
                                                                                         $req->closeCursor();                        
                                                                                     ?> 
@@ -432,37 +432,17 @@ try
                                                                         </fieldset>
                                                                     </div>
                                                                     <div class="flex-container" id="sr" style="display: none">
-                                                                        <!-- Détails de la garantie DOMMAGES -->
+                                                                        <!-- Détails de la garantie SECURITE ROUTIERE -->
                                                                         <fieldset>
                                                                             <legend>Sécurité routière</legend>
                                                                             <div class="form-group">
-                                                                                <select name="sec_rou_opt" id="sec_rou_opt" class="text-uppercase">
+                                                                                <select name="sec_route" id="sec_route" class="text-uppercase">
                                                                                     <?php
-                                                                                        $request='SELECT lib FROM option_g_sec_rou';
+                                                                                        $request='SELECT id FROM option_g_sec_rou';
                                                                                         $req = $bdd->query($request);
                                                                                         while ($ok = $req->fetch())
                                                                                         {
-                                                                                            echo "<option class=\"\">".htmlspecialchars($ok['lib'])."</option>";    
-                                                                                        }
-                                                                                        $req->closeCursor();                        
-                                                                                    ?> 
-                                                                                </select>
-                                                                                <label class="text-input">Options de la garantie</label>
-                                                                            </div>
-                                                                        </fieldset>
-                                                                    </div>
-                                                                    <div class="flex-container" id="immo" style="display: none">
-                                                                        <!-- Détails de la garantie IMMOBILISATION -->
-                                                                        <fieldset>
-                                                                            <legend>Immobilisation</legend>
-                                                                            <div class="form-group">
-                                                                                <select name="sec_rou_opt" id="sec_rou_opt" class="text-uppercase">
-                                                                                    <?php
-                                                                                        $request='SELECT lib FROM option_g_sec_rou';
-                                                                                        $req = $bdd->query($request);
-                                                                                        while ($ok = $req->fetch())
-                                                                                        {
-                                                                                            echo "<option class=\"\">".htmlspecialchars($ok['lib'])."</option>";    
+                                                                                            echo "<option class=\"\" value=\"".htmlspecialchars($ok['id'])."\"> option".htmlspecialchars($ok['id'])."</option>";    
                                                                                         }
                                                                                         $req->closeCursor();                        
                                                                                     ?> 

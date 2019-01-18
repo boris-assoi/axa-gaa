@@ -64,10 +64,10 @@
 
             //Récupération des valeurs de puissance fiscale
             case 'puissance-fiscale':
-                $req = $bdd->prepare('SELECT label FROM '.$pfType);
+                $req = $bdd->prepare('SELECT id, label FROM '.$pfType);
                 $req -> execute(array($pfType));
                 while ($ok = $req->fetch()) {
-                    $output .= '<option value="'.$ok['label'].'">'.$ok['label'].'</option>';
+                    $output .= '<option value="'.$ok['id'].'">'.$ok['label'].'</option>';
                 }
                 break;
             //Récupération des valeurs de puissance fiscale

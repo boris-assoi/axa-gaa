@@ -139,7 +139,7 @@
             $prime_annexe += (-10);
         }
 
-        $prime_rc = ceil(($prime + ($prime * $prime_annexe / 100)) / 365 * $pol_duration->days);
+        $prime_rc = ceil(($prime + ($prime * $prime_annexe / 100)) / 365 * $poltime->days);
 
         $data['prime_rc'] = $prime_rc;
 
@@ -204,7 +204,9 @@
         * FIN DE CALCUL DE LA GARANTIE SECURITE ROUTIERE
         */
 
-        //TOTAL PRIME POUR LE TIERS DE BASE : $prime_tb
+        /* 
+        * TOTAL PRIME POUR LE TIERS DE BASE : $prime_tb 
+        */
         $prime_tb = $prime_rc + $prime_dr + $prime_ra + $prime_sr;
 
         /*
@@ -240,10 +242,29 @@
             $req->closeCursor();
         }
 
-        echo "Calcul de la prime pour la garantie de DOMMAGES<br>";
-        echo "Prime de base : ".$prime_dom."<br>";
+        $data['prime_dom'] = $prime_dom;
         /*
         * FIN DE CALCUL DE LA GARANTIE DOMMAGES
+        */
+
+        /* 
+        * CALCUL DE LA GARANTIE VOL A MAIN ARMEE
+        */
+        $prime_vol_ma = '';
+        $req = $bdd->query("SELECT seuil, taux_moins, taux_plus FROM g_vol");
+        while ($ok = $req->fetch()) {
+            if($valVen < $ok['seuil']) {
+                $prime_vol_ma = $prime_tb * $ok['taux_moins'] / 100;
+            } elseif ($valVen > $ok['seuil']) {
+                $prime_vol_ma = $prime_tb * $ok['taux_plus'] / 100;
+            }
+        }
+        $req->closeCursor();
+
+        $data['prime_vol_ma'] = $prime_vol_ma;
+
+        /* 
+        * FIN DE CALCUL DE LA GARANTIE VOL A MAIN ARMEE
         */
 
         /*
@@ -251,19 +272,34 @@
         */
         $prime_van = '';
         //Récupération du paramètre dans le formulaire
-        if(!empty($_POST['remb'])){
-            $req = $bdd->prepare("SELECT forfait FROM g_van");
-            $req->execute(array($_POST['remb']));
-            while ($ok = $req->fetch()) {
-                $prime_van += $ok['forfait'];
-            }
-            $req->closeCursor();
+        $req = $bdd->query("SELECT forfait FROM g_van");
+        while ($ok = $req->fetch()) {
+            $prime_van += $ok['forfait'];
         }
+        $req->closeCursor();        
 
-        echo "Calcul de la prime pour la garantie de VANDALISME<br>";
-        echo "Prime de base : ".$prime_van."<br>";
+        $data['prime_van'] = $prime_van;
         /*
         * FIN DE CALCUL DE LA GARANTIE VANDALISME
+        */
+
+        /* 
+        * CALCUL DE LA GARANTIE INCENDIE
+        */
+        $prime_inc = '';
+        $req = $bdd->query("SELECT seuil, taux_moins, taux_plus FROM g_inc");
+        while ($ok = $req->fetch()) {
+            if($valVen < $ok['seuil']) {
+                $prime_inc = $prime_tb * $ok['taux_moins'] / 100;
+            } elseif ($valVen > $ok['seuil']) {
+                $prime_inc = $prime_tb * $ok['taux_plus'] / 100;
+            }
+        }
+        $req->closeCursor();
+
+        $data['prime_inc'] = $prime_inc;
+        /* 
+        * FIN DU CALCUL DE LA GARANTIE INCENDIE
         */
 
         /*
@@ -273,11 +309,14 @@
         //Récupération du paramètre dans le formulaire
         if(!empty($_POST['remb'])){
             $type_contrat = '';
-            if($pol_duration_m >= 3 && $pol_duration_m < 6){
+            $poltime_duration = $poldf->diff($poldt);
+            $poltime_mois = int($poltime_duration->format('%m'));
+
+            if($poltime_mois >= 3 && $poltime_mois < 6){
                 $type_contrat = 1;
-            }elseif ($pol_duration_m > 6 && $pol_duration_m < 12) {
+            }elseif ($poltime_mois > 6 && $poltime_mois < 12) {
                 $type_contrat = 2;
-            }elseif ($pol_duration_m >= 12) {
+            }elseif ($poltime_mois >= 12) {
                 $type_contrat = 3;
             }
             $req = $bdd->prepare("SELECT prime FROM g_imm WHERE contrat = ?");
@@ -285,12 +324,11 @@
             while ($ok = $req->fetch()) {
                 $prime_im += $ok['prime'];
             }
-            echo $pol_duration_m;
+            echo ($poltime_mois);
             $req->closeCursor();
         }
 
-        echo "Calcul de la prime pour la garantie de IMMOBILISATION<br>";
-        echo "Prime de base : ".$prime_im."<br>";
+        $data['prime_im'] = $prime_im;
         /*
         * FIN DE CALCUL DE LA GARANTIE IMMOBILISATION
         */
