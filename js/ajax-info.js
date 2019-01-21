@@ -4,7 +4,7 @@ $(document).ready(function(){
         var pf = $(this).val();
         var type = 'puissance-fiscale';
         $.ajax({
-            url : "inc/fetch_datas.php",
+            url : "inc/fetch_data.php",
             method : "POST",
             data : {pfType:pf,type:type},
             dataType : "text",
@@ -20,7 +20,7 @@ $(document).ready(function(){
         var spro = $(this).val();
         var type = 'socio-pro';
         $.ajax({
-            url: "inc/fetch_datas.php",
+            url: "inc/fetch_data.php",
             method: "POST",
             data: { stat: spro, type: type },
             dataType: "text",
@@ -35,7 +35,7 @@ $(document).ready(function(){
         var catcar = $(this).val();
         var type = 'cat';
         $.ajax({
-            url: "inc/fetch_datas.php",
+            url: "inc/fetch_data.php",
             method: "POST",
             data: { cat: catcar, type: type },
             dataType: "text",
@@ -50,7 +50,7 @@ $(document).ready(function(){
         var classe = $(this).val();
         var type = 'cls-pc';
         $.ajax({
-            url: "inc/fetch_datas.php",
+            url: "inc/fetch_data.php",
             method: "POST",
             data: { classe: classe, type: type },
             dataType: "text",
@@ -66,7 +66,7 @@ $(document).ready(function(){
         var poltime = $('#poltime').val();
         var type = 'echeance-police';
         $.ajax({
-            url: "inc/fetch_datas.php",
+            url: "inc/fetch_data.php",
             method: "POST",
             data: { poldf: poldf, poltime: poltime, type: type },
             dataType: "text",
@@ -82,7 +82,7 @@ $(document).ready(function(){
         var poldf = $('#poldf').val();
         var type = 'echeance-police';
         $.ajax({
-            url: "inc/fetch_datas.php",
+            url: "inc/fetch_data.php",
             method: "POST",
             data: { poldf: poldf, poltime: poltime, type: type },
             dataType: "text",
@@ -93,12 +93,12 @@ $(document).ready(function(){
     });
 
     //Calcul de la valeur vénale
-    $('#valCat').click(function calculValeurVenale() {
+    $('#valCat').change(function calculValeurVenale() {
         var valCat = $(this).val();
         var dateCirc = $('#dateCirc').val();
         var type = 'valeur-venale';
         $.ajax({
-            url: "inc/fetch_datas.php",
+            url: "inc/fetch_data.php",
             method: "POST",
             data: { valCat: valCat, dateCirc: dateCirc, type: type },
             dataType: "text",
