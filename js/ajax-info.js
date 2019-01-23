@@ -126,7 +126,7 @@ $(document).ready(function(){
     })
 
     //Calcul des garanties
-    $('#testPHP').click(function(){
+    $('#step-5').focus(function(){
         var typAtt = $('#typAtt').val();
         var typeClient = $('#typeClient').val();
         var nomClient = $('#nomClient').val();
@@ -153,7 +153,7 @@ $(document).ready(function(){
         var formule = $('input[name=formule]:checked').val();
         $.ajax({
             url: "testPHP.php",
-            method: POST,
+            method: "POST",
             data:{
                 typAtt: typAtt,
                 typeClient: typeClient,
@@ -180,9 +180,9 @@ $(document).ready(function(){
                 rem: rem,
                 formule: formule
             },
-            dataType : "JSON",
+            dataType : "text",
             success: function(data){
-                alert('prime :' + data.prime_dr);
+                console.log('prime :' + data.prime_dr);
             }
         });
     })

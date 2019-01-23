@@ -46,63 +46,13 @@
 
 		"sale_details_for_pos_operation" => "SELECT vente_id, vente_montant, vente_type_attestation, vehicule_id, vehicule_genre, vehicule_marque, vehicule_mat, vehicule_chassis, vehicule_cat, police_item_id, police_num, pol_date_deb, pol_date_fin, client_id, client_nom, client_type, client_profession, client_adresse, client_contact FROM vente, police, client, vehicule, type_attestation, police_item, pos WHERE police.pol_client = client.client_id AND police_item.police_item_vente = vente_id  AND vehicule.vehicule_police = police.police_num AND police_item.police_item_police = police.police_num AND vente.vente_vehicule = vehicule.vehicule_id AND vente.vente_type_attestation = type_attestation.type_attestation_id AND pos.pos_id = (SELECT comm_pos FROM commercial WHERE comm_id = ?) AND vente.vente_id = ?",
 
-		"seller" => "SELECT user_prenom, user_nom, user_mat FROM user WHERE user_id = ?",
-
 		//Rapports
 		"sales_report" => "
-		SELECT attestation_num AS attestation, 
-			attestation_statut AS statut, 
-			type_attestation_lib AS type, 
-			ug_nom AS ug, 
-			pos_nom AS pos, 
-			police_num AS police, 
-			DATE_FORMAT(pol_date_deb, '%d/%m/%Y') AS startDate, 
-			DATE_FORMAT(pol_date_fin, '%d/%m/%Y') AS endDate, 
-			client_nom AS client, 
-			vente_montant AS prime, 
-			DATE_FORMAT(vente_date, '%d/%m/%Y') AS saleDate, 
-			CONCAT(user_mat,'-',user_prenom,' ',user_nom) AS commercial 
-		FROM attestation, type_attestation, unit_gestion, pos, police, police_item, CLIENT, vente, vehicule, user 
-		WHERE police.pol_client = client.client_id  
-			AND police_item.police_item_vente = vente_id 
-			AND attestation.attestation_vente = vente.vente_id 
-			AND attestation.attestation_ug = unit_gestion.ug_id 
-			AND attestation.attestation_pos = pos.pos_id 
-			AND police_item.police_item_police = police.police_num 
-			AND vehicule.vehicule_police = police.police_num 
-			AND vente.vente_vehicule = vehicule.vehicule_id 
-			AND attestation.attestation_type = type_attestation.type_attestation_id 
-			AND vente.vente_commercial = user.user_id 
-		ORDER BY vente.vente_date DESC
+		CALL `sales_report_admin`()
 		",
 
 		"sales_report_filtered" => "
-		SELECT attestation_num as attestation, 
-			attestation_statut AS statut,  
-			type_attestation_lib as type, 
-			ug_nom AS UG, 
-			pos_nom AS POS, 
-			police_num as police, 
-			DATE_FORMAT(pol_date_deb, '%d/%m/%Y') AS startDate, 
-			DATE_FORMAT(pol_date_fin, '%d/%m/%Y') AS endDate, 
-			client_nom as client, 
-			vente_montant as prime,
-			DATE_FORMAT(vente_date, '%d/%m/%Y') AS saleDate, 
-			CONCAT(user_mat,'-',user_prenom,' ',user_nom) AS commercial 
-		FROM attestation, type_attestation, unit_gestion, pos, police, police_item, client, vente, vehicule 
-		WHERE police.pol_client = client.client_id 
-			AND police_item.police_item_vente = vente_id 
-			AND attestation.attestation_vente = vente.vente_id 
-			AND attestation.attestation_ug = unit_gestion.ug_id 
-			AND attestation.attestation_pos = pos.pos_id 
-			AND police_item.police_item_police = police.police_num 
-			AND vehicule.vehicule_police = police.police_num 
-			AND vente.vente_vehicule = vehicule.vehicule_id 
-			AND attestation.attestation_type = type_attestation.type_attestation_id 
-			AND attestation_admin = ? 
-			AND vente.vente_date >= ? 
-			AND vente.vente_date < ? 
-		ORDER BY vente.vente_date DESC
+		CALL `sales_report_admin_filtered(?,?)
 		",
 
 		//Commercial vendeur pour les rapports		
@@ -141,32 +91,7 @@
 
 		//Rapports
 		"sales_report" => "
-		SELECT attestation_num AS attestation, 
-			attestation_statut AS statut, 
-			type_attestation_lib AS type, 
-			ug_nom AS ug, 
-			pos_nom AS pos, 
-			police_num AS police, 
-			DATE_FORMAT(pol_date_deb, '%d/%m/%Y') AS startDate, 
-			DATE_FORMAT(pol_date_fin, '%d/%m/%Y') AS endDate, 
-			client_nom AS client, 
-			vente_montant AS prime, 
-			DATE_FORMAT(vente_date, '%d/%m/%Y') AS saleDate, 
-			CONCAT(user_mat,'-',user_prenom,' ',user_nom) AS commercial 
-		FROM attestation, type_attestation, unit_gestion, pos, police, police_item, client, vente, vehicule, user
-		WHERE police.pol_client = client.client_id 
-			AND police_item.police_item_vente = vente_id 
-			AND attestation.attestation_vente = vente.vente_id 
-			AND attestation.attestation_ug = unit_gestion.ug_id 
-			AND attestation.attestation_pos = pos.pos_id 
-			AND police_item.police_item_police = police.police_num 
-			AND vehicule.vehicule_police = police.police_num 
-			AND vente.vente_vehicule = vehicule.vehicule_id 
-			AND attestation.attestation_type = type_attestation.type_attestation_id 
-			AND attestation.attestation_ug = (
-				SELECT ug_id FROM unit_gestion WHERE ug_r_comm = ?
-				) 
-		ORDER BY vente.vente_date DESC
+		CALL `sales_report_rcom`(?)
 		",
 
 		"sales_report_filtered" => "SELECT attestation_num as attestation, type_attestation_lib as type, ug_nom AS UG, pos_nom AS POS, police_num as police, pol_date_deb as debut, pol_date_fin as fin, client_nom as client, vente_montant as prime, vente_commercial FROM attestation, type_attestation, unit_gestion, pos, police, police_item, client, vente, vehicule WHERE police.pol_client = client.client_id AND police_item.police_item_vente = vente_id AND attestation.attestation_vente = vente.vente_id AND attestation.attestation_ug = unit_gestion.ug_id AND attestation.attestation_pos = pos.pos_id AND police_item.police_item_police = police.police_num AND vehicule.vehicule_police = police.police_num AND vente.vente_vehicule = vehicule.vehicule_id AND attestation.attestation_type = type_attestation.type_attestation_id AND attestation.attestation_ug = (SELECT ug_id FROM unit_gestion WHERE ug_r_comm = ?) AND vente.vente_date >= ? AND vente.vente_date < ? ORDER BY vente.vente_date DESC",
@@ -206,7 +131,9 @@
 		"status_sale" => "SELECT vente_id, vente_montant, DATE_FORMAT(vente_date, '%d/%m/%Y à %H:%i') AS vente_date, police_num, pol_date_deb, pol_date_fin, client_id, client_nom FROM vente, police, client, vehicule, type_attestation, police_item WHERE police.pol_client = client.client_id AND police_item.police_item_vente = vente.vente_id  AND vehicule.vehicule_police = police.police_num AND police_item.police_item_police = police.police_num AND vente.vente_vehicule = vehicule.vehicule_id AND vente.vente_type_attestation = type_attestation.type_attestation_id AND vente.vente_commercial = ? AND vente.vente_id = ?",
 
 		//Rapports
-		"sales_report" => "SELECT attestation_num as attestation, type_attestation_lib as type, ug_nom AS UG, pos_nom AS POS, police_num as police, pol_date_deb as debut, pol_date_fin as fin, client_nom as client, vente_montant as prime, vente_commercial FROM attestation, type_attestation, unit_gestion, pos, police, police_item, client, vente, vehicule WHERE police.pol_client = client.client_id AND police_item.police_item_vente = vente_id AND attestation.attestation_vente = vente.vente_id AND attestation.attestation_ug = unit_gestion.ug_id AND attestation.attestation_pos = pos.pos_id AND police_item.police_item_police = police.police_num AND vehicule.vehicule_police = police.police_num AND vente.vente_vehicule = vehicule.vehicule_id AND attestation.attestation_type = type_attestation.type_attestation_id AND attestation.attestation_pos = (SELECT pos_id FROM pos WHERE pos_superviseur = ?) ORDER BY vente.vente_date DESC",
+		"sales_report" => "
+		CALL `sales_report_sup`(?)
+		",
 
 		"sales_report_filtered" => "SELECT attestation_num as attestation, type_attestation_lib as type, ug_nom AS UG, pos_nom AS POS, police_num as police, pol_date_deb as debut, pol_date_fin as fin, client_nom as client, vente_montant as prime, vente_commercial FROM attestation, type_attestation, unit_gestion, pos, police, police_item, client, vente, vehicule WHERE police.pol_client = client.client_id AND police_item.police_item_vente = vente_id AND attestation.attestation_vente = vente.vente_id AND attestation.attestation_ug = unit_gestion.ug_id AND attestation.attestation_pos = pos.pos_id AND police_item.police_item_police = police.police_num AND vehicule.vehicule_police = police.police_num AND vente.vente_vehicule = vehicule.vehicule_id AND attestation.attestation_type = type_attestation.type_attestation_id AND attestation.attestation_pos = (SELECT pos_id FROM pos WHERE pos_superviseur = ?) AND vente.vente_date >= ? AND vente.vente_date < ? ORDER BY vente.vente_date DESC",
 
@@ -301,7 +228,9 @@
 		"cert_to_cancel_sale" => "SELECT attestation_num FROM attestation WHERE attestation_vente = ? AND attestation_comm = ?",
 
 		//Rapports
-		"sales_report" => "SELECT attestation_num as attestation, type_attestation_lib as type, ug_nom AS UG, pos_nom AS POS, police_num as police, pol_date_deb as debut, pol_date_fin as fin, client_nom as client, vente_montant as prime, vente_commercial FROM attestation, type_attestation, unit_gestion, pos, police, police_item, client, vente, vehicule WHERE police.pol_client = client.client_id AND police_item.police_item_vente = vente_id AND attestation.attestation_vente = vente.vente_id AND attestation.attestation_ug = unit_gestion.ug_id AND attestation.attestation_pos = pos.pos_id AND police_item.police_item_police = police.police_num AND vehicule.vehicule_police = police.police_num AND vente.vente_vehicule = vehicule.vehicule_id AND attestation.attestation_type = type_attestation.type_attestation_id AND vente.vente_commercial = ? ORDER BY vente.vente_date DESC LIMIT 20",
+		"sales_report" => "
+		CALL `sales_report_comm`(?)
+		",
 
 		"sales_report_filtered" => "SELECT attestation_num as attestation, type_attestation_lib as type, ug_nom AS UG, pos_nom AS POS, police_num as police, pol_date_deb as debut, pol_date_fin as fin, client_nom as client, vente_montant as prime, vente_commercial FROM attestation, type_attestation, unit_gestion, pos, police, police_item, client, vente, vehicule WHERE police.pol_client = client.client_id AND police_item.police_item_vente = vente_id AND attestation.attestation_vente = vente.vente_id AND attestation.attestation_ug = unit_gestion.ug_id AND attestation.attestation_pos = pos.pos_id AND police_item.police_item_police = police.police_num AND vehicule.vehicule_police = police.police_num AND vente.vente_vehicule = vehicule.vehicule_id AND attestation.attestation_type = type_attestation.type_attestation_id AND vente.vente_commercial = ? AND vente.vente_date >= ? AND vente.vente_date < ? ORDER BY vente.vente_date DESC",
 

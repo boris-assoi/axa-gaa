@@ -100,7 +100,7 @@ try
             ->setCellValue('J'.$row, $ok['prime'])
             ->setCellValue('K'.$row, $ok['saleDate'])
             ->setCellValue('L'.$row, $ok['commercial']);
-
+            
         //Incrémentation de la variale de numéro de céllule pour les différentes lignes des données
         $row++;
     } 

@@ -21,19 +21,6 @@ try
     $debut = (isset($_POST['debut'])) ? $_POST['debut'] : 'null';
     $fin = (isset($_POST['fin'])) ? $_POST['fin'] : 'null';
 
-    if (empty($_POST['debut']) && empty($_POST['fin'])) {
-        $req = $bdd->prepare($models['sales_report']);
-        $req -> execute(array($_SESSION['userID']));
-
-        $req2 = $bdd->prepare($models['sales_report']);
-        $req2 -> execute(array($_SESSION['userID']));
-    } else {
-        $req = $bdd->prepare($models['sales_report_filtered']);
-        $req -> execute(array($_SESSION['userID'], $debut, $fin));
-
-        $req2 = $bdd->prepare($models['sales_report_filtered']);
-        $req2 -> execute(array($_SESSION['userID'], $debut, $fin));
-    }
 
 ?>
 <!DOCTYPE html> 
@@ -99,7 +86,7 @@ try
                                                 <div class="form-group">
                                                     <input type="date" class="form-control" name="fin" value=<?php echo "\"".$fin."\"" ?>>
                                                 </div>
-                                                <button type="submit" class="btn btn-success">Filtrer</button>
+                                                <button type="submit" class="btn btn-success"><i class="fa fa-fw fa-filter"></i>Filtrer</button>
                                                 <!--
                                                 <a href="JavaScript:window.print()" class="hidden-print">
                                                     <button type="button" class="btn btn-success"><i class="fa fa-fw fa-print"></i> Imprimer</button>
@@ -114,92 +101,7 @@ try
                                             <div class="alert alert-info alert-dismissable">
                                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                                                 <i class="fa fa-info-circle"></i>  <strong>Vous pouvez télécharger le rapport des ventes en cliquant sur le bouton "Télécharger". Vous pouvez également filtrer les dates avant le téléchargement.</strong> <a href="#" class="alert-link"></a> 
-                                            </div>
-                                            <!--
-                                            <table class="table table-bordered table-hover table-striped table-sales" id="viewTable"> 
-                                                <thead> 
-                                                    <tr>
-                                                        <th>Numéro d'attesation</th>
-                                                        <th>Type</th>
-                                                        <th>Police</th>
-                                                        <th>Début</th>
-                                                        <th>Fin</th>
-                                                        <th>Client</th>
-                                                        <th>Producteur</th>
-                                                        <th>Prime</th>
-                                                    </tr>                                                     
-                                                </thead>                                                 
-                                                <tbody> 
-                                                    <?php
-                                                        if (null == ($req2->fetch())) {
-                                                            ?> 
-                                                            <tr class="active"> 
-                                                                <td colspan="12"><p class="text-center">Aucune commande enregistrée</p></td> 
-                                                            </tr>                                             
-                                                            <?php
-                                                        }
-                                                        while ($ok = $req->fetch())
-                                                            {
-                                                        ?> 
-                                                            <tr>
-                                                                <td> 
-                                                                    <?php echo htmlspecialchars($ok['attestation']); ?> 
-                                                                </td>
-                                                                <td class="text-uppercase">
-                                                                    <?php
-                                                                        $typeAtt = "";
-                                                                        switch (htmlspecialchars($ok['type'])) {
-                                                                            case 'automobile':
-                                                                                $typeAtt = "AUTO";
-                                                                                break;
-                                                                            
-                                                                            case 'carte brune CEDEAO':
-                                                                                $typeAtt = "BRUNE";
-                                                                                break;
-
-                                                                            case 'carte verte 2 roues':
-                                                                                $typeAtt = "VERTE";
-                                                                                break;
-
-                                                                            default:
-                                                                                # code...
-                                                                                break;
-                                                                        }
-                                                                    ?>
-                                                                    <span class="badge alert-primary text-uppercase"><?php echo $typeAtt; ?></span>
-                                                                </td>
-                                                                <td> 
-                                                                    <?php echo htmlspecialchars($ok['police']); ?> 
-                                                                </td>
-                                                                <td> 
-                                                                    <?php echo htmlspecialchars($ok['debut']); ?>
-                                                                </td>
-                                                                <td> 
-                                                                    <?php echo htmlspecialchars($ok['fin']); ?>
-                                                                </td>
-                                                                <td> 
-                                                                    <?php echo htmlspecialchars($ok['client']); ?>
-                                                                </td>
-                                                                <td>
-                                                                <?php 
-                                                                    $req3 = $bdd->prepare($models['seller']);
-                                                                    $req3 -> execute(array($ok['vente_commercial']));
-                                                                    $ok3 = $req3->fetch();
-                                                                ?>
-                                                                <span><?php echo $ok3['user_prenom']." ".$ok3['user_nom']." - ".$ok3['user_mat']; ?></span>
-                                                                </td>
-                                                                <td> 
-                                                                    <?php echo htmlspecialchars($ok['prime']); ?> 
-                                                                </td>
-                                                            </tr>                             
-                                                        <?php
-                                                            }
-                                                        ?>                                                     
-                                                </tbody>
-                                            </table>                                             
-                                            <div class="text-right"></div>
-                                            -->                                          
-                                        </div>                                         
+                                            </div>                                       
                                     </div>                                     
                                 </div>                                 
                                 <div class="col-lg-4"> 
