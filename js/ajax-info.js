@@ -126,7 +126,7 @@ $(document).ready(function(){
     })
 
     //Calcul des garanties
-    $('#step-5').focus(function(){
+    inView('#step-5').on('enter', function(){
         var typAtt = $('#typAtt').val();
         var typeClient = $('#typeClient').val();
         var nomClient = $('#nomClient').val();
@@ -182,7 +182,8 @@ $(document).ready(function(){
             },
             dataType : "text",
             success: function(data){
-                console.log('prime :' + data.prime_dr);
+                console.log('prime : ' + data.prime_vol_ma);
+                $('#testAffiche').html(data.prime_vol_ma);
             }
         });
     })

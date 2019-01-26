@@ -364,7 +364,7 @@ try
                                                                     <div class="flex-container" id="dr" style="display: none">
                                                                         <!-- Détails de la garantie DEFENSE ET RECOURS -->
                                                                         <fieldset>
-                                                                            <legend>Défense et recours</legend>
+                                                                            <legend id="testAffiche">Défense et recours</legend>
                                                                             <div class="form-group">
                                                                                 <input type="checkbox" value="1" id="defense" name="defense">
                                                                                 <label class="text-input">Ajouter Garantie Tierce Complète ou Tierce Collision</label>
@@ -637,6 +637,8 @@ try
                                 <script type="text/javascript" src="js/datatables.min.js"></script>
                                 <!-- jquery Confirm -->
                                 <script type="text/javascript" src="js/jquery-confirm.js"></script>
+                                <!-- InView JS-->
+                                <script type="text/javascript" src="js/in-view.min.js"></script>
                                 <!-- Include SmartWizard JavaScript source -->
                                 <script type="text/javascript" src="dist/js/jquery.smartWizard.min.js"></script>
 
@@ -746,7 +748,7 @@ try
                                  });
                                 </script>
                                 <!-- DataTable --> 
-                                <script>
+                                <script type="text/javascript">
                                     $(document).ready(function(){
                                         $('#viewTable').DataTable({
                                             language: {
@@ -774,13 +776,6 @@ try
                                         });
                                     });
                                 </script>
-                                <!-- Informations Tooltip -->
-                                <script>
-                                    $(document).ready(function(){
-                                        $('[data-toggle="tooltip"]').tooltip(); 
-                                    });
-                                </script>
-
                                 <!-- Message informations -->
                                 <script type="text/javascript" src="js/ajax-info.js"></script>
     </body>     
