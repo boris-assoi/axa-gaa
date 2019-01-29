@@ -55,11 +55,16 @@
         (!empty($_POST['poldf'])) ? $poldf = new DateTime($_POST['poldf'], new DateTimeZone('GMT+0')) : $poldf = new DateTime('01/01/2019', new DateTimeZone('GMT+0'));
 
         //Récupération de la date de fin d'effet
-        (!empty($_POST['poldt'])) ? $poldt = new DateTime($_POST['poldt'].'+1 day', new DateTimeZone('GMT+0')) : $poldt = new DateTime('01/02/2020', new DateTimeZone('GMT+0'));
+        (!empty($_POST['poldt'])) ? $poldt = DateTime::createFromFormat('j-M-Y', $_POST['poldt'], new DateTimeZone('GMT+0')) : $poldt = new DateTime('01/02/2020', new DateTimeZone('GMT+0'));
 
 		//Récupération de la durée de la police
 		//$poldt->add(new DateInterval('PT1'));
-		(!empty($_POST['poltime'])) ? $poltime = DateInterval::createFromDateString("120". 'days')  : $poltime = ($poldf->diff($poldt));
+        (!empty($_POST['poltime'])) ? $poltime = DateInterval::createFromDateString($_POST['poltime']. 'days')  : $poltime = ($poldf->diff($poldt));
+        
+        //Valeur de retour test
+        $data['poltime'] = $poltime;
+        $data['poldt'] = $poldt;
+        $data['poldf'] = $poldf;
 
 
         /*
@@ -82,7 +87,7 @@
 
         //Recupération de la puissance fiscale
         (!empty($_POST['pf'])) ? $pf = $_POST['pf'] : $pf = "diesel";
-        (!empty($pf)) ? $pf_table = "ref_".$pf : $pf_table = "ref_essence";
+        $pf_table = "ref_".$pf;
         
         //Recupération de la valeur de la puissance fiscale
         (!empty($_POST['pfValue'])) ? $pfValue = $_POST['pfValue'] : $pfValue = "3";
@@ -129,10 +134,44 @@
         $prime_annexe = "";
 
         //Recupération de la prime de base
-		$prime = "";
-		$request = "SELECT zone1 AS prime FROM prime_rc_cat1, ".$pf_table." WHERE es = ".$pf_table.".id AND ".$pf_table.".id = ?";
+        $prime = "";
+        
+        //Recupération du label
+        $pfLib = "";
+        if($pf == "Diesel") {
+            if($pfValue == 1){
+                $pfLib = "a";
+            } elseif($pfValue >= 2 && $pfValue < 5) {
+                $pfLib = "b";
+            } elseif($pfValue >= 5 && $pfValue < 7) {
+                $pfLib = "c";
+            } elseif($pfValue >= 7 && $pfValue < 9) {
+                $pfLib = "d";
+            } elseif($pfValue >= 9) {
+                $pfLib = "e";
+            }
+        } elseif($pf == "Essence"){
+            if($pfValue >= 1 && $pfValue < 3){
+                $pfLib = "a";
+            } elseif($pfValue >= 3 && $pfValue < 7) {
+                $pfLib = "b";
+            } elseif($pfValue >= 7 && $pfValue < 10) {
+                $pfLib = "c";
+            } elseif($pfValue >= 10 && $pfValue < 12) {
+                $pfLib = "d";
+            } elseif($pfValue >= 12) {
+                $pfLib = "e";
+            }
+        }
+
+        $data['pfValue'] = $pfValue;
+        $data['pf'] = $pf;
+        $data['pfLib'] = $pfLib;
+        $data['nomClient'] = $nomClient;
+
+		$request = "SELECT zone1 AS prime FROM prime_rc_cat1, ".$pf_table." WHERE es = ".$pf_table.".id AND ".$pf_table.".lib = ?";
         $req = $bdd->prepare($request);
-        $req->execute(array($pfValue));
+        $req->execute(array($pfLib));
         while ($ok = $req->fetch()) {
             $prime = $ok['prime'];
 		}
@@ -156,11 +195,13 @@
             $prime_annexe += (-10);
         }
 
-        $prime_rc = ceil(($prime + ($prime * $prime_annexe / 100)) / 365 * $poltime->days);
+        $prime_rc = ceil(($prime + ($prime * $prime_annexe / 100)) / 365 * $poltime->d);
+        $data['prime'] = $prime;
+        $data['prime_annexe'] = $prime_annexe;
 
 		$data['prime_rc'] = $prime_rc;
 		
-		echo "Prime RC : ".$data['prime_rc']."<br>";
+		// echo "Prime RC : ".$data['prime_rc']."<br>";
 
         /*
         * FIN DE CALCUL DE LA GARANTIE DE LA RESPONSABILITE CIVILE
@@ -179,7 +220,7 @@
 		$req->closeCursor();
 
         $data['prime_dr'] = $prime_dr;
-		echo "Prime DR : ".$data['prime_dr']."<br>";
+		// echo "Prime DR : ".$data['prime_dr']."<br>";
         /*
         * FIN DE CALCUL DE LA GARANTIE DEFENSE ET RECOURS
         */
@@ -204,7 +245,7 @@
 		$req->closeCursor();
 
         $data['prime_ra'] = $prime_ra;
-		echo "Prime RA : ".$data['prime_ra']."<br>";
+		// echo "Prime RA : ".$data['prime_ra']."<br>";
         /*
         * FIN DE CALCUL DE LA GARANTIE REMBOURSEMENT ANTICIPE
         */
@@ -221,10 +262,10 @@
 		}
 		$req->closeCursor();
 
-		$prime_sr = ceil($prime_sr * $poltime->days / 365);
+		$prime_sr = ceil($prime_sr * $poltime->d / 365);
 
         $data['prime_sr'] = $prime_sr;
-		echo "Prime SR : ".$data['prime_sr']."<br>";
+		// echo "Prime SR : ".$data['prime_sr']."<br>";
         /*
         * FIN DE CALCUL DE LA GARANTIE SECURITE ROUTIERE
         */
@@ -247,7 +288,7 @@
 		$req->closeCursor();
 
          $data['prime_bg'] = $prime_bg;
-		echo "Prime BG : ".$data['prime_bg']."<br>";
+		// echo "Prime BG : ".$data['prime_bg']."<br>";
         /*
         * FIN DE CALCUL DE LA GARANTIE BRIS DE GLACE
         */
@@ -265,7 +306,7 @@
 		$req->closeCursor();
 
         $data['prime_dom'] = $prime_dom;
-		echo "Prime DOM : ".$data['prime_dom']."<br>";
+		// echo "Prime DOM : ".$data['prime_dom']."<br>";
         /*
         * FIN DE CALCUL DE LA GARANTIE DOMMAGES
         */
@@ -286,7 +327,7 @@
 
 		$data['prime_vol_ma'] = ceil($prime_vol_ma);
 		
-		echo "Prime VOL MA : ".$data['prime_vol_ma']."<br>";
+		// echo "Prime VOL MA : ".$data['prime_vol_ma']."<br>";
 
         /* 
         * FIN DE CALCUL DE LA GARANTIE VOL A MAIN ARMEE
@@ -304,7 +345,7 @@
         $req->closeCursor();        
 
         $data['prime_van'] = $prime_van;
-		echo "Prime VAN : ".$data['prime_van']."<br>";
+		// echo "Prime VAN : ".$data['prime_van']."<br>";
         /*
         * FIN DE CALCUL DE LA GARANTIE VANDALISME
         */
@@ -324,7 +365,7 @@
         $req->closeCursor();
 
         $data['prime_inc'] = $prime_inc;
-		echo "Prime INC : ".$data['prime_inc']."<br>";
+		// echo "Prime INC : ".$data['prime_inc']."<br>";
         /* 
         * FIN DU CALCUL DE LA GARANTIE INCENDIE
         */
@@ -335,11 +376,11 @@
         $prime_im = '';
         //Récupération du paramètre dans le formulaire
         $type_contrat = '';
-		if($poltime->m >= 3 && $poltime->m < 6){
+		if(($poltime->d)/30 >= 3 && ($poltime->d)/30 < 6){
 			$type_contrat = 1;
-		}elseif ($poltime->m > 6 && $poltime->m < 12) {
+		}elseif (($poltime->d)/30 > 6 && ($poltime->d)/30 < 12) {
 			$type_contrat = 2;
-		}elseif ($poltime->m >= 12) {
+		}elseif (($poltime->d)/30 >= 12) {
 			$type_contrat = 3;
 		}
 		$req = $bdd->prepare("SELECT prime FROM g_imm WHERE contrat = ?");
@@ -347,14 +388,17 @@
 		while ($ok = $req->fetch()) {
 			$prime_im += $ok['prime'];
 		}
-		echo $poltime->days;
+		// echo $poltime->days;
 		$req->closeCursor();
 
         $data['prime_im'] = $prime_im;
-		echo "Prime IM : ".$data['prime_im']."<br>";
+		// echo "Prime IM : ".$data['prime_im']."<br>";
         /*
         * FIN DE CALCUL DE LA GARANTIE IMMOBILISATION
         */
+
+        /* RETOUR DU JSON A LA REQUETE AJAX */
+        echo json_encode($data);
 
     }
     catch (Exception $e)

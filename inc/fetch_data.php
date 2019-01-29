@@ -62,15 +62,7 @@
                 }
                 break;
 
-            //Récupération des valeurs de puissance fiscale
-            case 'puissance-fiscale':
-                $req = $bdd->prepare('SELECT id, label FROM '.$pfType);
-                $req -> execute(array($pfType));
-                while ($ok = $req->fetch()) {
-                    $output .= '<option value="'.$ok['id'].'">'.$ok['label'].'</option>';
-                }
-                break;
-            //Récupération des valeurs de puissance fiscale
+            //Récupération des informations de la classe socio-professionnelle
             case 'cls-pc':
                 $req = $bdd->prepare('SELECT info FROM classe_permis WHERE lib = LOWER(?)');
                 $req -> execute(array($classe));

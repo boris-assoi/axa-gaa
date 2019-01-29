@@ -313,8 +313,7 @@ try
                                                                                     <label class="text-input">Type de puissance fiscale</label>
                                                                                 </div>
                                                                                 <div class="form-group">
-                                                                                    <select id="pfValue" name="pfValue" >
-                                                                                    </select>
+                                                                                    <input type="number" id="pfValue" name="pfValue" >
                                                                                     <label class="text-input">Puissance fiscale</label>
                                                                                 </div> 
                                                                                 <div class="form-group"> 
@@ -361,8 +360,8 @@ try
                                                                     </div>
                                                                 </div>
                                                                 <div id="step-5" class="">
+                                                                    <!-- Détails de la garantie DEFENSE ET RECOURS -->
                                                                     <div class="flex-container" id="dr" style="display: none">
-                                                                        <!-- Détails de la garantie DEFENSE ET RECOURS -->
                                                                         <fieldset>
                                                                             <legend id="testAffiche">Défense et recours</legend>
                                                                             <div class="form-group">
@@ -371,8 +370,8 @@ try
                                                                             </div>
                                                                         </fieldset>
                                                                     </div>
+                                                                    <!-- Détails de la garantie REMBOURSEMENT ANTICIPE -->
                                                                     <div class="flex-container" id="ra" style="display: none">
-                                                                        <!-- Détails de la garantie REMBOURSEMENT ANTICIPE -->
                                                                         <fieldset>
                                                                             <legend>Remboursement anticipé</legend>
                                                                             <div class="form-group">
@@ -391,8 +390,8 @@ try
                                                                             </div>
                                                                         </fieldset>
                                                                     </div>
+                                                                    <!-- Détails de la garantie BRIS DE GLACE -->
                                                                     <div class="flex-container" id="bg" style="display: none">
-                                                                        <!-- Détails de la garantie BRIS DE GLACE -->
                                                                         <fieldset>
                                                                             <legend>Bris de glace</legend>
                                                                             <div class="form-group">
@@ -411,8 +410,8 @@ try
                                                                             </div>
                                                                         </fieldset>
                                                                     </div>
+                                                                    <!-- Détails de la garantie DOMMAGES -->
                                                                     <div class="flex-container" id="dommage" style="display: none">
-                                                                        <!-- Détails de la garantie DOMMAGES -->
                                                                         <fieldset>
                                                                             <legend>Dommages</legend>
                                                                             <div class="form-group">
@@ -431,8 +430,8 @@ try
                                                                             </div>
                                                                         </fieldset>
                                                                     </div>
+                                                                    <!-- Détails de la garantie SECURITE ROUTIERE -->
                                                                     <div class="flex-container" id="sr" style="display: none">
-                                                                        <!-- Détails de la garantie SECURITE ROUTIERE -->
                                                                         <fieldset>
                                                                             <legend>Sécurité routière</legend>
                                                                             <div class="form-group">

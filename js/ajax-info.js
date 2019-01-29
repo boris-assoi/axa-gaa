@@ -1,20 +1,4 @@
 $(document).ready(function(){
-    //Puissance Fiscale
-    $('#pf').change(function(){
-        var pf = $(this).val();
-        var type = 'puissance-fiscale';
-        $.ajax({
-            url : "inc/fetch_data.php",
-            method : "POST",
-            data : {pfType:pf,type:type},
-            dataType : "text",
-            success : function(data){
-                $('#pfValue').html(data);
-            }
-            
-        });
-    });
-
     //Statut socio-professionnel
     $('#statut-pro').change(function () {
         var spro = $(this).val();
@@ -180,10 +164,15 @@ $(document).ready(function(){
                 rem: rem,
                 formule: formule
             },
-            dataType : "text",
+            dataType : "json",
             success: function(data){
-                console.log('prime : ' + data.prime_vol_ma);
-                $('#testAffiche').html(data.prime_vol_ma);
+                console.log('prime : ' + data.prime_rc);
+                alert("Test OK");
+                $('#testAffiche').html(data.poltime.d);
+            },
+            error: function (jqXHR, textStatus) {
+                alert('error');
+                console.log(jqXHR); //affichage dans la console du navigateur              
             }
         });
     })
