@@ -5,11 +5,9 @@ try
 
     include_once "inc/acl.php";
 
-    /*
     if (!in_array($_SESSION['type'], $acl_mod_com)) {
         header("location: accesDenied.php");
     }
-    */
 
     include_once "inc/connection.php";
     include_once "inc/models.php";

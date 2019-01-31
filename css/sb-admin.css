@@ -313,3 +313,8 @@ legend{
 .flex-container{
     display: flex;
 }
+/* Présentation du montant de prime */
+.primePrint{
+    font-size : 21px;
+    text-transform: uppercase;
+}
