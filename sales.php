@@ -200,7 +200,10 @@ try
                                                                         ?> 
                                                                         </select>
                                                                         <label class="text-input">Classe d'ancienneté</label>
-                                                                        <div class="alert alert-info" id="classe-desc"></div>
+                                                                        <div class="alert alert-info alert-dismissable">
+                                                                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                                                            <i class="fa fa-info-circle"></i>  <strong id="classe-desc"></strong> <a href="#" class="alert-link"></a>
+                                                                        </div>
                                                                         <select id="statut-pro" class="text-uppercase" name="statut-pro">
                                                                             <?php
                                                                             $request='SELECT lib FROM statut_socio_pro';
@@ -213,7 +216,10 @@ try
                                                                         ?> 
                                                                         </select>
                                                                         <label class="text-input">Statut socio-professionnel</label>
-                                                                        <div class="alert alert-info" id="statut-desc"></div>
+                                                                        <div class="alert alert-info alert-dismissable">
+                                                                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                                                            <i class="fa fa-info-circle"></i>  <strong id="statut-desc"></strong> <a href="#" class="alert-link"></a>
+                                                                        </div>
                                                                         <div class="flex-container">
                                                                             <div class="form-group">
                                                                                 <input type="text" name="pro" id="pro">
@@ -334,12 +340,12 @@ try
                                                                 <div id="step-4" class="">
                                                                     <div class="flex-container">
                                                                         <div class="form-group">
-                                                                            <input type="radio" value="t-simple" id="t-simple" name="formule">
-                                                                            <label class="text-input">Tiers simple</label>                                         
-                                                                        </div>
-                                                                        <div class="form-group">
                                                                             <input type="radio" value="t-base" id="t-base" name="formule">
                                                                             <label class="text-input">Tiers de base</label>                                         
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <input type="radio" value="t-simple" id="t-simple" name="formule">
+                                                                            <label class="text-input">Tiers simple</label>                                         
                                                                         </div>
                                                                         <div class="form-group">
                                                                             <input type="radio" value="t-complet" id="t-complet" name="formule">
@@ -360,13 +366,21 @@ try
                                                                     </div>
                                                                 </div>
                                                                 <div id="step-5" class="">
+                                                                    <!-- Détails de la garantie RESPONSABILITE CIVILE -->
+                                                                    <div class="flex-container" id="rc" style="display: none">
+                                                                        <fieldset>
+                                                                            <legend>Responsabilité civle</legend>
+                                                                            <div class="form-group">
+                                                                                <label class="text-input">Prime : <span class="primePrint" id="prime_rc"></span></label>
+                                                                            </div>
+                                                                        </fieldset>
+                                                                    </div>
                                                                     <!-- Détails de la garantie DEFENSE ET RECOURS -->
                                                                     <div class="flex-container" id="dr" style="display: none">
                                                                         <fieldset>
                                                                             <legend id="testAffiche">Défense et recours</legend>
                                                                             <div class="form-group">
-                                                                                <input type="checkbox" value="1" id="defense" name="defense">
-                                                                                <label class="text-input">Ajouter Garantie Tierce Complète ou Tierce Collision</label>
+                                                                                <label class="text-input">Prime : <span class="primePrint" id="prime_dr"></span></label>
                                                                             </div>
                                                                         </fieldset>
                                                                     </div>
@@ -375,18 +389,7 @@ try
                                                                         <fieldset>
                                                                             <legend>Remboursement anticipé</legend>
                                                                             <div class="form-group">
-                                                                                <select name="remb" id="remb" class="text-uppercase">
-                                                                                    <?php
-                                                                                        $request='SELECT id, lib FROM prime_g_rem_ant';
-                                                                                        $req = $bdd->query($request);
-                                                                                        while ($ok = $req->fetch())
-                                                                                        {
-                                                                                            echo "<option class=\"\" value=\"".htmlspecialchars($ok['id'])."\">".htmlspecialchars($ok['lib'])."</option>";    
-                                                                                        }
-                                                                                        $req->closeCursor();                        
-                                                                                    ?> 
-                                                                                </select>
-                                                                                <label class="text-input">Type de prime pour la garantie</label>
+                                                                                <label class="text-input">Prime : <span class="primePrint" id="prime_ra"></span></label>
                                                                             </div>
                                                                         </fieldset>
                                                                     </div>

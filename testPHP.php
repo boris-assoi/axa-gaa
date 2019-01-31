@@ -55,7 +55,7 @@
         (!empty($_POST['poldf'])) ? $poldf = new DateTime($_POST['poldf'], new DateTimeZone('GMT+0')) : $poldf = new DateTime('01/01/2019', new DateTimeZone('GMT+0'));
 
         //Récupération de la date de fin d'effet
-        (!empty($_POST['poldt'])) ? $poldt = DateTime::createFromFormat('j-M-Y', $_POST['poldt'], new DateTimeZone('GMT+0')) : $poldt = new DateTime('01/02/2020', new DateTimeZone('GMT+0'));
+        (!empty($_POST['poldt'])) ? $poldt = DateTime::createFromFormat('M/j/Y', $_POST['poldt'], new DateTimeZone('GMT+0')) : $poldt = new DateTime('01/02/2020', new DateTimeZone('GMT+0'));
 
 		//Récupération de la durée de la police
 		//$poldt->add(new DateInterval('PT1'));
@@ -99,7 +99,7 @@
         (!empty($_POST['valVen'])) ? $valVen = $_POST['valVen'] : $valVen = "4768500";
 
         //Vérification de l'existence d'une remorque        
-        (!empty($_POST['rem'])) ? $rem = $_POST['rem'] : $rem = 'rem';
+        (!empty($_POST['rem'])) ? $rem = $_POST['rem'] : $rem = '';
 
         /* 
         * INFORMATIONS SUR LA FORMULE DE GARANTIES
@@ -177,9 +177,9 @@
 		}
         $req->closeCursor();
 
-        //Ajout pour la remorque
+        //Appréciation de la remorque
         if (!empty($rem)) {
-            $prime_annexe += 10;
+            $prime = $prime * 10 / 100;
         }
 
         //Ajout pour la classe d'ancienneté
@@ -231,7 +231,7 @@
 		$prime_ra = '';
 		$type_prime_ra = '';
 		//Détermination du type de prime
-		if ($poltime->y == 0) {
+		if ($poltime->d == 365) {
 			$type_prime_ra = 2;
 		} else {
 			$type_prime_ra = 1;

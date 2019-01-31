@@ -95,15 +95,47 @@ $(document).ready(function(){
     //Affichage des champs selon les formules
     $('input[name=formule]').click(function afficherGaranties(){
         switch ($(this).val()) {
-            case 't-simple':
+            case 't-base':
+                $('#rc').css("display", "block");
                 $('#dr').css("display", "block");
-                $('#ra').css("display", "none");
+                $('#ra').css("display", "block");
+                $('#sr').css("display", "none");
+        
+            case 't-simple':
+                $('#rc').css("display", "block");
+                $('#dr').css("display", "block");
+                $('#ra').css("display", "block");
+                $('#sr').css("display", "block");
                 break;
 
-            case 't-base':
-                $('#dr').css("display", "none");
+            case 't-complet':
+                $('#rc').css("display", "block");
+                $('#dr').css("display", "block");
                 $('#ra').css("display", "block");
-        
+                $('#sr').css("display", "block");
+                break;
+
+            case 't-ameliore':
+                $('#rc').css("display", "block");
+                $('#dr').css("display", "block");
+                $('#ra').css("display", "block");
+                $('#sr').css("display", "block");
+                break;
+
+            case 'tc-complete':
+                $('#rc').css("display", "block");
+                $('#dr').css("display", "block");
+                $('#ra').css("display", "block");
+                $('#sr').css("display", "block");
+                break;
+
+            case 'tc-collision':
+                $('#rc').css("display", "block");
+                $('#dr').css("display", "block");
+                $('#ra').css("display", "block");
+                $('#sr').css("display", "block");
+                break;
+
             default:
                 break;
         }
@@ -133,7 +165,7 @@ $(document).ready(function(){
         var pfValue = $('#pfValue').val();
         var valCat = $('#valCat').val();
         var valVen = $('#valVen').val();
-        var rem = $('#rem').val();
+        var rem = $('input[name=rem]:checked').val();
         var formule = $('input[name=formule]:checked').val();
         $.ajax({
             url: "testPHP.php",
@@ -168,7 +200,9 @@ $(document).ready(function(){
             success: function(data){
                 console.log('prime : ' + data.prime_rc);
                 alert("Test OK");
-                $('#testAffiche').html(data.poltime.d);
+                $('#prime_rc').html(data.prime_rc);
+                $('#prime_dr').html(data.prime_dr);
+                $('#prime_ra').html(data.prime_ra);
             },
             error: function (jqXHR, textStatus) {
                 alert('error');
