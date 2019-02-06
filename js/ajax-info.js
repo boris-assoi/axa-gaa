@@ -99,41 +99,90 @@ $(document).ready(function(){
                 $('#rc').css("display", "block");
                 $('#dr').css("display", "block");
                 $('#ra').css("display", "block");
-                $('#sr').css("display", "none");
+                $('#bg').css("display", "none");
+                $('#dommage').css("display", "none");
+                $('#vol_ma').css("display", "none");
+                $('#vol_accessoires').css("display", "none");
+                $('#van').css("display", "none");
+                $('#incendie').css("display", "none");
+                $('#secu').css("display", "none");
+                $('#im').css("display", "none");
+                $('#vehicule_remplacement').css("display", "none");
+                break;
         
             case 't-simple':
                 $('#rc').css("display", "block");
                 $('#dr').css("display", "block");
                 $('#ra').css("display", "block");
-                $('#sr').css("display", "block");
-                break;
-
-            case 't-complet':
-                $('#rc').css("display", "block");
-                $('#dr').css("display", "block");
-                $('#ra').css("display", "block");
-                $('#sr').css("display", "block");
+                $('#bg').css("display", "none");
+                $('#dommage').css("display", "none");
+                $('#vol_ma').css("display", "none");
+                $('#vol_accessoires').css("display", "none");
+                $('#van').css("display", "none");
+                $('#incendie').css("display", "none");
+                $('#secu').css("display", "block");
+                $('#im').css("display", "none");
+                $('#vehicule_remplacement').css("display", "none");
                 break;
 
             case 't-ameliore':
                 $('#rc').css("display", "block");
                 $('#dr').css("display", "block");
                 $('#ra').css("display", "block");
-                $('#sr').css("display", "block");
+                $('#bg').css("display", "none");
+                $('#dommage').css("display", "none");
+                $('#vol_ma').css("display", "block");
+                $('#vol_accessoires').css("display", "block");
+                $('#van').css("display", "block");
+                $('#incendie').css("display", "block");
+                $('#secu').css("display", "block");
+                $('#im').css("display", "none");
+                $('#vehicule_remplacement').css("display", "none");
+                break;
+
+            case 't-complet':
+                $('#rc').css("display", "block");
+                $('#dr').css("display", "block");
+                $('#ra').css("display", "block");
+                $('#bg').css("display", "block");
+                $('#dommage').css("display", "none");
+                $('#vol_ma').css("display", "block");
+                $('#vol_accessoires').css("display", "block");
+                $('#van').css("display", "block");
+                $('#incendie').css("display", "block");
+                $('#secu').css("display", "block");
+                $('#im').css("display", "none");
+                $('#vehicule_remplacement').css("display", "none");
                 break;
 
             case 'tc-complete':
                 $('#rc').css("display", "block");
                 $('#dr').css("display", "block");
                 $('#ra').css("display", "block");
-                $('#sr').css("display", "block");
+                $('#bg').css("display", "block");
+                $('#dommage').css("display", "block");
+                $('#vol_ma').css("display", "block");
+                $('#vol_accessoires').css("display", "block");
+                $('#van').css("display", "block");
+                $('#incendie').css("display", "block");
+                $('#secu').css("display", "block");
+                $('#im').css("display", "block");
+                $('#vehicule_remplacement').css("display", "block");
                 break;
 
             case 'tc-collision':
                 $('#rc').css("display", "block");
                 $('#dr').css("display", "block");
                 $('#ra').css("display", "block");
-                $('#sr').css("display", "block");
+                $('#bg').css("display", "block");
+                $('#dommage').css("display", "block");
+                $('#vol_ma').css("display", "block");
+                $('#vol_accessoires').css("display", "block");
+                $('#van').css("display", "block");
+                $('#incendie').css("display", "block");
+                $('#secu').css("display", "block");
+                $('#im').css("display", "block");
+                $('#vehicule_remplacement').css("display", "block");
                 break;
 
             default:
@@ -142,7 +191,7 @@ $(document).ready(function(){
     })
 
     //Calcul des garanties
-    inView('#step-5').on('enter', function(){
+    inView('#step-5').on('enter', function calculGaranties(){
         var typAtt = $('#typAtt').val();
         var typeClient = $('#typeClient').val();
         var nomClient = $('#nomClient').val();
@@ -201,14 +250,97 @@ $(document).ready(function(){
                 console.log('prime : ' + data.prime_rc);
                 alert("Test OK");
                 $('#prime_rc').html(data.prime_rc);
-                $('#prime_dr').html(data.prime_dr);
                 $('#prime_ra').html(data.prime_ra);
+                $('#prime_vol_ma').html(data.prime_vol_ma);
+                $('#prime_van').html(data.prime_van);
+                $('#prime_im').html(data.prime_im);
             },
             error: function (jqXHR, textStatus) {
                 alert('error');
                 console.log(jqXHR); //affichage dans la console du navigateur              
             }
-        });
+        })
+        return data;
+        ;
     })
+
+    //Calcul de la prime de garantie DEFENSE ET RECOURS
+    $('#defense').change(function () {
+        var defense = $(this).val();
+        var type = 'opt_defense_recours';
+        $.ajax({
+            url: "inc/quotation_options.php",
+            method: "POST",
+            data: { defense: defense, type: type },
+            dataType: "text",
+            success: function (data) {
+                $('#prime_dr').html(data);
+            }
+        });
+    });
+
+    //Calcul de la prime de garantie DOMMAGES
+    $('#dom').change(function () {
+        var dom = $(this).val();
+        var prime_rc = $('#prime_rc').val();
+        var prime_ra = $('#prime_ra').val();
+        var type = 'opt_dommages';
+        $.ajax({
+            url: "inc/quotation_options.php",
+            method: "POST",
+            data: { defense: defense, prime_rc: prime_rc, prime_ra: prime_ra, type: type },
+            dataType: "text",
+            success: function (data) {
+                $('#prime_dr').html(data);
+            }
+        });
+    });
+
+    //Calcul de la prime de garantie SECURITE ROUTIERE
+    $('#sec_route').change(function() {
+        var sec_route = $(this).val();
+        var poltime = $('#poltime').val();
+        var type = 'opt_securite_routiere';
+        $.ajax({
+            url: "inc/quotation_options.php",
+            method: "POST",
+            data: { sec_route: sec_route, poltime: poltime, type: type },
+            dataType: "text",
+            success: function (data) {
+                $('#prime_sr').html(data);
+            }
+        });
+    });
+
+    //Calcul de la prime de garantie BRIS DE GLACE
+    $('#bris').change(function () {
+        var bris = $('#bris').val();
+        var valCat = $('#valCat').val();
+        var type = 'opt_bris_glace';
+        $.ajax({
+            url: "inc/quotation_options.php",
+            method: "POST",
+            data: { bris: bris, valCat: valCat, type: type },
+            dataType: "text",
+            success: function (data) {
+                $('#prime_bg').html(data);
+            }
+        });
+    });
+
+    //Calcul de la prime de garantie VOL D'ACCESSOIRES
+    $('#bris').change(function () {
+        var bris = $(this).val();
+        var type = 'opt_bris_glace';
+        $.ajax({
+            url: "inc/quotation_options.php",
+            method: "POST",
+            data: { bris: bris, type: type },
+            dataType: "text",
+            success: function (data) {
+                $('#prime_bg').html(data);
+            }
+        });
+    });
 
 });
