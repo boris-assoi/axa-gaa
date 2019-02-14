@@ -16,7 +16,7 @@
 
 
        	/*
-		* INFORMATIONS SUR LES GARANTIES A AJOUTER
+		* INFORMATIONS SUR LES GARANTIES A AJOUTER 
 		*/
 		//Récupération du type de garantie DEFENSE ET RECOURS
 		(!empty($_POST['defense'])) ? $defense = 1 : $defense = 2;

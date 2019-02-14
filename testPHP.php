@@ -177,9 +177,9 @@
 		}
         $req->closeCursor();
 
-        //Ajout pour la remorque
+        //Appréciation de la remorque
         if (!empty($rem)) {
-            $prime = $prime + ($prime * 10 / 100);
+            $prime = $prime * 10 / 100;
         }
 
         //Ajout pour la classe d'ancienneté
@@ -210,8 +210,7 @@
         /*
         * CALCUL DE LA GARANTIE DEFENSE ET RECOURS : prime_dr
         */
-        $prime_dr = '';
-        
+		$prime_dr = '';
         //Récupération du forfait
         $req = $bdd->prepare("SELECT prime FROM g_def_rec WHERE type_garantie = ?");
 		$req->execute(array($defense));
@@ -230,15 +229,13 @@
         * CALCUL DE LA GARANTIE REMBOURSEMENT ANTICIPE : prime_ra
         */
 		$prime_ra = '';
-        $type_prime_ra = '';
-        
+		$type_prime_ra = '';
 		//Détermination du type de prime
 		if ($poltime->d == 365) {
 			$type_prime_ra = 2;
 		} else {
 			$type_prime_ra = 1;
-        }
-        
+		}
         //Récupération du paramètre dans le formulaire
         $req = $bdd->prepare("SELECT prime FROM g_rem_ant WHERE type_prime = ?");
 		$req->execute(array($type_prime_ra));
@@ -257,7 +254,6 @@
         * CALCUL DE LA GARANTIE SECURITE ROUTIERE : prime_sr
         */
         $prime_sr = '';
-        
         //Récupération du paramètre dans le formulaire
         $req = $bdd->prepare("SELECT prime FROM option_g_sec_rou WHERE id = ?");
 		$req->execute(array($sec_route));
@@ -378,15 +374,13 @@
         * CALCUL DE LA GARANTIE IMMOBILISATION : prime_im
         */
         $prime_im = '';
-
         //Récupération du paramètre dans le formulaire
         $type_contrat = '';
-
-		if(($poltime->d / 30) >= 3 && ($poltime->d / 30) < 6){
+		if(($poltime->d)/30 >= 3 && ($poltime->d)/30 < 6){
 			$type_contrat = 1;
-		}elseif (($poltime->d / 30) >= 6 && ($poltime->d / 30) < 12) {
+		}elseif (($poltime->d)/30 > 6 && ($poltime->d)/30 < 12) {
 			$type_contrat = 2;
-		}elseif (($poltime->d / 30) >= 12) {
+		}elseif (($poltime->d)/30 >= 12) {
 			$type_contrat = 3;
 		}
 		$req = $bdd->prepare("SELECT prime FROM g_imm WHERE contrat = ?");
@@ -395,9 +389,8 @@
 			$prime_im += $ok['prime'];
 		}
 		// echo $poltime->days;
-        $req->closeCursor();
-        
-        $data['type_contrat_im'] = $type_contrat;
+		$req->closeCursor();
+
         $data['prime_im'] = $prime_im;
 		// echo "Prime IM : ".$data['prime_im']."<br>";
         /*

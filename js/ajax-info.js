@@ -217,7 +217,7 @@ $(document).ready(function(){
         var rem = $('input[name=rem]:checked').val();
         var formule = $('input[name=formule]:checked').val();
         $.ajax({
-            url: "testPHP.php",
+            url: "inc/quotation.php",
             method: "POST",
             data:{
                 typAtt: typAtt,
