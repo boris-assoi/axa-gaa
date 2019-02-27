@@ -248,7 +248,7 @@ $(document).ready(function(){
             dataType : "json",
             success: function(data){
                 console.log('prime : ' + data.prime_rc);
-                alert("Test OK");
+                //alert("Test OK");
                 $('#prime_rc').html(data.prime_rc);
                 $('#prime_ra').html(data.prime_ra);
                 $('#prime_vol_ma').html(data.prime_vol_ma);
@@ -279,7 +279,7 @@ $(document).ready(function(){
                 }
             });
         } else {
-            $('#prime_dr').html('<span>0<span>');
+            $('#prime_dr').html('<span>7950<span>');
         }
     });
 
