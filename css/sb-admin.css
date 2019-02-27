@@ -309,6 +309,11 @@ legend{
     text-transform: uppercase;
 }
 
+.primePrint{
+    font-size: x-large;
+    color: #000000;
+}
+
 /* Rendu FLEX */
 .flex-container{
     display: flex;

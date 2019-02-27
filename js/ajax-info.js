@@ -283,7 +283,7 @@ $(document).ready(function(){
         }
     });
 
-    //Calcul de la prime de garantie DOMMAGES
+   /*  //Calcul de la prime de garantie DOMMAGES
     $('#dom').change(function () {
         var dom = $(this).val();
         var prime_rc = $('#prime_rc').val();
@@ -292,13 +292,13 @@ $(document).ready(function(){
         $.ajax({
             url: "inc/quotation_options.php",
             method: "POST",
-            data: { defense: defense, prime_rc: prime_rc, prime_ra: prime_ra, type: type },
+            data: { dom: dom, prime_rc: prime_rc, prime_ra: prime_ra, type: type },
             dataType: "text",
             success: function (data) {
-                $('#prime_dr').html(data);
+                $('#prime_dom').html(data);
             }
         });
-    });
+    }); */
 
     //Calcul de la prime de garantie SECURITE ROUTIERE
     $('#sec_route').change(function() {
@@ -333,18 +333,33 @@ $(document).ready(function(){
     });
 
     //Calcul de la prime de garantie VOL D'ACCESSOIRES
-    $('#bris').change(function () {
-        var bris = $(this).val();
-        var type = 'opt_bris_glace';
+    $('#option_vol_acc').change(function () {
+        var option_vol_acc = $(this).val();
+        var type = 'opt_vol_accessoires';
         $.ajax({
             url: "inc/quotation_options.php",
             method: "POST",
-            data: { bris: bris, type: type },
+            data: { option_vol_acc: option_vol_acc, type: type },
             dataType: "text",
             success: function (data) {
-                $('#prime_bg').html(data);
+                $('#prime_vol_acc').html(data);
             }
         });
     });
+
+    /* //Calcul de la prime de garantie VEHICULE DE REMPLACEMENT
+    $('#option_veh_rem').change(function () {
+        var option_veh_rem = $(this).val();
+        var type = 'opt_vehicule_remplacement';
+        $.ajax({
+            url: "inc/quotation_options.php",
+            method: "POST",
+            data: { option_veh_rem: option_veh_rem, type: type },
+            dataType: "text",
+            success: function (data) {
+                $('#prime_veh_rem').html(data);
+            }
+        });
+    }); */
 
 });

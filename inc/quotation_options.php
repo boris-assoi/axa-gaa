@@ -151,31 +151,31 @@
         $prime_tb = $prime_rc + $prime_dr + $prime_ra + $prime_sr;
 
         switch ($type_garantie) {
-            case 'opt_dommages':
+            //case 'opt_dommages':
                 /*
                 * CALCUL DE LA GARANTIE DOMMAGES : prime_dom
                 */
                 //Récupération du paramètre dans le formulaire
-                $req = $bdd->prepare("SELECT prime FROM g_dom WHERE g_dom.type = ?");
+                /* $req = $bdd->prepare("SELECT prime FROM g_dom WHERE g_dom.type = ?");
                 $req->execute(array($dom));
                 while ($ok = $req->fetch()) {
                     $prime_dom += ceil($ok['prime'] * $prime_tb / 100);
                 }
                 $req->closeCursor();
 
-                $output = $prime_dom;
+                $output = $prime_dom; */
                 // echo "Prime DOM : ".$data['prime_dom']."<br>";
                 /*
                 * FIN DE CALCUL DE LA GARANTIE DOMMAGES
                 */
-                break;
+                //break;
 
-            case 'opt_vehicule_remplacement':
+            //case 'opt_vehicule_remplacement':
                 /* 
                 * CALCUL DE LA GARANTIE VEHICULE DE REMPLACEMENT
                 */
                 //Détermination du type de prime(annuelle ou semestrielle)
-                $type_taux = '';
+               /*  $type_taux = '';
                 if(($poltime->d / 30) > 0 && ($poltime->d / 30) <= 6){
                     $type_taux = 'prime_sem';
                 }elseif (($poltime->d / 30) > 6 && ($poltime->d / 30) <= 12) {
@@ -184,7 +184,7 @@
 
                 //Récupération du paramètre dans le formulaire
                 $req = $bdd->prepare("SELECT ? FROM g_veh_rem WHERE assiette = ?");
-                $req->execute(array($option_veh_rem));
+                $req->execute(array($type_taux, $option_veh_rem));
                 $ok = $req->fetch();
 
                 if($option_veh_rem == '> 25 000 000 FCFA'){
@@ -195,11 +195,12 @@
                 
                 $req->closeCursor();
 
-                $output = $prime_veh_rem;
+                $output = $prime_veh_rem; */
 
                 /* 
                 * FIN DE CALCUL DE LA GARANTIE VEHICULE DE REMPLACEMENT
                 */
+                //break;
             
             default:
                 # code...

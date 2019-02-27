@@ -312,19 +312,19 @@
                                                                         </fieldset>
                                                                     </div>
                                                                     <!-- Détails de la garantie DOMMAGES -->
-                                                                    <div class="flex-container" id="dommage" style="display: none">
+                                                                    <!-- <div class="flex-container" id="dommage" style="display: none">
                                                                         <fieldset>
                                                                             <legend>Dommages</legend>
                                                                             <div class="form-group">
                                                                                 <select name="dom" id="dom" class="text-uppercase">
                                                                                     <?php
-                                                                                        $request='SELECT id, lib FROM type_g_dom';
+                                                                                        /* $request='SELECT id, lib FROM type_g_dom';
                                                                                         $req = $bdd->query($request);
                                                                                         while ($ok = $req->fetch())
                                                                                         {
                                                                                             echo "<option class=\"\" value=\"".htmlspecialchars($ok['id'])."\">".htmlspecialchars($ok['lib'])."</option>";    
                                                                                         }
-                                                                                        $req->closeCursor();                        
+                                                                                        $req->closeCursor();    */                     
                                                                                     ?> 
                                                                                 </select>
                                                                                 <label class="text-input">Options de la garantie</label>
@@ -333,7 +333,7 @@
                                                                                 <label class="text-input">Prime : <span class="primePrint" id="prime_dom"></span></label>
                                                                             </div>
                                                                         </fieldset>
-                                                                    </div>
+                                                                    </div> -->
                                                                     <!-- Détails de la garantie VOL ET VOL A MAIN ARMEE -->
                                                                     <div class="flex-container" id="vol_ma" style="display: none">
                                                                         <fieldset>
@@ -412,20 +412,20 @@
                                                                         </fieldset>
                                                                     </div>
                                                                     <!-- Détails de la garantie VEHICULE DE REMPLACEMENT -->
-                                                                    <div class="flex-container" id="vehicule_remplacement" style="display: none">
+                                                                    <!-- <div class="flex-container" id="vehicule_remplacement" style="display: none">
                                                                         <fieldset>
                                                                             <legend>Véhicule de remplacement</legend>
                                                                             <div class="flex-container">
                                                                                 <div class="form-group">
                                                                                     <select name="option_veh_rem" id="option_veh_rem" class="text-uppercase">
                                                                                         <?php
-                                                                                            $request='SELECT assiette FROM g_vol_acc';
+                                                                                            /* $request='SELECT assiette FROM g_veh_rem';
                                                                                             $req = $bdd->query($request);
                                                                                             while ($ok = $req->fetch())
                                                                                             {
                                                                                                 echo "<option class=\"\" value=\"".htmlspecialchars($ok['assiette'])."\"> ".htmlspecialchars($ok['assiette'])."</option>";   
                                                                                             }
-                                                                                            $req->closeCursor();                        
+                                                                                            $req->closeCursor();  */                       
                                                                                         ?>
                                                                                     </select>
                                                                                     <label class="text-input">Options de la garantie</label>
@@ -435,7 +435,7 @@
                                                                                 </div>
                                                                             </div>
                                                                         </fieldset>
-                                                                    </div>
+                                                                    </div> -->
                                                                 </div>
                                                                 <div id="step-6" class="">
                                                                     Confirmation
