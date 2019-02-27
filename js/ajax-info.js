@@ -217,7 +217,7 @@ $(document).ready(function(){
         var rem = $('input[name=rem]:checked').val();
         var formule = $('input[name=formule]:checked').val();
         $.ajax({
-            url: "inc/quotation.php",
+            url: "testPHP.php",
             method: "POST",
             data:{
                 typAtt: typAtt,
@@ -256,27 +256,31 @@ $(document).ready(function(){
                 $('#prime_im').html(data.prime_im);
             },
             error: function (jqXHR, textStatus) {
-                alert('error');
+                alert('error : Veuillez vérifier les informations saisies');
                 console.log(jqXHR); //affichage dans la console du navigateur              
             }
         })
         return data;
         ;
     })
-
+    
     //Calcul de la prime de garantie DEFENSE ET RECOURS
     $('#defense').change(function () {
-        var defense = $(this).val();
-        var type = 'opt_defense_recours';
-        $.ajax({
-            url: "inc/quotation_options.php",
-            method: "POST",
-            data: { defense: defense, type: type },
-            dataType: "text",
-            success: function (data) {
-                $('#prime_dr').html(data);
-            }
-        });
+        if($(this).is(':checked')){
+            var defense = $(this).val();
+            var type = 'opt_defense_recours';
+            $.ajax({
+                url: "inc/quotation_options.php",
+                method: "POST",
+                data: { defense: defense, type: type },
+                dataType: "text",
+                success: function (data) {
+                    $('#prime_dr').html(data);
+                }
+            });
+        } else {
+            $('#prime_dr').html('<span>0<span>');
+        }
     });
 
     //Calcul de la prime de garantie DOMMAGES

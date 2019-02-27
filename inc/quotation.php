@@ -16,7 +16,7 @@
 
 
         /* 
-        * INFORMATIONS SUR L'ATTESTATION 
+        * INFORMATIONS SUR L'ATTESTATION
         */
         //Recupération du type d'attestation
         (!empty($_POST['typAtt'])) ? $typAtt = $_POST['typAtt'] : $typAtt = "";        
