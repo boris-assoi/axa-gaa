@@ -378,7 +378,7 @@
         $type_contrat = '';
 		if(($poltime->d)/30 >= 3 && ($poltime->d)/30 < 6){
 			$type_contrat = 1;
-		}elseif (($poltime->d)/30 > 6 && ($poltime->d)/30 < 12) {
+		}elseif (($poltime->d)/30 >= 6 && ($poltime->d)/30 < 12) {
 			$type_contrat = 2;
 		}elseif (($poltime->d)/30 >= 12) {
 			$type_contrat = 3;

@@ -34,28 +34,29 @@
                                                                                 $req->closeCursor();
                                                                             ?> 
                                                                         </select>
-                                                                        <label class="text-input"> <span> - Disponibilité - </span> <?php
-                                                                            $req  = $bdd->prepare($models['dispoAuto']);
-                                                                            $req -> execute(array($_SESSION['userID']));
-                                                                            $ok = $req->fetch();
-                                                                            echo "Automobile : <span class=\"badge alert-success text-uppercase\">".htmlspecialchars($ok['nbre'])."</span>";
-                                                                            $req->closeCursor();
-                                                                            
-                                                                        ?> <?php
-                                                                            $req  = $bdd->prepare($models['dispoBrune']);
-                                                                            $req -> execute(array($_SESSION['userID']));
-                                                                            $ok = $req->fetch();
-                                                                            echo "Brune CEDEAO: <span class=\"badge alert-success text-uppercase\">".htmlspecialchars($ok['nbre'])."</span>";
-                                                                            $req->closeCursor();
-                                                                            
-                                                                        ?> <?php
-                                                                            $req  = $bdd->prepare($models['dispoVerte']);
-                                                                            $req -> execute(array($_SESSION['userID']));
-                                                                            $ok = $req->fetch();
-                                                                            echo "Carte Verte : <span class=\"badge alert-success text-uppercase\">".htmlspecialchars($ok['nbre'])."</span>";
-                                                                            $req->closeCursor();
-                                                                            
-                                                                        ?> </label>                                                        
+                                                                        <label class="text-input">
+																			<?php
+																				$req  = $bdd->prepare($models['dispoAuto']);
+																				$req -> execute(array($_SESSION['userID']));
+																				$ok = $req->fetch();
+																				echo "<span class=\"badge alert-default text-uppercase\">Automobile : ".htmlspecialchars($ok['nbre'])."</span>";
+																				$req->closeCursor();
+																			?>
+																			<?php
+																				$req  = $bdd->prepare($models['dispoBrune']);
+																				$req -> execute(array($_SESSION['userID']));
+																				$ok = $req->fetch();
+																				echo "<span class=\"badge alert-warning text-uppercase\">Brune CEDEAO: ".htmlspecialchars($ok['nbre'])."</span>";
+																				$req->closeCursor();
+																			?>
+																			<?php
+																				$req  = $bdd->prepare($models['dispoVerte']);
+																				$req -> execute(array($_SESSION['userID']));
+																				$ok = $req->fetch();
+																				echo "<span class=\"badge alert-success text-uppercase\">Carte Verte : ".htmlspecialchars($ok['nbre'])."</span>";
+																				$req->closeCursor();
+																			?>
+																		</label>                                                        
                                                                     </div> 
                                                                     <fieldset>
                                                                         <legend class="text-uppercase">Informations du client</legend>                                               
@@ -76,7 +77,7 @@
                                                                             </div>
                                                                             <div class="form-group">                                                     
                                                                                 <input type="text" name="nomClient" id="nomClient">      
-                                                                                <label class="text-input">Nom</label>    
+                                                                                <label class="text-input">Nom et prénoms</label>    
                                                                             </div>
                                                                         </div>        
                                                                         <select id="classe-permis" class="text-uppercase" name="classe_permis">
@@ -438,7 +439,81 @@
                                                                     </div> -->
                                                                 </div>
                                                                 <div id="step-6" class="">
-                                                                    Confirmation
+                                                                    <div class="panel panel-default summary">
+                                                                        <div class="panel-heading">
+                                                                            <legend>Résumé de la vente</legend>
+                                                                        </div>
+                                                                        <div class="panel-body">
+                                                                            <div class="panel panel-default">
+                                                                                <div class="panel-heading">
+                                                                                    <legend>Identification du souscripteur</legend>
+                                                                                </div>
+                                                                                <div class="panel-body">
+                                                                                    <label class="text-input">Nom et prénoms : <span class="summary_details"></span></label>
+                                                                                    <label class="text-input">Statut socioprofessionnel : <span class="summary_details"></span></label>
+                                                                                    <label class="text-input">Téléphone : <span class="summary_details"></span></label>
+                                                                                    <label class="text-input">Email : <span class="summary_details"></span></label>
+                                                                                    <label class="text-input">Age de conduite : <span class="summary_details"></span></label>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="panel panel-default">
+                                                                                <div class="panel-heading">
+                                                                                    <legend>Identification du véhicule</legend>
+                                                                                </div>
+                                                                                <div class="panel-body">
+                                                                                    <label class="text-input">Usage du véhicule : <span class="summary_details"></span></label>
+                                                                                    <label class="text-input">Matricule : <span class="summary_details"></span></label>
+                                                                                    <label class="text-input">Energie : <span class="summary_details"></span></label>
+                                                                                    <label class="text-input">Puissance fiscale : <span class="summary_details"></span></label>
+                                                                                    <label class="text-input">Marque : <span class="summary_details"></span></label>
+                                                                                    <label class="text-input">Numéro de châssis : <span class="summary_details"></span></label>
+                                                                                    <label class="text-input">Charge utile : <span class="summary_details"></span></label>
+                                                                                    <label class="text-input">Date de mise en circulation : <span class="summary_details"></span></label>
+                                                                                    <label class="text-input">Valeur neuve : <span class="summary_details"></span></label>
+                                                                                    <label class="text-input">Valeur vénale : <span class="summary_details"></span></label>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="panel panel-default">
+                                                                                <div class="panel-heading">
+                                                                                    <legend>Détails de la police</legend>
+                                                                                </div>
+                                                                                <div class="panel-body">
+																					<label class="text-input">Numéro de police : <span class="summary_details"></span></label>
+                                                                                    <label class="text-input">Effet : <span class="summary_details"></span></label>
+                                                                                    <label class="text-input">Echéance : <span class="summary_details"></span></label>
+                                                                                    <label class="text-input">Durée de la police : <span class="summary_details"></span></label>
+																				</div>
+                                                                            </div>
+                                                                            <div class="panel panel-default">
+                                                                                <div class="panel-heading">
+                                                                                    <legend>Détails de la formule</legend>
+                                                                                </div>
+                                                                                <div class="panel-body">
+																					<label class="text-input">Formule : <span class="summary_details"></span></label>
+																					<div class="table-responsive">
+																						<table class="table table-bordered table-hover table-striped">
+																							<thead>
+																								<tr>
+																									<th>Garantie</th>
+																									<th>Option</th>
+																									<th>Prime</th>
+																									<th>Franchise</th>
+																								</tr>
+																							</thead>
+																							<tbody>
+																								<tr>
+																									<td>Bris de glace</td>
+																									<td>Réparateur conventionné</td>
+																									<td>10.000 FCFA</td>
+																									<td></td>
+																								</tr>
+																							</tbody>
+																						</table>
+																					</div>
+																				</div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>

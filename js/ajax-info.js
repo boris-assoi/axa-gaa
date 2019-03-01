@@ -262,7 +262,7 @@ $(document).ready(function(){
         })
         return data;
         ;
-    })
+    });
     
     //Calcul de la prime de garantie DEFENSE ET RECOURS
     $('#defense').change(function () {
@@ -361,5 +361,9 @@ $(document).ready(function(){
             }
         });
     }); */
+
+    /* 
+    * Affichage du résumé des ventes
+    */
 
 });

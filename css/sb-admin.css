@@ -314,6 +314,14 @@ legend{
     color: #000000;
 }
 
+.summary{
+    margin-top: 20px;
+}
+
+.summary_details{
+    font-size: larger;
+}
+
 /* Rendu FLEX */
 .flex-container{
     display: flex;
