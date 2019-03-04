@@ -449,11 +449,11 @@
                                                                                     <legend>Identification du souscripteur</legend>
                                                                                 </div>
                                                                                 <div class="panel-body">
-                                                                                    <label class="text-input">Nom et prénoms : <span class="summary_details"></span></label>
-                                                                                    <label class="text-input">Statut socioprofessionnel : <span class="summary_details"></span></label>
-                                                                                    <label class="text-input">Téléphone : <span class="summary_details"></span></label>
-                                                                                    <label class="text-input">Email : <span class="summary_details"></span></label>
-                                                                                    <label class="text-input">Age de conduite : <span class="summary_details"></span></label>
+                                                                                    <label class="text-input">Nom et prénoms : <span class="summary_details" id="sum_nom"></span></label>
+                                                                                    <label class="text-input">Statut socioprofessionnel : <span class="summary_details" id="sum_statut"></span></label>
+                                                                                    <label class="text-input">Téléphone : <span class="summary_details" id="sum_tel"></span></label>
+                                                                                    <label class="text-input">Adresse : <span class="summary_details" id="sum_address"></span></label>
+                                                                                    <label class="text-input">Classe d'ancienneté : <span class="summary_details" id="sum_drive_age"></span></label>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="panel panel-default">
@@ -461,16 +461,16 @@
                                                                                     <legend>Identification du véhicule</legend>
                                                                                 </div>
                                                                                 <div class="panel-body">
-                                                                                    <label class="text-input">Usage du véhicule : <span class="summary_details"></span></label>
-                                                                                    <label class="text-input">Matricule : <span class="summary_details"></span></label>
-                                                                                    <label class="text-input">Energie : <span class="summary_details"></span></label>
-                                                                                    <label class="text-input">Puissance fiscale : <span class="summary_details"></span></label>
-                                                                                    <label class="text-input">Marque : <span class="summary_details"></span></label>
-                                                                                    <label class="text-input">Numéro de châssis : <span class="summary_details"></span></label>
+                                                                                    <label class="text-input">Usage du véhicule : <span class="summary_details" id="sum_category"></span></label>
+                                                                                    <label class="text-input">Immatriculation : <span class="summary_details" id="sum_imat"></span></label>
+                                                                                    <label class="text-input">Energie : <span class="summary_details" id="sum_energy"></span></label>
+                                                                                    <label class="text-input">Puissance fiscale : <span class="summary_details" id="sum_pfValue"></span></label>
+                                                                                    <label class="text-input">Marque : <span class="summary_details" id="sum_carMake"></span></label>
+                                                                                    <label class="text-input">Numéro de châssis : <span class="summary_details" id="sum_chassis"></span></label>
                                                                                     <label class="text-input">Charge utile : <span class="summary_details"></span></label>
-                                                                                    <label class="text-input">Date de mise en circulation : <span class="summary_details"></span></label>
-                                                                                    <label class="text-input">Valeur neuve : <span class="summary_details"></span></label>
-                                                                                    <label class="text-input">Valeur vénale : <span class="summary_details"></span></label>
+                                                                                    <label class="text-input">Date de mise en circulation : <span class="summary_details" id="sum_dateCirc"></span></label>
+                                                                                    <label class="text-input">Valeur neuve : <span class="summary_details" id="sum_price_new"></span></label>
+                                                                                    <label class="text-input">Valeur vénale : <span class="summary_details" id="sum_price_ven"></span></label>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="panel panel-default">
@@ -478,10 +478,10 @@
                                                                                     <legend>Détails de la police</legend>
                                                                                 </div>
                                                                                 <div class="panel-body">
-																					<label class="text-input">Numéro de police : <span class="summary_details"></span></label>
-                                                                                    <label class="text-input">Effet : <span class="summary_details"></span></label>
-                                                                                    <label class="text-input">Echéance : <span class="summary_details"></span></label>
-                                                                                    <label class="text-input">Durée de la police : <span class="summary_details"></span></label>
+																					<label class="text-input">Numéro de police : <span class="summary_details" id="sum_police_num"></span></label>
+                                                                                    <label class="text-input">Effet : <span class="summary_details" id="sum_police_start"></span></label>
+                                                                                    <label class="text-input">Echéance : <span class="summary_details" id="sum_police_end"></span></label>
+                                                                                    <label class="text-input">Durée de la police : <span class="summary_details" id="sum_police_duration"></span></label>
 																				</div>
                                                                             </div>
                                                                             <div class="panel panel-default">
@@ -489,7 +489,7 @@
                                                                                     <legend>Détails de la formule</legend>
                                                                                 </div>
                                                                                 <div class="panel-body">
-																					<label class="text-input">Formule : <span class="summary_details"></span></label>
+																					<label class="text-input">Formule : <span class="summary_details" id="sum_formula"></span></label>
 																					<div class="table-responsive">
 																						<table class="table table-bordered table-hover table-striped">
 																							<thead>

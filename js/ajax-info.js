@@ -365,5 +365,58 @@ $(document).ready(function(){
     /* 
     * Affichage du résumé des ventes
     */
+    inView('#step-6').on('enter', function DisplaySummary() {
+        var typAtt = $('#typAtt').val();
+        var typeClient = $('#typeClient').val();
+        var nomClient = $('#nomClient').val();
+        var classe_permis = $('#classe-permis').val();
+        var statut_pro = $('#statut-pro').val();
+        var pro = $('#pro').val();
+        var adresse = $('#adresse').val();
+        var contact = $('#contact').val();
+        var pol = $('#pol').val();
+        var poldf = $('#poldf').val();
+        var poltime = $('#poltime').val();
+        var poldt = $('#poldt').val();
+        var catCar = $('#catCar').val();
+        var carGenre = $('#carGenre').val();
+        var carMake = $('#carMake').val();
+        var imat = $('#imat').val();
+        var chassis = $('#chassis').val();
+        var dateCirc = $('#dateCirc').val();
+        var pf = $('#pf').val();
+        var pfValue = $('#pfValue').val();
+        var valCat = $('#valCat').val();
+        var valVen = $('#valVen').val();
+        var rem = $('input[name=rem]:checked').val();
+        var formule = $('input[name=formule]:checked').val();
+
+        //Souscripteur
+        $('#sum_nom').html(nomClient);
+        $('#sum_statut').html(statut_pro);
+        $('#sum_tel').html(contact);
+        $('#sum_address').html(adresse);
+        $('#sum_drive_age').html(classe_permis);
+
+        //Véhicule
+        $('#sum_category').html(catCar);
+        $('#sum_imat').html(imat);
+        $('#sum_energy').html(pf);
+        $('#sum_pfValue').html(pfValue);
+        $('#sum_carMake').html(carMake);
+        $('#sum_chassis').html(chassis);
+        $('#sum_dateCirc').html(dateCirc);
+        $('#sum_price_new').html(valCat);
+        $('#sum_price_ven').html(valVen);
+
+        //Police
+        $('#sum_police_num').html(pol);
+        $('#sum_police_start').html(poldf);
+        $('#sum_police_end').html(poldt);
+        $('#sum_police_duration').html(poltime+" Jours");
+
+        //Garantie
+        $('#sum_formula').html(formule);
+    });
 
 });

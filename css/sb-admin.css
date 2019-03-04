@@ -320,6 +320,8 @@ legend{
 
 .summary_details{
     font-size: larger;
+    color: #000000;
+    text-transform: uppercase;
 }
 
 /* Rendu FLEX */
