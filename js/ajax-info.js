@@ -92,6 +92,9 @@ $(document).ready(function(){
         });
     });
 
+    //Variable contenant les garanties sélectionnées
+    var waranties = [];
+
     //Affichage des champs selon les formules
     $('input[name=formule]').click(function afficherGaranties(){
         switch ($(this).val()) {
@@ -108,6 +111,7 @@ $(document).ready(function(){
                 $('#secu').css("display", "none");
                 $('#im').css("display", "none");
                 $('#vehicule_remplacement').css("display", "none");
+                waranties.push('prime_rc', 'prime_dr', 'prime_ra');
                 break;
         
             case 't-simple':
@@ -123,6 +127,7 @@ $(document).ready(function(){
                 $('#secu').css("display", "block");
                 $('#im').css("display", "none");
                 $('#vehicule_remplacement').css("display", "none");
+                waranties.push('prime_rc', 'prime_dr', 'prime_ra', 'prime_sr');
                 break;
 
             case 't-ameliore':
@@ -192,6 +197,7 @@ $(document).ready(function(){
 
     //Calcul des garanties
     inView('#step-5').on('enter', function calculGaranties(){
+        var data;
         var typAtt = $('#typAtt').val();
         var typeClient = $('#typeClient').val();
         var nomClient = $('#nomClient').val();
@@ -247,7 +253,6 @@ $(document).ready(function(){
             },
             dataType : "json",
             success: function(data){
-                console.log('prime : ' + data.prime_rc);
                 //alert("Test OK");
                 $('#prime_rc').html(data.prime_rc);
                 $('#prime_ra').html(data.prime_ra);
@@ -365,7 +370,7 @@ $(document).ready(function(){
     /* 
     * Affichage du résumé des ventes
     */
-    inView('#step-6').on('enter', function DisplaySummary() {
+    inView('#step-6').on('enter', function displaySummary() {
         var typAtt = $('#typAtt').val();
         var typeClient = $('#typeClient').val();
         var nomClient = $('#nomClient').val();

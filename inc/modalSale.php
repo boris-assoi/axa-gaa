@@ -512,6 +512,7 @@
 																					</div>
 																				</div>
                                                                             </div>
+                                                                            <button class="btn btn-info"><i class="fa fa-fw fa-print"></i> Note de couverture</button>
                                                                         </div>
                                                                     </div>
                                                                 </div>
