@@ -141,7 +141,7 @@
                                                                                 <label class="text-input">Date de début de la police</label>
                                                                             </div>
                                                                             <div class="form-group">                                                         
-                                                                                <input type="text" name="poltime" id="poltime"> 
+                                                                                <input type="number" name="poltime" id="poltime"> 
                                                                                 <label class="text-input">Durée de la police (jours)</label>
                                                                             </div>
                                                                             <div class="form-group">                                                         
