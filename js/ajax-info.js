@@ -111,7 +111,6 @@ $(document).ready(function(){
                 $('#secu').css("display", "none");
                 $('#im').css("display", "none");
                 $('#vehicule_remplacement').css("display", "none");
-                waranties.push('prime_rc', 'prime_dr', 'prime_ra');
                 break;
         
             case 't-simple':
@@ -127,7 +126,6 @@ $(document).ready(function(){
                 $('#secu').css("display", "block");
                 $('#im').css("display", "none");
                 $('#vehicule_remplacement').css("display", "none");
-                waranties.push('prime_rc', 'prime_dr', 'prime_ra', 'prime_sr');
                 break;
 
             case 't-ameliore':

@@ -289,10 +289,10 @@
                                                                             </div>
                                                                         </fieldset>
                                                                     </div>
-                                                                    <!-- Détails de la garantie BRIS DE GLACE -->
+                                                                    <!-- Détails de la garantie  -->
                                                                     <div class="flex-container" id="bg" style="display: none">
                                                                         <fieldset>
-                                                                            <legend>Bris de glace</legend>
+                                                                            <legend></legend>
                                                                             <div class="form-group">
                                                                                 <select name="bris" id="bris" class="text-uppercase">
                                                                                     <?php
@@ -497,16 +497,68 @@
 																									<th>Garantie</th>
 																									<th>Option</th>
 																									<th>Prime</th>
-																									<th>Franchise</th>
 																								</tr>
 																							</thead>
 																							<tbody>
-																								<tr>
-																									<td>Bris de glace</td>
-																									<td>Réparateur conventionné</td>
-																									<td>10.000 FCFA</td>
+																								<tr id="summary_rc">
+																									<td>Responsabilité civile</td>
+																									<td></td>
 																									<td></td>
 																								</tr>
+                                                                                                <tr id="summary_dr">
+																									<td>Défence et recours</td>
+																									<td></td>
+																									<td></td>
+                                                                                                </tr>
+                                                                                                <tr id="summary_ra">
+																									<td>Remboursement anticipé</td>
+																									<td></td>
+																									<td></td>
+                                                                                                </tr>
+                                                                                                <tr id="summary_bg">
+																									<td>Bris de glace</td>
+																									<td></td>
+																									<td></td>
+                                                                                                </tr>
+                                                                                                <tr id="summary_dommage">
+																									<td>Dommages</td>
+																									<td></td>
+																									<td></td>
+                                                                                                </tr>
+                                                                                                <tr id="summary_vol_ma">
+																									<td>Vol à main armée</td>
+																									<td></td>
+																									<td></td>
+                                                                                                </tr>
+                                                                                                <tr id="summary_vol_accessoires">
+																									<td>Vol et accéssoires</td>
+																									<td></td>
+																									<td></td>
+                                                                                                </tr>
+                                                                                                <tr id="summary_van">
+																									<td>Vandalisme</td>
+																									<td></td>
+																									<td></td>
+                                                                                                </tr>
+                                                                                                <tr id="summary_incendie">
+																									<td>Incendie</td>
+																									<td></td>
+																									<td></td>
+                                                                                                </tr>
+                                                                                                <tr id="summary_secu">
+																									<td>Sécurité routière</td>
+																									<td></td>
+																									<td></td>
+                                                                                                </tr>
+                                                                                                <tr id="summary_im">
+																									<td>Immobilisation</td>
+																									<td></td>
+																									<td></td>
+                                                                                                </tr>
+                                                                                                <tr id="summary_total">
+                                                                                                    <td colspan="2" class="info">Total</td>
+                                                                                                    <td></td>
+                                                                                                </tr>
 																							</tbody>
 																						</table>
 																					</div>
