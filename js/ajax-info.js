@@ -102,45 +102,45 @@ $(document).ready(function(){
                 $('#rc').css("display", "block");
                 $('#dr').css("display", "block");
                 $('#ra').css("display", "block");
-                $('#bg').css("display", "none");
-                $('#dommage').css("display", "none");
-                $('#vol_ma').css("display", "none");
-                $('#vol_accessoires').css("display", "none");
-                $('#van').css("display", "none");
-                $('#incendie').css("display", "none");
-                $('#secu').css("display", "none");
-                $('#im').css("display", "none");
-                $('#vehicule_remplacement').css("display", "none");
+                $('#bg, #summary_bg').css("display", "none");
+                $('#dommage, #summary_dommage').css("display", "none");
+                $('#vol_ma, #summary_vol_ma').css("display", "none");
+                $('#vol_accessoires, #summary_vol_accessoires').css("display", "none");
+                $('#van, #summary_van').css("display", "none");
+                $('#incendie, #summary_incendie').css("display", "none");
+                $('#secu, #summary_secu').css("display", "none");
+                $('#im, #summary_im').css("display", "none");
+                $('#vehicule_remplacement, #summary_vehicule_remplacement').css("display", "none");
                 break;
         
             case 't-simple':
                 $('#rc').css("display", "block");
                 $('#dr').css("display", "block");
                 $('#ra').css("display", "block");
-                $('#bg').css("display", "none");
-                $('#dommage').css("display", "none");
-                $('#vol_ma').css("display", "none");
-                $('#vol_accessoires').css("display", "none");
-                $('#van').css("display", "none");
-                $('#incendie').css("display", "none");
+                $('#bg, #summary_bg').css("display", "none");
+                $('#dommage, #summary_dommage').css("display", "none");
+                $('#vol_ma, #summary_vol_ma').css("display", "none");
+                $('#vol_accessoires, #summary_vol_accessoires').css("display", "none");
+                $('#van, #summary_van').css("display", "none");
+                $('#incendie, #summary_incendie').css("display", "none");
                 $('#secu').css("display", "block");
-                $('#im').css("display", "none");
-                $('#vehicule_remplacement').css("display", "none");
+                $('#im, #summary_im').css("display", "none");
+                $('#vehicule_remplacement, #summary_vehicule_remplacement').css("display", "none");
                 break;
 
             case 't-ameliore':
                 $('#rc').css("display", "block");
                 $('#dr').css("display", "block");
                 $('#ra').css("display", "block");
-                $('#bg').css("display", "none");
-                $('#dommage').css("display", "none");
+                $('#bg, #summary_bg').css("display", "none");
+                $('#dommage, #summary_dommage').css("display", "none");
                 $('#vol_ma').css("display", "block");
                 $('#vol_accessoires').css("display", "block");
                 $('#van').css("display", "block");
                 $('#incendie').css("display", "block");
                 $('#secu').css("display", "block");
-                $('#im').css("display", "none");
-                $('#vehicule_remplacement').css("display", "none");
+                $('#im, #summary_im').css("display", "none");
+                $('#vehicule_remplacement, #summary_vehicule_remplacement').css("display", "none");
                 break;
 
             case 't-complet':
@@ -148,14 +148,14 @@ $(document).ready(function(){
                 $('#dr').css("display", "block");
                 $('#ra').css("display", "block");
                 $('#bg').css("display", "block");
-                $('#dommage').css("display", "none");
+                $('#dommage, #summary_dommage').css("display", "none");
                 $('#vol_ma').css("display", "block");
                 $('#vol_accessoires').css("display", "block");
                 $('#van').css("display", "block");
                 $('#incendie').css("display", "block");
                 $('#secu').css("display", "block");
-                $('#im').css("display", "none");
-                $('#vehicule_remplacement').css("display", "none");
+                $('#im, #summary_im').css("display", "none");
+                $('#vehicule_remplacement, #summary_vehicule_remplacement').css("display", "none");
                 break;
 
             case 'tc-complete':
