@@ -1,6 +1,6 @@
 $(document).ready(function(){
     //Statut socio-professionnel
-    $('#statut-pro').change(function () {
+    $('#statut-pro').change(function afficherInfoStatutPro() {
         var spro = $(this).val();
         var type = 'socio-pro';
         $.ajax({
@@ -15,7 +15,7 @@ $(document).ready(function(){
     });
 
     //Catégorie
-    $('#catcar').change(function () {
+    $('#catcar').change(function afficherInfoCategorieVehicule() {
         var catcar = $(this).val();
         var type = 'cat';
         $.ajax({
@@ -30,7 +30,7 @@ $(document).ready(function(){
     });
 
     //Classe du permis de conduire
-    $('#classe-permis').change(function () {
+    $('#classe-permis').change(function afficherInfoClassePermis() {
         var classe = $(this).val();
         var type = 'cls-pc';
         $.ajax({
@@ -102,45 +102,72 @@ $(document).ready(function(){
                 $('#rc').css("display", "block");
                 $('#dr').css("display", "block");
                 $('#ra').css("display", "block");
-                $('#bg, #summary_bg').css("display", "none");
-                $('#dommage, #summary_dommage').css("display", "none");
-                $('#vol_ma, #summary_vol_ma').css("display", "none");
-                $('#vol_accessoires, #summary_vol_accessoires').css("display", "none");
-                $('#van, #summary_van').css("display", "none");
-                $('#incendie, #summary_incendie').css("display", "none");
-                $('#secu, #summary_secu').css("display", "none");
-                $('#im, #summary_im').css("display", "none");
-                $('#vehicule_remplacement, #summary_vehicule_remplacement').css("display", "none");
+                $('#bg').css("display", "none");
+                $('#dommage').css("display", "none");
+                $('#vol_ma').css("display", "none");
+                $('#vol_accessoires').css("display", "none");
+                $('#van').css("display", "none");
+                $('#incendie').css("display", "none");
+                $('#secu').css("display", "none");
+                $('#im').css("display", "none");
+                $('#vehicule_remplacement').css("display", "none");
+                // $('#summary_bg').css("display", "none");
+                // $('#summary_dommage').css("display", "none");
+                // $('#summary_vol_ma').css("display", "none");
+                // $('#summary_vol_accessoires').css("display", "none");
+                // $('#summary_van').css("display", "none");
+                // $('#summary_incendie').css("display", "none");
+                // $('#summary_secu').css("display", "none");
+                // $('#summary_im').css("display", "none");
+                // $('#summary_vehicule_remplacement').css("display", "none");
                 break;
         
             case 't-simple':
                 $('#rc').css("display", "block");
                 $('#dr').css("display", "block");
                 $('#ra').css("display", "block");
-                $('#bg, #summary_bg').css("display", "none");
-                $('#dommage, #summary_dommage').css("display", "none");
-                $('#vol_ma, #summary_vol_ma').css("display", "none");
-                $('#vol_accessoires, #summary_vol_accessoires').css("display", "none");
-                $('#van, #summary_van').css("display", "none");
-                $('#incendie, #summary_incendie').css("display", "none");
+                $('#bg').css("display", "none");
+                $('#dommage').css("display", "none");
+                $('#vol_ma').css("display", "none");
+                $('#vol_accessoires').css("display", "none");
+                $('#van').css("display", "none");
+                $('#incendie').css("display", "none");
                 $('#secu').css("display", "block");
-                $('#im, #summary_im').css("display", "none");
-                $('#vehicule_remplacement, #summary_vehicule_remplacement').css("display", "none");
+                $('#im').css("display", "none");
+                $('#vehicule_remplacement').css("display", "none");
+                // $('#summary_bg').css("display", "none");
+                // $('#summary_dommage').css("display", "none");
+                // $('#summary_vol_ma').css("display", "none");
+                // $('#summary_vol_accessoires').css("display", "none");
+                // $('#summary_van').css("display", "none");
+                // $('#summary_incendie').css("display", "none");
+                // $('#summary_secu').css("display", "true");
+                // $('#summary_im').css("display", "none");
+                // $('#summary_vehicule_remplacement').css("display", "none");
                 break;
 
             case 't-ameliore':
                 $('#rc').css("display", "block");
                 $('#dr').css("display", "block");
                 $('#ra').css("display", "block");
-                $('#bg, #summary_bg').css("display", "none");
-                $('#dommage, #summary_dommage').css("display", "none");
+                $('#bg').css("display", "none");
+                $('#dommage').css("display", "none");
                 $('#vol_ma').css("display", "block");
                 $('#vol_accessoires').css("display", "block");
                 $('#van').css("display", "block");
                 $('#incendie').css("display", "block");
                 $('#secu').css("display", "block");
-                $('#im, #summary_im').css("display", "none");
-                $('#vehicule_remplacement, #summary_vehicule_remplacement').css("display", "none");
+                $('#im').css("display", "none");
+                $('#vehicule_remplacement').css("display", "none");
+                // $('#summary_bg').css("display", "none");
+                // $('#summary_dommage').css("display", "none");
+                // $('#summary_vol_ma').css("display", "true");
+                // $('#summary_vol_accessoires').css("display", "true");
+                // $('#summary_van').css("display", "true");
+                // $('#summary_incendie').css("display", "true");
+                // $('#summary_secu').css("display", "true");
+                // $('#summary_im').css("display", "none");
+                // $('#summary_vehicule_remplacement').css("display", "none");
                 break;
 
             case 't-complet':
@@ -148,14 +175,23 @@ $(document).ready(function(){
                 $('#dr').css("display", "block");
                 $('#ra').css("display", "block");
                 $('#bg').css("display", "block");
-                $('#dommage, #summary_dommage').css("display", "none");
+                $('#dommage').css("display", "none");
                 $('#vol_ma').css("display", "block");
                 $('#vol_accessoires').css("display", "block");
                 $('#van').css("display", "block");
                 $('#incendie').css("display", "block");
                 $('#secu').css("display", "block");
-                $('#im, #summary_im').css("display", "none");
-                $('#vehicule_remplacement, #summary_vehicule_remplacement').css("display", "none");
+                $('#im').css("display", "none");
+                $('#vehicule_remplacement').css("display", "none");
+                // $('#summary_bg').css("display", "true");
+                // $('#summary_dommage').css("display", "none");
+                // $('#summary_vol_ma').css("display", "true");
+                // $('#summary_vol_accessoires').css("display", "true");
+                // $('#summary_van').css("display", "true");
+                // $('#summary_incendie').css("display", "true");
+                // $('#summary_secu').css("display", "true");
+                // $('#summary_im').css("display", "none");
+                // $('#summary_vehicule_remplacement').css("display", "none");
                 break;
 
             case 'tc-complete':
@@ -171,6 +207,15 @@ $(document).ready(function(){
                 $('#secu').css("display", "block");
                 $('#im').css("display", "block");
                 $('#vehicule_remplacement').css("display", "block");
+                // $('#summary_bg').css("display", "true");
+                // $('#summary_dommage').css("display", "true");
+                // $('#summary_vol_ma').css("display", "true");
+                // $('#summary_vol_accessoires').css("display", "true");
+                // $('#summary_van').css("display", "true");
+                // $('#summary_incendie').css("display", "true");
+                // $('#summary_secu').css("display", "true");
+                // $('#summary_im').css("display", "true");
+                // $('#summary_vehicule_remplacement').css("display", "true");
                 break;
 
             case 'tc-collision':
@@ -186,6 +231,16 @@ $(document).ready(function(){
                 $('#secu').css("display", "block");
                 $('#im').css("display", "block");
                 $('#vehicule_remplacement').css("display", "block");
+                $('#vehicule_remplacement').css("display", "block");
+                // $('#summary_bg').css("display", "true");
+                // $('#summary_dommage').css("display", "true");
+                // $('#summary_vol_ma').css("display", "true");
+                // $('#summary_vol_accessoires').css("display", "true");
+                // $('#summary_van').css("display", "true");
+                // $('#summary_incendie').css("display", "true");
+                // $('#summary_secu').css("display", "true");
+                // $('#summary_im').css("display", "true");
+                // $('#summary_vehicule_remplacement').css("display", "true");
                 break;
 
             default:
@@ -268,7 +323,7 @@ $(document).ready(function(){
     });
     
     //Calcul de la prime de garantie DEFENSE ET RECOURS
-    $('#defense').change(function () {
+    $('#defense').change(function calculPrimeDR() {
         if($(this).is(':checked')){
             var defense = $(this).val();
             var type = 'opt_defense_recours';
@@ -304,7 +359,7 @@ $(document).ready(function(){
     }); */
 
     //Calcul de la prime de garantie SECURITE ROUTIERE
-    $('#sec_route').change(function() {
+    $('#sec_route').change(function calculPrimeSR() {
         var sec_route = $(this).val();
         var poltime = $('#poltime').val();
         var type = 'opt_securite_routiere';
@@ -320,7 +375,7 @@ $(document).ready(function(){
     });
 
     //Calcul de la prime de garantie BRIS DE GLACE
-    $('#bris').change(function () {
+    $('#bris').change(function calculPrimeBG() {
         var bris = $('#bris').val();
         var valCat = $('#valCat').val();
         var type = 'opt_bris_glace';
@@ -336,7 +391,7 @@ $(document).ready(function(){
     });
 
     //Calcul de la prime de garantie VOL D'ACCESSOIRES
-    $('#option_vol_acc').change(function () {
+    $('#option_vol_acc').change(function calculPrimeVolAcc() {
         var option_vol_acc = $(this).val();
         var type = 'opt_vol_accessoires';
         $.ajax({
