@@ -292,7 +292,7 @@
                                                                     <!-- Détails de la garantie  -->
                                                                     <div class="flex-container" id="bg" style="display: none">
                                                                         <fieldset>
-                                                                            <legend></legend>
+                                                                            <legend>Bris de glace</legend>
                                                                             <div class="form-group">
                                                                                 <select name="bris" id="bris" class="text-uppercase">
                                                                                     <?php

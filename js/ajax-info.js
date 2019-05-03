@@ -1,3 +1,8 @@
+/*!
+ * Copyright 2019 Boris Assoi
+ * Licensed under DIGITAL PURINE Software license
+ */
+
 $(document).ready(function(){
     //Statut socio-professionnel
     $('#statut-pro').change(function afficherInfoStatutPro() {
@@ -111,15 +116,6 @@ $(document).ready(function(){
                 $('#secu').css("display", "none");
                 $('#im').css("display", "none");
                 $('#vehicule_remplacement').css("display", "none");
-                // $('#summary_bg').css("display", "none");
-                // $('#summary_dommage').css("display", "none");
-                // $('#summary_vol_ma').css("display", "none");
-                // $('#summary_vol_accessoires').css("display", "none");
-                // $('#summary_van').css("display", "none");
-                // $('#summary_incendie').css("display", "none");
-                // $('#summary_secu').css("display", "none");
-                // $('#summary_im').css("display", "none");
-                // $('#summary_vehicule_remplacement').css("display", "none");
                 break;
         
             case 't-simple':
@@ -135,15 +131,6 @@ $(document).ready(function(){
                 $('#secu').css("display", "block");
                 $('#im').css("display", "none");
                 $('#vehicule_remplacement').css("display", "none");
-                // $('#summary_bg').css("display", "none");
-                // $('#summary_dommage').css("display", "none");
-                // $('#summary_vol_ma').css("display", "none");
-                // $('#summary_vol_accessoires').css("display", "none");
-                // $('#summary_van').css("display", "none");
-                // $('#summary_incendie').css("display", "none");
-                // $('#summary_secu').css("display", "true");
-                // $('#summary_im').css("display", "none");
-                // $('#summary_vehicule_remplacement').css("display", "none");
                 break;
 
             case 't-ameliore':
@@ -159,15 +146,6 @@ $(document).ready(function(){
                 $('#secu').css("display", "block");
                 $('#im').css("display", "none");
                 $('#vehicule_remplacement').css("display", "none");
-                // $('#summary_bg').css("display", "none");
-                // $('#summary_dommage').css("display", "none");
-                // $('#summary_vol_ma').css("display", "true");
-                // $('#summary_vol_accessoires').css("display", "true");
-                // $('#summary_van').css("display", "true");
-                // $('#summary_incendie').css("display", "true");
-                // $('#summary_secu').css("display", "true");
-                // $('#summary_im').css("display", "none");
-                // $('#summary_vehicule_remplacement').css("display", "none");
                 break;
 
             case 't-complet':
@@ -183,15 +161,6 @@ $(document).ready(function(){
                 $('#secu').css("display", "block");
                 $('#im').css("display", "none");
                 $('#vehicule_remplacement').css("display", "none");
-                // $('#summary_bg').css("display", "true");
-                // $('#summary_dommage').css("display", "none");
-                // $('#summary_vol_ma').css("display", "true");
-                // $('#summary_vol_accessoires').css("display", "true");
-                // $('#summary_van').css("display", "true");
-                // $('#summary_incendie').css("display", "true");
-                // $('#summary_secu').css("display", "true");
-                // $('#summary_im').css("display", "none");
-                // $('#summary_vehicule_remplacement').css("display", "none");
                 break;
 
             case 'tc-complete':
@@ -206,16 +175,7 @@ $(document).ready(function(){
                 $('#incendie').css("display", "block");
                 $('#secu').css("display", "block");
                 $('#im').css("display", "block");
-                $('#vehicule_remplacement').css("display", "block");
-                // $('#summary_bg').css("display", "true");
-                // $('#summary_dommage').css("display", "true");
-                // $('#summary_vol_ma').css("display", "true");
-                // $('#summary_vol_accessoires').css("display", "true");
-                // $('#summary_van').css("display", "true");
-                // $('#summary_incendie').css("display", "true");
-                // $('#summary_secu').css("display", "true");
-                // $('#summary_im').css("display", "true");
-                // $('#summary_vehicule_remplacement').css("display", "true");
+                $('#vehicule_remplacement').css("display", "none");
                 break;
 
             case 'tc-collision':
@@ -231,16 +191,7 @@ $(document).ready(function(){
                 $('#secu').css("display", "block");
                 $('#im').css("display", "block");
                 $('#vehicule_remplacement').css("display", "block");
-                $('#vehicule_remplacement').css("display", "block");
-                // $('#summary_bg').css("display", "true");
-                // $('#summary_dommage').css("display", "true");
-                // $('#summary_vol_ma').css("display", "true");
-                // $('#summary_vol_accessoires').css("display", "true");
-                // $('#summary_van').css("display", "true");
-                // $('#summary_incendie').css("display", "true");
-                // $('#summary_secu').css("display", "true");
-                // $('#summary_im').css("display", "true");
-                // $('#summary_vehicule_remplacement').css("display", "true");
+                $('#vehicule_remplacement').css("display", "none");
                 break;
 
             default:
@@ -251,14 +202,6 @@ $(document).ready(function(){
     //Calcul des garanties
     inView('#step-5').on('enter', function calculGaranties(){
         var data;
-        var typAtt = $('#typAtt').val();
-        var typeClient = $('#typeClient').val();
-        var nomClient = $('#nomClient').val();
-        var classe_permis = $('#classe-permis').val();
-        var statut_pro = $('#statut-pro').val();
-        var pro = $('#pro').val();
-        var adresse = $('#adresse').val();
-        var contact = $('#contact').val();
         var pol = $('#pol').val();
         var poldf = $('#poldf').val();
         var poltime = $('#poltime').val();
@@ -279,14 +222,6 @@ $(document).ready(function(){
             url: "testPHP.php",
             method: "POST",
             data:{
-                typAtt: typAtt,
-                typeClient: typeClient,
-                nomClient: nomClient,
-                classe_permis: classe_permis,
-                statut_pro: statut_pro,
-                pro: pro,
-                adresse: adresse,
-                contact: contact,
                 pol: pol,
                 poldf: poldf,
                 poltime: poltime,
@@ -307,11 +242,14 @@ $(document).ready(function(){
             dataType : "json",
             success: function(data){
                 //alert("Test OK");
-                $('#prime_rc').html(data.prime_rc);
-                $('#prime_ra').html(data.prime_ra);
-                $('#prime_vol_ma').html(data.prime_vol_ma);
-                $('#prime_van').html(data.prime_van);
-                $('#prime_im').html(data.prime_im);
+                waranties = data;
+                $('#prime_rc').html(waranties.rc.value);
+                $('#prime_ra').html(waranties.ra.value);
+                $('#prime_vol_ma').html(waranties.vol_ma.value);
+                $('#prime_van').html(waranties.van.value);
+                $('#prime_im').html(waranties.im.value);
+
+                console.log(waranties);
             },
             error: function (jqXHR, textStatus) {
                 alert('error : Veuillez vérifier les informations saisies');
@@ -329,34 +267,18 @@ $(document).ready(function(){
             var type = 'opt_defense_recours';
             $.ajax({
                 url: "inc/quotation_options.php",
-                method: "POST",
+                method: "JSON",
                 data: { defense: defense, type: type },
                 dataType: "text",
                 success: function (data) {
-                    $('#prime_dr').html(data);
+                    waranties += data;
+                    $('#prime_dr').html(waranties.dr.value);
                 }
             });
         } else {
             $('#prime_dr').html('<span>7950<span>');
         }
     });
-
-   /*  //Calcul de la prime de garantie DOMMAGES
-    $('#dom').change(function () {
-        var dom = $(this).val();
-        var prime_rc = $('#prime_rc').val();
-        var prime_ra = $('#prime_ra').val();
-        var type = 'opt_dommages';
-        $.ajax({
-            url: "inc/quotation_options.php",
-            method: "POST",
-            data: { dom: dom, prime_rc: prime_rc, prime_ra: prime_ra, type: type },
-            dataType: "text",
-            success: function (data) {
-                $('#prime_dom').html(data);
-            }
-        });
-    }); */
 
     //Calcul de la prime de garantie SECURITE ROUTIERE
     $('#sec_route').change(function calculPrimeSR() {
@@ -366,10 +288,15 @@ $(document).ready(function(){
         $.ajax({
             url: "inc/quotation_options.php",
             method: "POST",
-            data: { sec_route: sec_route, poltime: poltime, type: type },
-            dataType: "text",
+            data: {
+                sec_route: sec_route,
+                poltime: poltime,
+                type: type
+             },
+            dataType: "JSON",
             success: function (data) {
-                $('#prime_sr').html(data);
+                waranties += data;
+                $('#prime_sr').html(waranties.sr.value);
             }
         });
     });
@@ -383,9 +310,11 @@ $(document).ready(function(){
             url: "inc/quotation_options.php",
             method: "POST",
             data: { bris: bris, valCat: valCat, type: type },
-            dataType: "text",
+            dataType: "JSON",
             success: function (data) {
-                $('#prime_bg').html(data);
+                waranties;
+                console.log("log : "+waranties);
+                $('#prime_bg').html(waranties.bg.value);
             }
         });
     });
@@ -398,27 +327,13 @@ $(document).ready(function(){
             url: "inc/quotation_options.php",
             method: "POST",
             data: { option_vol_acc: option_vol_acc, type: type },
-            dataType: "text",
+            dataType: "JSON",
             success: function (data) {
-                $('#prime_vol_acc').html(data);
+                waranties += data;
+                $('#prime_vol_acc').html(waranties.vol_acc.value);
             }
         });
     });
-
-    /* //Calcul de la prime de garantie VEHICULE DE REMPLACEMENT
-    $('#option_veh_rem').change(function () {
-        var option_veh_rem = $(this).val();
-        var type = 'opt_vehicule_remplacement';
-        $.ajax({
-            url: "inc/quotation_options.php",
-            method: "POST",
-            data: { option_veh_rem: option_veh_rem, type: type },
-            dataType: "text",
-            success: function (data) {
-                $('#prime_veh_rem').html(data);
-            }
-        });
-    }); */
 
     /* 
     * Affichage du résumé des ventes

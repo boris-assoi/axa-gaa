@@ -20,31 +20,7 @@
         */
         //Recupération du type d'attestation
         (!empty($_POST['typAtt'])) ? $typAtt = $_POST['typAtt'] : $typAtt = "automobile";        
-
-        /*
-        * INFORMATIONS SUR LE CLIENT
-        */
-        //Recupération du type de client
-        (!empty($_POST['typeClient'])) ? $typeClient = $_POST['typeClient'] : $typeClient = "";
-        
-        //Recupération du nom du client
-        (!empty($_POST['nomClient'])) ? $nomClient = $_POST['nomClient'] : $nomClient = "Assoi";
-
-        //Recupération de la classe d'ancienneté du permis de conduire du client
-        (!empty($_POST['classe_permis'])) ? $classe_permis = $_POST['classe_permis'] : $classe_permis = "classe 1";
-
-        //Recupération du statut socio-professionnel du client
-        (!empty($_POST['statut_pro'])) ? $statut_pro = $_POST['statut_pro'] : $statut_pro = "a";
-
-        //Recupération de la profession du client
-        (!empty($_POST['pro'])) ? $pro = $_POST['pro'] : $pro = "Developpeur";
-
-        //Recupération de l'adresse du client
-        (!empty($_POST['adresse'])) ? $adresse = $_POST['adresse'] : $adresse = "Abidjan";
-
-        //Recupération du contact du client
-        (!empty($_POST['contact'])) ? $contact = $_POST['contact'] : $contact = "08080808";
-
+    
         /*
         * INFORMATIONS SUR LA POLICE
         */
@@ -61,26 +37,11 @@
 		//$poldt->add(new DateInterval('PT1'));
         (!empty($_POST['poltime'])) ? $poltime = DateInterval::createFromDateString($_POST['poltime']. 'days')  : $poltime = ($poldf->diff($poldt));
         
-        //Valeur de retour test
-        $data['poltime'] = $poltime;
-        $data['poldt'] = $poldt;
-        $data['poldf'] = $poldf;
-
-
         /*
         * INFORMATIONS SUR LE VEHICULE
         */
         //Recupération de la catégorie du véhicule
         (!empty($_POST['catCar'])) ? $catCar = $_POST['catCar'] : $catCar = "1";
-
-        //Recupération du genre
-        (!empty($_POST['carGenre'])) ? $carGenre = $_POST['carGenre'] : $carGenre = "BERLINE";
-
-        //Recupération de la marque
-        (!empty($_POST['carMake'])) ? $carMake = $_POST['carMake'] : $carMake = "MERCEDES";
-
-        //Recupération du numéro d'immatriculation
-        (!empty($_POST['imat'])) ? $imat = $_POST['imat'] : $imat = "2121OZ01";
 
         //Recupération de la date de mise en circulation
         (!empty($_POST['dateCirc'])) ? $dateCirc = $_POST['dateCirc'] : $dateCirc = "01/01/2015";
@@ -164,11 +125,6 @@
             }
         }
 
-        $data['pfValue'] = $pfValue;
-        $data['pf'] = $pf;
-        $data['pfLib'] = $pfLib;
-        $data['nomClient'] = $nomClient;
-
 		$request = "SELECT zone1 AS prime FROM prime_rc_cat1, ".$pf_table." WHERE es = ".$pf_table.".id AND ".$pf_table.".lib = ?";
         $req = $bdd->prepare($request);
         $req->execute(array($pfLib));
@@ -196,13 +152,11 @@
         }
 
         $prime_rc = ceil(($prime + ($prime * $prime_annexe / 100)) / 365 * $poltime->d);
-        $data['prime'] = $prime;
-        $data['prime_annexe'] = $prime_annexe;
 
-		$data['prime_rc'] = $prime_rc;
+        $data['rc']['name'] = "Responsabilité Civile";
+        $data['rc']['value'] = $prime_rc;
+        $data['rc']['option'] = "";
 		
-		// echo "Prime RC : ".$data['prime_rc']."<br>";
-
         /*
         * FIN DE CALCUL DE LA GARANTIE DE LA RESPONSABILITE CIVILE
         */
@@ -219,8 +173,10 @@
 		}
 		$req->closeCursor();
 
-        $data['prime_dr'] = $prime_dr;
-		// echo "Prime DR : ".$data['prime_dr']."<br>";
+        $data['dr']['name'] = "Défense et recours";
+        $data['dr']['value'] = $prime_dr;
+        $data['dr']['option'] = "";
+        
         /*
         * FIN DE CALCUL DE LA GARANTIE DEFENSE ET RECOURS
         */
@@ -244,8 +200,10 @@
 		}
 		$req->closeCursor();
 
-        $data['prime_ra'] = $prime_ra;
-		// echo "Prime RA : ".$data['prime_ra']."<br>";
+        $data['ra']['name'] = "Remboursement anticipé";
+        $data['ra']['value'] = $prime_ra;
+        $data['ra']['option'] = "";
+        
         /*
         * FIN DE CALCUL DE LA GARANTIE REMBOURSEMENT ANTICIPE
         */
@@ -264,8 +222,10 @@
 
 		$prime_sr = ceil($prime_sr * $poltime->d / 365);
 
-        $data['prime_sr'] = $prime_sr;
-		// echo "Prime SR : ".$data['prime_sr']."<br>";
+        $data['sr']['name'] = "Sécurité routière";
+        $data['sr']['value'] = $prime_sr;
+        $data['sr']['option'] = "";
+        
         /*
         * FIN DE CALCUL DE LA GARANTIE SECURITE ROUTIERE
         */
@@ -287,8 +247,10 @@
 		}
 		$req->closeCursor();
 
-         $data['prime_bg'] = $prime_bg;
-		// echo "Prime BG : ".$data['prime_bg']."<br>";
+        $data['bg']['name'] = "Bris de glace";
+        $data['bg']['value'] = $prime_bg;
+        $data['bg']['option'] = "";
+        
         /*
         * FIN DE CALCUL DE LA GARANTIE BRIS DE GLACE
         */
@@ -305,8 +267,10 @@
 		}
 		$req->closeCursor();
 
-        $data['prime_dom'] = $prime_dom;
-		// echo "Prime DOM : ".$data['prime_dom']."<br>";
+        $data['dom']['name'] = "Dommages";
+        $data['dom']['value'] = $prime_dom;
+        $data['dom']['option'] = "";
+        
         /*
         * FIN DE CALCUL DE LA GARANTIE DOMMAGES
         */
@@ -325,10 +289,10 @@
         }
         $req->closeCursor();
 
-		$data['prime_vol_ma'] = ceil($prime_vol_ma);
-		
-		// echo "Prime VOL MA : ".$data['prime_vol_ma']."<br>";
-
+        $data['vol_ma']['name'] = "Vol à main armée";
+        $data['vol_ma']['value'] = $prime_vol_ma;
+        $data['vol_ma']['option'] = "";
+        
         /* 
         * FIN DE CALCUL DE LA GARANTIE VOL A MAIN ARMEE
         */
@@ -344,8 +308,10 @@
         }
         $req->closeCursor();        
 
-        $data['prime_van'] = $prime_van;
-		// echo "Prime VAN : ".$data['prime_van']."<br>";
+        $data['van']['name'] = "Vandalisme";
+        $data['van']['value'] = $prime_van;
+        $data['van']['option'] = "";
+        
         /*
         * FIN DE CALCUL DE LA GARANTIE VANDALISME
         */
@@ -364,8 +330,10 @@
         }
         $req->closeCursor();
 
-        $data['prime_inc'] = $prime_inc;
-		// echo "Prime INC : ".$data['prime_inc']."<br>";
+        $data['inc']['name'] = "Incendie";
+        $data['inc']['value'] = $prime_inc;
+        $data['inc']['option'] = "";
+        
         /* 
         * FIN DU CALCUL DE LA GARANTIE INCENDIE
         */
@@ -387,12 +355,14 @@
 		$req->execute(array($type_contrat));
 		while ($ok = $req->fetch()) {
 			$prime_im += $ok['prime'];
-		}
-		// echo $poltime->days;
+        }
+        
 		$req->closeCursor();
 
-        $data['prime_im'] = $prime_im;
-		// echo "Prime IM : ".$data['prime_im']."<br>";
+        $data['im']['name'] = "Immobilisation";
+        $data['im']['value'] = $prime_im;
+        $data['im']['option'] = "";
+        
         /*
         * FIN DE CALCUL DE LA GARANTIE IMMOBILISATION
         */
