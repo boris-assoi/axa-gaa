@@ -98,7 +98,7 @@ $(document).ready(function(){
     });
 
     //Variable contenant les garanties sélectionnées
-    var waranties = [];
+    let waranties = {};
 
     //Affichage des champs selon les formules
     $('input[name=formule]').click(function afficherGaranties(){
@@ -271,7 +271,7 @@ $(document).ready(function(){
                 data: { defense: defense, type: type },
                 dataType: "text",
                 success: function (data) {
-                    waranties += data;
+                    //warantie.push(data);
                     $('#prime_dr').html(waranties.dr.value);
                 }
             });
@@ -295,7 +295,9 @@ $(document).ready(function(){
              },
             dataType: "JSON",
             success: function (data) {
-                waranties += data;
+                waranties = JSON.stringify(waranties);
+                waranties.concat(data);
+                alert(waranties);
                 $('#prime_sr').html(waranties.sr.value);
             }
         });
@@ -312,8 +314,8 @@ $(document).ready(function(){
             data: { bris: bris, valCat: valCat, type: type },
             dataType: "JSON",
             success: function (data) {
-                waranties;
-                console.log("log : "+waranties);
+                waranties.concat(data);
+                console.log(waranties);
                 $('#prime_bg').html(waranties.bg.value);
             }
         });

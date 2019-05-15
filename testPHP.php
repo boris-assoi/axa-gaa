@@ -18,13 +18,22 @@
         /* 
         * INFORMATIONS SUR L'ATTESTATION
         */
-        //Recupération du type d'attestation
-        (!empty($_POST['typAtt'])) ? $typAtt = $_POST['typAtt'] : $typAtt = "automobile";        
-    
+        //Récupération du type d'attestation
+        (!empty($_POST['typAtt'])) ? $typAtt = $_POST['typAtt'] : $typAtt = "automobile";   
+        
+        /* 
+        * INFORMATIONS SUR LE PERMIS
+        */
+        //Récupération de la classe d'ancienneté
+        (!empty($_POST['classe_permis'])) ? $classe_permis = $_POST['classe_permis'] : $classe_permis = "CLASSE 1";  
+
+        //Récupération du statut socio-professionnel
+        (!empty($_POST['statut_pro'])) ? $statut_pro = $_POST['statut_pro'] : $statut_pro = "16251626AZ";
+
         /*
         * INFORMATIONS SUR LA POLICE
         */
-        //Recupération du numéro de police
+        //Récupération du numéro de police
         (!empty($_POST['pol'])) ? $pol = $_POST['pol'] : $pol = "16251626AZ";
 
         //Récupération de la date de début d'effet

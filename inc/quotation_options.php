@@ -58,6 +58,9 @@
         * CALCUL DES MONTANTS DE GARANTIES
         */
 
+        //Variable à retourner
+        $data = "";
+
         switch ($type_garantie) {
             case 'opt_defense_recours':
                 /*
