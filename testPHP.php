@@ -14,7 +14,6 @@
         include_once "inc/connection.php";
         include_once "inc/models.php"; 
 
-
         /* 
         * INFORMATIONS SUR L'ATTESTATION
         */

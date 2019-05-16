@@ -3,7 +3,7 @@
  * Licensed under DIGITAL PURINE Software license
  */
 
-$(document).ready(function(){
+$(document).ready(function () {
     //Statut socio-professionnel
     $('#statut-pro').change(function afficherInfoStatutPro() {
         var spro = $(this).val();
@@ -100,98 +100,57 @@ $(document).ready(function(){
     //Variable contenant les garanties sélectionnées
     let waranties = {};
 
+    //Tableaux de garanties par formule
+    var f_all = ['rc', 'dr', 'ra', 'secu', 'vol_ma', 'vol_accessoires', 'van', 'incendie', 'bg', 'im', 'dommage'];
+    var f_t_base = ['rc', 'dr', 'ra'];
+    var f_t_simple = ['rc', 'dr', 'ra', 'secu'];
+    var f_t_ameliore = ['rc', 'dr', 'ra', 'secu', 'vol_ma', 'vol_accessoires', 'van', 'incendie'];
+    var f_t_complet = ['rc', 'dr', 'ra', 'secu', 'vol_ma', 'vol_accessoires', 'van', 'incendie', 'bg'];
+    var f_tc_complete = ['rc', 'dr', 'ra', 'secu', 'vol_ma', 'vol_accessoires', 'van', 'incendie', 'bg', 'im', 'dommage'];
+    var f_tc_collision = ['rc', 'dr', 'ra', 'secu', 'vol_ma', 'vol_accessoires', 'van', 'incendie', 'bg', 'im', 'dommage'];
+
     //Affichage des champs selon les formules
-    $('input[name=formule]').click(function afficherGaranties(){
+    $('input[name=formule]').click(function afficherGaranties() {
+        //Initialisation des formules
+        for (let index = 0; index < f_all.length; index++) {
+            $('#' + f_all[index]).css("display", "none");
+        }
+
         switch ($(this).val()) {
             case 't-base':
-                $('#rc').css("display", "block");
-                $('#dr').css("display", "block");
-                $('#ra').css("display", "block");
-                $('#bg').css("display", "none");
-                $('#dommage').css("display", "none");
-                $('#vol_ma').css("display", "none");
-                $('#vol_accessoires').css("display", "none");
-                $('#van').css("display", "none");
-                $('#incendie').css("display", "none");
-                $('#secu').css("display", "none");
-                $('#im').css("display", "none");
-                $('#vehicule_remplacement').css("display", "none");
+                for (let index = 0; index < f_t_base.length; index++) {
+                    $('#' + f_t_base[index]).css("display", "block");
+                }
                 break;
-        
+
             case 't-simple':
-                $('#rc').css("display", "block");
-                $('#dr').css("display", "block");
-                $('#ra').css("display", "block");
-                $('#bg').css("display", "none");
-                $('#dommage').css("display", "none");
-                $('#vol_ma').css("display", "none");
-                $('#vol_accessoires').css("display", "none");
-                $('#van').css("display", "none");
-                $('#incendie').css("display", "none");
-                $('#secu').css("display", "block");
-                $('#im').css("display", "none");
-                $('#vehicule_remplacement').css("display", "none");
+                for (let index = 0; index < f_t_simple.length; index++) {
+                    $('#' + f_t_simple[index]).css("display", "block");
+                }
                 break;
 
             case 't-ameliore':
-                $('#rc').css("display", "block");
-                $('#dr').css("display", "block");
-                $('#ra').css("display", "block");
-                $('#bg').css("display", "none");
-                $('#dommage').css("display", "none");
-                $('#vol_ma').css("display", "block");
-                $('#vol_accessoires').css("display", "block");
-                $('#van').css("display", "block");
-                $('#incendie').css("display", "block");
-                $('#secu').css("display", "block");
-                $('#im').css("display", "none");
-                $('#vehicule_remplacement').css("display", "none");
+                for (let index = 0; index < f_t_ameliore.length; index++) {
+                    $('#' + f_t_ameliore[index]).css("display", "block");
+                }
                 break;
 
             case 't-complet':
-                $('#rc').css("display", "block");
-                $('#dr').css("display", "block");
-                $('#ra').css("display", "block");
-                $('#bg').css("display", "block");
-                $('#dommage').css("display", "none");
-                $('#vol_ma').css("display", "block");
-                $('#vol_accessoires').css("display", "block");
-                $('#van').css("display", "block");
-                $('#incendie').css("display", "block");
-                $('#secu').css("display", "block");
-                $('#im').css("display", "none");
-                $('#vehicule_remplacement').css("display", "none");
+                for (let index = 0; index < f_t_complet.length; index++) {
+                    $('#' + f_t_complet[index]).css("display", "block");
+                }
                 break;
 
             case 'tc-complete':
-                $('#rc').css("display", "block");
-                $('#dr').css("display", "block");
-                $('#ra').css("display", "block");
-                $('#bg').css("display", "block");
-                $('#dommage').css("display", "block");
-                $('#vol_ma').css("display", "block");
-                $('#vol_accessoires').css("display", "block");
-                $('#van').css("display", "block");
-                $('#incendie').css("display", "block");
-                $('#secu').css("display", "block");
-                $('#im').css("display", "block");
-                $('#vehicule_remplacement').css("display", "none");
+                for (let index = 0; index < f_tc_complete.length; index++) {
+                    $('#' + f_tc_complete[index]).css("display", "block");
+                }
                 break;
 
             case 'tc-collision':
-                $('#rc').css("display", "block");
-                $('#dr').css("display", "block");
-                $('#ra').css("display", "block");
-                $('#bg').css("display", "block");
-                $('#dommage').css("display", "block");
-                $('#vol_ma').css("display", "block");
-                $('#vol_accessoires').css("display", "block");
-                $('#van').css("display", "block");
-                $('#incendie').css("display", "block");
-                $('#secu').css("display", "block");
-                $('#im').css("display", "block");
-                $('#vehicule_remplacement').css("display", "block");
-                $('#vehicule_remplacement').css("display", "none");
+                for (let index = 0; index < f_tc_collision.length; index++) {
+                    $('#' + f_tc_collision[index]).css("display", "block");
+                }
                 break;
 
             default:
@@ -200,7 +159,7 @@ $(document).ready(function(){
     })
 
     //Calcul des garanties
-    inView('#step-5').on('enter', function calculGaranties(){
+    inView('#step-5').on('enter', function calculGaranties() {
         var data;
         var pol = $('#pol').val();
         var poldf = $('#poldf').val();
@@ -221,7 +180,7 @@ $(document).ready(function(){
         $.ajax({
             url: "testPHP.php",
             method: "POST",
-            data:{
+            data: {
                 pol: pol,
                 poldf: poldf,
                 poltime: poltime,
@@ -239,8 +198,8 @@ $(document).ready(function(){
                 rem: rem,
                 formule: formule
             },
-            dataType : "json",
-            success: function(data){
+            dataType: "json",
+            success: function (data) {
                 //alert("Test OK");
                 waranties = data;
                 $('#prime_rc').html(waranties.rc.value);
@@ -259,10 +218,10 @@ $(document).ready(function(){
         return data;
         ;
     });
-    
+
     //Calcul de la prime de garantie DEFENSE ET RECOURS
     $('#defense').change(function calculPrimeDR() {
-        if($(this).is(':checked')){
+        if ($(this).is(':checked')) {
             var defense = $(this).val();
             var type = 'opt_defense_recours';
             $.ajax({
@@ -292,7 +251,7 @@ $(document).ready(function(){
                 sec_route: sec_route,
                 poltime: poltime,
                 type: type
-             },
+            },
             dataType: "JSON",
             success: function (data) {
                 waranties = JSON.stringify(waranties);
@@ -341,6 +300,9 @@ $(document).ready(function(){
     * Affichage du résumé des ventes
     */
     inView('#step-6').on('enter', function displaySummary() {
+        //Initialisation du tableau des garanties
+        $('#summary_waranties').empty();
+
         var typAtt = $('#typAtt').val();
         var typeClient = $('#typeClient').val();
         var nomClient = $('#nomClient').val();
@@ -388,10 +350,65 @@ $(document).ready(function(){
         $('#sum_police_num').html(pol);
         $('#sum_police_start').html(poldf);
         $('#sum_police_end').html(poldt);
-        $('#sum_police_duration').html(poltime+" Jours");
+        $('#sum_police_duration').html(poltime + " Jours");
 
-        //Garantie
+        //Formule
         $('#sum_formula').html(formule);
+
+        //Tableau des garanties
+
+        switch (formule) {
+            case 't-base':
+                for (let index = 0; index < f_t_base.length; index++) {
+                    $('#summary_waranties').append(
+                        '<tr id="summary_' + f_t_base[index] + '"><td>' + waranties['' + f_t_base[index] + ''][name] + '</td><td>' + waranties.rc.option + '</td><td>' + waranties.rc.value + '</td></tr >'
+                    );
+                }
+                break;
+
+            case 't-simple':
+                for (let index = 0; index < f_t_simple.length; index++) {
+                    $('#summary_waranties').append(
+                        '<tr id="summary_' + f_t_simple[index] + '"><td>' + waranties[f_t_base[index]][name] + '</td><td>' + waranties.rc.option + '</td><td>' + waranties.rc.value + '</td></tr >'
+                    );
+                }
+                break;
+
+            case 't-ameliore':
+                for (let index = 0; index < f_t_ameliore.length; index++) {
+                    $('#summary_waranties').append(
+                        '<tr id="summary_' + f_t_ameliore[index] + '"><td>' + waranties[f_t_base[index]][name] + '</td><td>' + waranties.rc.option + '</td><td>' + waranties.rc.value + '</td></tr >'
+                    );
+                }
+                break;
+
+            case 't-complet':
+                for (let index = 0; index < f_t_complet.length; index++) {
+                    $('#summary_waranties').append(
+                        '<tr id="summary_' + f_t_complet[index] + '"><td>' + waranties[f_t_base[index]][name] + '</td><td>' + waranties.rc.option + '</td><td>' + waranties.rc.value + '</td></tr >'
+                    );
+                }
+                break;
+
+            case 'tc-complete':
+                for (let index = 0; index < f_tc_complete.length; index++) {
+                    $('#summary_waranties').append(
+                        '<tr id="summary_' + f_tc_complete[index] + '"><td>' + waranties[f_t_base[index]][name] + '</td><td>' + waranties.rc.option + '</td><td>' + waranties.rc.value + '</td></tr >'
+                    );
+                }
+                break;
+
+            case 'tc-collision':
+                for (let index = 0; index < f_tc_collision.length; index++) {
+                    $('#summary_waranties').append(
+                        '<tr id="summary_' + f_tc_collision[index] + '"><td>' + waranties[f_t_base[index]][name] + '</td><td>' + waranties.rc.option + '</td><td>' + waranties.rc.value + '</td></tr >'
+                    );
+                }
+                break;
+
+            default:
+                break;
+        }
     });
 
 });

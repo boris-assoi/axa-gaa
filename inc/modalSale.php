@@ -499,62 +499,7 @@
 																									<th>Prime</th>
 																								</tr>
 																							</thead>
-																							<tbody>
-																								<tr id="summary_rc">
-																									<td>Responsabilité civile</td>
-																									<td></td>
-																									<td></td>
-																								</tr>
-                                                                                                <tr id="summary_dr">
-																									<td>Défence et recours</td>
-																									<td></td>
-																									<td></td>
-                                                                                                </tr>
-                                                                                                <tr id="summary_ra">
-																									<td>Remboursement anticipé</td>
-																									<td></td>
-																									<td></td>
-                                                                                                </tr>
-                                                                                                <tr id="summary_bg">
-																									<td>Bris de glace</td>
-																									<td></td>
-																									<td></td>
-                                                                                                </tr>
-                                                                                                <tr id="summary_dommage">
-																									<td>Dommages</td>
-																									<td></td>
-																									<td></td>
-                                                                                                </tr>
-                                                                                                <tr id="summary_vol_ma">
-																									<td>Vol à main armée</td>
-																									<td></td>
-																									<td></td>
-                                                                                                </tr>
-                                                                                                <tr id="summary_vol_accessoires">
-																									<td>Vol et accéssoires</td>
-																									<td></td>
-																									<td></td>
-                                                                                                </tr>
-                                                                                                <tr id="summary_van">
-																									<td>Vandalisme</td>
-																									<td></td>
-																									<td></td>
-                                                                                                </tr>
-                                                                                                <tr id="summary_incendie">
-																									<td>Incendie</td>
-																									<td></td>
-																									<td></td>
-                                                                                                </tr>
-                                                                                                <tr id="summary_secu">
-																									<td>Sécurité routière</td>
-																									<td></td>
-																									<td></td>
-                                                                                                </tr>
-                                                                                                <tr id="summary_im">
-																									<td>Immobilisation</td>
-																									<td></td>
-																									<td></td>
-                                                                                                </tr>
+																							<tbody id="summary_waranties">
                                                                                                 <tr id="summary_total">
                                                                                                     <td colspan="2" class="info">Total</td>
                                                                                                     <td></td>
