@@ -116,6 +116,7 @@ $(document).ready(function () {
             $('#' + f_all[index]).css("display", "none");
         }
 
+        //Affichage
         switch ($(this).val()) {
             case 't-base':
                 for (let index = 0; index < f_t_base.length; index++) {
@@ -212,7 +213,7 @@ $(document).ready(function () {
             },
             error: function (jqXHR, textStatus) {
                 alert('error : Veuillez vérifier les informations saisies');
-                console.log(jqXHR); //affichage dans la console du navigateur              
+                console.log(jqXHR); //affichage dans la console du navigateur
             }
         })
         return data;
@@ -230,7 +231,7 @@ $(document).ready(function () {
                 data: { defense: defense, type: type },
                 dataType: "text",
                 success: function (data) {
-                    //warantie.push(data);
+                    waranties = Object.assign(waranties, data);
                     $('#prime_dr').html(waranties.dr.value);
                 }
             });
@@ -254,10 +255,9 @@ $(document).ready(function () {
             },
             dataType: "JSON",
             success: function (data) {
-                waranties = JSON.stringify(waranties);
-                waranties.concat(data);
-                alert(waranties);
+                waranties = Object.assign(waranties, data);
                 $('#prime_sr').html(waranties.sr.value);
+                console.log(waranties.sr);
             }
         });
     });
@@ -273,8 +273,7 @@ $(document).ready(function () {
             data: { bris: bris, valCat: valCat, type: type },
             dataType: "JSON",
             success: function (data) {
-                waranties.concat(data);
-                console.log(waranties);
+                waranties = Object.assign(waranties, data);
                 $('#prime_bg').html(waranties.bg.value);
             }
         });
@@ -290,7 +289,7 @@ $(document).ready(function () {
             data: { option_vol_acc: option_vol_acc, type: type },
             dataType: "JSON",
             success: function (data) {
-                waranties += data;
+                waranties = Object.assign(waranties, data);
                 $('#prime_vol_acc').html(waranties.vol_acc.value);
             }
         });
@@ -361,7 +360,7 @@ $(document).ready(function () {
             case 't-base':
                 for (let index = 0; index < f_t_base.length; index++) {
                     $('#summary_waranties').append(
-                        '<tr id="summary_' + f_t_base[index] + '"><td>' + waranties['' + f_t_base[index] + ''][name] + '</td><td>' + waranties.rc.option + '</td><td>' + waranties.rc.value + '</td></tr >'
+                        '<tr id="summary_' + f_t_base[index] + '"><td>' + waranties[f_t_base[index]][name] + '</td><td>' + waranties.rc.option + '</td><td>' + waranties.rc.value + '</td></tr >'
                     );
                 }
                 break;
@@ -409,6 +408,11 @@ $(document).ready(function () {
             default:
                 break;
         }
+
+        //Ajout de la ligne du total
+        $('#summary_waranties').append(
+            '<tr id="summary_total"><td colspan="2" class="info">Total</td><td>' + waranties.rc.value + '</td></tr >'
+        );
     });
 
 });

@@ -312,29 +312,6 @@
                                                                             </div>
                                                                         </fieldset>
                                                                     </div>
-                                                                    <!-- Détails de la garantie DOMMAGES -->
-                                                                    <!-- <div class="flex-container" id="dommage" style="display: none">
-                                                                        <fieldset>
-                                                                            <legend>Dommages</legend>
-                                                                            <div class="form-group">
-                                                                                <select name="dom" id="dom" class="text-uppercase">
-                                                                                    <?php
-                                                                                        /* $request='SELECT id, lib FROM type_g_dom';
-                                                                                        $req = $bdd->query($request);
-                                                                                        while ($ok = $req->fetch())
-                                                                                        {
-                                                                                            echo "<option class=\"\" value=\"".htmlspecialchars($ok['id'])."\">".htmlspecialchars($ok['lib'])."</option>";    
-                                                                                        }
-                                                                                        $req->closeCursor();    */                     
-                                                                                    ?> 
-                                                                                </select>
-                                                                                <label class="text-input">Options de la garantie</label>
-                                                                            </div>
-                                                                            <div class="form-group">
-                                                                                <label class="text-input">Prime : <span class="primePrint" id="prime_dom"></span></label>
-                                                                            </div>
-                                                                        </fieldset>
-                                                                    </div> -->
                                                                     <!-- Détails de la garantie VOL ET VOL A MAIN ARMEE -->
                                                                     <div class="flex-container" id="vol_ma" style="display: none">
                                                                         <fieldset>

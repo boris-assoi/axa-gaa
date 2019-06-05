@@ -246,7 +246,7 @@
         /*
         * CALCUL DE LA GARANTIE BRIS DE GLACE : prime_bg
         */
-        $prime_bg = '';
+       /*  $prime_bg = '';
         //Récupération du paramètre dans le formulaire
         $req = $bdd->prepare("SELECT prime FROM g_bri_gla, option_g_bri_gla WHERE `g_bri_gla`.`option` = `option_g_bri_gla`.`id` AND `option_g_bri_gla`.`lib` = LOWER(?)");
 		$req->execute(array($bris));
@@ -257,7 +257,7 @@
 
         $data['bg']['name'] = "Bris de glace";
         $data['bg']['value'] = $prime_bg;
-        $data['bg']['option'] = "";
+        $data['bg']['option'] = ""; */
         
         /*
         * FIN DE CALCUL DE LA GARANTIE BRIS DE GLACE
@@ -266,7 +266,7 @@
         /*
         * CALCUL DE LA GARANTIE DOMMAGES : prime_dom
         */
-        $prime_dom = '';
+        /* $prime_dom = '';
         //Récupération du paramètre dans le formulaire
         $req = $bdd->prepare("SELECT prime FROM g_dom WHERE g_dom.type = ?");
 		$req->execute(array($dom));
@@ -277,7 +277,7 @@
 
         $data['dom']['name'] = "Dommages";
         $data['dom']['value'] = $prime_dom;
-        $data['dom']['option'] = "";
+        $data['dom']['option'] = ""; */
         
         /*
         * FIN DE CALCUL DE LA GARANTIE DOMMAGES
