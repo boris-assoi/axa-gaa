@@ -1,6 +1,6 @@
 /*!
- * Copyright 2019 Boris Assoi
- * Licensed under DIGITAL PURINE Software license
+ * Copyright 2019 PURINE CONSULTING
+ * Licensed under PURINE CONSULTING Software license
  */
 
 $(document).ready(function () {
@@ -98,7 +98,7 @@ $(document).ready(function () {
     });
 
     //Variable contenant les garanties sélectionnées
-    let waranties = {};
+    let waranties = [];
 
     //Tableaux de garanties par formule
     var f_all = ['rc', 'dr', 'ra', 'secu', 'vol_ma', 'vol_accessoires', 'van', 'incendie', 'bg', 'im', 'dommage'];
@@ -116,42 +116,41 @@ $(document).ready(function () {
             $('#' + f_all[index]).css("display", "none");
         }
 
+        //Fonction d'affichage des champs
+        /* 
+        *@param {Array} formula le tableau comprenant la liste des garanties pour cette formule
+        */
+        function showFormula(formula) {
+            for (let index = 0; index < formula.length; index++) {
+                $('#' + formula[index]).css("display", "block");
+
+            }
+        }
+
         //Affichage
         switch ($(this).val()) {
             case 't-base':
-                for (let index = 0; index < f_t_base.length; index++) {
-                    $('#' + f_t_base[index]).css("display", "block");
-                }
+                showFormula(f_t_base);
                 break;
 
             case 't-simple':
-                for (let index = 0; index < f_t_simple.length; index++) {
-                    $('#' + f_t_simple[index]).css("display", "block");
-                }
+                showFormula(f_t_simple);
                 break;
 
             case 't-ameliore':
-                for (let index = 0; index < f_t_ameliore.length; index++) {
-                    $('#' + f_t_ameliore[index]).css("display", "block");
-                }
+                showFormula(f_t_ameliore);
                 break;
 
             case 't-complet':
-                for (let index = 0; index < f_t_complet.length; index++) {
-                    $('#' + f_t_complet[index]).css("display", "block");
-                }
+                showFormula(f_t_complet);
                 break;
 
             case 'tc-complete':
-                for (let index = 0; index < f_tc_complete.length; index++) {
-                    $('#' + f_tc_complete[index]).css("display", "block");
-                }
+                showFormula(f_tc_complete);
                 break;
 
             case 'tc-collision':
-                for (let index = 0; index < f_tc_collision.length; index++) {
-                    $('#' + f_tc_collision[index]).css("display", "block");
-                }
+                showFormula(f_tc_collision);
                 break;
 
             default:
@@ -201,7 +200,6 @@ $(document).ready(function () {
             },
             dataType: "json",
             success: function (data) {
-                //alert("Test OK");
                 waranties = data;
                 $('#prime_rc').html(waranties.rc.value);
                 $('#prime_ra').html(waranties.ra.value);
@@ -257,7 +255,6 @@ $(document).ready(function () {
             success: function (data) {
                 waranties = Object.assign(waranties, data);
                 $('#prime_sr').html(waranties.sr.value);
-                console.log(waranties.sr);
             }
         });
     });
@@ -354,55 +351,85 @@ $(document).ready(function () {
         //Formule
         $('#sum_formula').html(formule);
 
-        //Tableau des garanties
+        /**
+        * Fonction d'affichage des résumés de garanties
+        * @param    {JSON}  warants    Tableau des résultats de calculs des garanties
+        * @param    {Array} formula    Tableau de garanties dans une formule
+        */
+        function showWarantiesResults(warants, formula) {
+            let warantieFiltered = JSON.stringify(warants, formula);
+            let warantiesParsed = JSON.parse(warantieFiltered);
+            console.log(warantiesParsed.length);
+            for (let index = 0; index < formula.length; index++) {
+                $('#summary_waranties').append(
+                    '<tr id="summary_' + formula[index] + '"><td>' + "OPTION" + '</td><td>' + + '</td><td>' + + '</td></tr >'
+                );
+            }
+        }
 
+        /** 
+        * Fonction réalisant le filtre du tableau des résultats de garantie et les affichant
+        * @param    {JSON}  warants    Tableau des résultats de calculs des garanties
+        * @param    {Array} formula    Tableau de garanties dans une formule
+        */
+        function resultatFormule(warants, formula) {
+            var warantieFiltered = [];
+            for (let index = 0; index < warants.length; index++) {
+                var obj = warants;
+                //Tri avec le tableau des formules
+                for (let index = 0; index < formula.length; index++) {
+                    warantieFiltered.push(obj);
+                }
+            }
+            console.log(warantieFiltered);
+            for (let index = 0; index < formula.length; index++) {
+                $('#summary_waranties').append(
+                    '<tr id="summary_' + formula[index] + '"><td>' + "OPTION" + '</td><td>' + + '</td><td>' + + '</td></tr >'
+                );
+            }
+        }
+
+        /**
+        * Fonction réalisant le filtre du tableau des résultats de garantie et les affichant
+        * @param    {JSON}  warants    Tableau des résultats de calculs des garanties
+        * @param    {Array} formula    Tableau de garanties dans une formule
+        */
+       function resultat(warants, formula){
+            var warantieFiltered = jQuery.grep(warants, function(n,i){
+                return n == formula[i];
+            });
+            console.log(warantieFiltered);
+            for (let index = 0; index < formula.length; index++) {
+                $('#summary_waranties').append(
+                    '<tr id="summary_' + warantieFiltered + '"><td>' + "OPTION" + '</td><td>' + + '</td><td>' + + '</td></tr >'
+                );
+            }
+       }
+
+        //Tableau des garanties
         switch (formule) {
             case 't-base':
-                for (let index = 0; index < f_t_base.length; index++) {
-                    $('#summary_waranties').append(
-                        '<tr id="summary_' + f_t_base[index] + '"><td>' + waranties[f_t_base[index]][name] + '</td><td>' + waranties.rc.option + '</td><td>' + waranties.rc.value + '</td></tr >'
-                    );
-                }
+                resultat(waranties, f_t_base);
                 break;
 
             case 't-simple':
-                for (let index = 0; index < f_t_simple.length; index++) {
-                    $('#summary_waranties').append(
-                        '<tr id="summary_' + f_t_simple[index] + '"><td>' + waranties[f_t_base[index]][name] + '</td><td>' + waranties.rc.option + '</td><td>' + waranties.rc.value + '</td></tr >'
-                    );
-                }
+                resultat(waranties, f_t_simple);
                 break;
 
             case 't-ameliore':
-                for (let index = 0; index < f_t_ameliore.length; index++) {
-                    $('#summary_waranties').append(
-                        '<tr id="summary_' + f_t_ameliore[index] + '"><td>' + waranties[f_t_base[index]][name] + '</td><td>' + waranties.rc.option + '</td><td>' + waranties.rc.value + '</td></tr >'
-                    );
-                }
+                resultat(waranties, f_t_ameliore);
                 break;
 
             case 't-complet':
-                for (let index = 0; index < f_t_complet.length; index++) {
-                    $('#summary_waranties').append(
-                        '<tr id="summary_' + f_t_complet[index] + '"><td>' + waranties[f_t_base[index]][name] + '</td><td>' + waranties.rc.option + '</td><td>' + waranties.rc.value + '</td></tr >'
-                    );
-                }
+                resultat(waranties, f_t_complet);
                 break;
 
             case 'tc-complete':
-                for (let index = 0; index < f_tc_complete.length; index++) {
-                    $('#summary_waranties').append(
-                        '<tr id="summary_' + f_tc_complete[index] + '"><td>' + waranties[f_t_base[index]][name] + '</td><td>' + waranties.rc.option + '</td><td>' + waranties.rc.value + '</td></tr >'
-                    );
-                }
+                resultat(waranties, f_tc_complete);
                 break;
 
             case 'tc-collision':
-                for (let index = 0; index < f_tc_collision.length; index++) {
-                    $('#summary_waranties').append(
-                        '<tr id="summary_' + f_tc_collision[index] + '"><td>' + waranties[f_t_base[index]][name] + '</td><td>' + waranties.rc.option + '</td><td>' + waranties.rc.value + '</td></tr >'
-                    );
-                }
+                resultat(waranties, f_tc_collision);
                 break;
 
             default:
