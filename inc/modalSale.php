@@ -23,7 +23,7 @@
                                                             <div>
                                                                 <div id="step-1" class="">
                                                                     <div class="form-group"> 
-                                                                        <select id="typAtt" name="typAtt" class="flex-container"> 
+                                                                        <select id="typAtt" name="typAtt" class="flex-container text-uppercase"> 
                                                                             <?php
                                                                                 $request="SELECT type_attestation_lib FROM type_attestation ORDER BY type_attestation_lib ASC";
                                                                                 $req = $bdd->query($request);

@@ -201,11 +201,11 @@ $(document).ready(function () {
             dataType: "json",
             success: function (data) {
                 waranties = data;
-                $('#prime_rc').html(waranties.rc.value);
-                $('#prime_ra').html(waranties.ra.value);
-                $('#prime_vol_ma').html(waranties.vol_ma.value);
-                $('#prime_van').html(waranties.van.value);
-                $('#prime_im').html(waranties.im.value);
+                $('#prime_rc').html(waranties["rc"].value);
+                $('#prime_ra').html(waranties["ra"].value);
+                $('#prime_vol_ma').html(waranties["vol_ma"].value);
+                $('#prime_van').html(waranties["van"].value);
+                $('#prime_im').html(waranties["im"].value);
 
                 console.log(waranties);
             },
@@ -230,7 +230,7 @@ $(document).ready(function () {
                 dataType: "text",
                 success: function (data) {
                     waranties = Object.assign(waranties, data);
-                    $('#prime_dr').html(waranties.dr.value);
+                    $('#prime_dr').html(waranties["dr"].value);
                 }
             });
         } else {
@@ -254,7 +254,7 @@ $(document).ready(function () {
             dataType: "JSON",
             success: function (data) {
                 waranties = Object.assign(waranties, data);
-                $('#prime_sr').html(waranties.sr.value);
+                $('#prime_sr').html(waranties["sr"].value);
             }
         });
     });
@@ -271,7 +271,7 @@ $(document).ready(function () {
             dataType: "JSON",
             success: function (data) {
                 waranties = Object.assign(waranties, data);
-                $('#prime_bg').html(waranties.bg.value);
+                $('#prime_bg').html(waranties["bg"].value);
             }
         });
     });
@@ -287,7 +287,7 @@ $(document).ready(function () {
             dataType: "JSON",
             success: function (data) {
                 waranties = Object.assign(waranties, data);
-                $('#prime_vol_acc').html(waranties.vol_acc.value);
+                $('#prime_vol_acc').html(waranties["vol_acc"].value);
             }
         });
     });
@@ -404,32 +404,55 @@ $(document).ready(function () {
                     '<tr id="summary_' + warantieFiltered + '"><td>' + "OPTION" + '</td><td>' + + '</td><td>' + + '</td></tr >'
                 );
             }
-       }
+        }
+
+        /**
+        * Fonction réalisant le filtre du tableau des résultats de garantie et les affichant
+        * @param    {JSON}  warants    Tableau des résultats de calculs des garanties
+        * @param    {Array} formula    Tableau de garanties dans une formule
+        */
+        function showResults(warants, formula) {
+            var warantieFiltered = $.fn.filterJSON(warants,{
+                property: "lib",
+                wrapper : true,
+                value: formula,
+                    checkContains: false,
+                    startsWith: true,
+                    matchCase: true,
+                    avoidDuplicates: true
+            });
+
+            for (let index = 0; index < formula.length; index++) {
+                $('#summary_waranties').append(
+                    '<tr id="summary_' + warantieFiltered[lib] + '"><td>' + warantieFiltered[name] + '</td><td>' + warantieFiltered[value] + '</td><td>' + warantieFiltered[option] + '</td></tr >'
+                );
+            }
+        }
 
         //Tableau des garanties
         switch (formule) {
             case 't-base':
-                resultat(waranties, f_t_base);
+                showResults(waranties, f_t_base);
                 break;
 
             case 't-simple':
-                resultat(waranties, f_t_simple);
+                showResults(waranties, f_t_simple);
                 break;
 
             case 't-ameliore':
-                resultat(waranties, f_t_ameliore);
+                showResults(waranties, f_t_ameliore);
                 break;
 
             case 't-complet':
-                resultat(waranties, f_t_complet);
+                showResults(waranties, f_t_complet);
                 break;
 
             case 'tc-complete':
-                resultat(waranties, f_tc_complete);
+                showResults(waranties, f_tc_complete);
                 break;
 
             case 'tc-collision':
-                resultat(waranties, f_tc_collision);
+                showResults(waranties, f_tc_collision);
                 break;
 
             default:

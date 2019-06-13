@@ -55,11 +55,11 @@ try
         <script src="js/jquery-confirm.js"></script>        
         <link href="css/bootstrap.min.css" rel="stylesheet"> 
          <!-- Include SmartWizard CSS -->
-        <link href="dist/css/smart_wizard.css" rel="stylesheet" type="text/css" />
+        <link href="css/smart_wizard.css" rel="stylesheet" type="text/css" />
         <!-- Optional SmartWizard theme -->
-        <link href="dist/css/smart_wizard_theme_circles.min.css" rel="stylesheet" type="text/css" />
-        <link href="dist/css/smart_wizard_theme_arrows.min.css" rel="stylesheet" type="text/css" />
-        <link href="dist/css/smart_wizard_theme_dots.min.css" rel="stylesheet" type="text/css" /> 
+        <link href="css/smart_wizard_theme_circles.min.css" rel="stylesheet" type="text/css" />
+        <link href="css/smart_wizard_theme_arrows.min.css" rel="stylesheet" type="text/css" />
+        <link href="css/smart_wizard_theme_dots.min.css" rel="stylesheet" type="text/css" /> 
         <!-- Custom CSS -->        
         <link href="css/sb-admin.css" rel="stylesheet"> 
         <!-- Custom Fonts -->         
@@ -280,10 +280,12 @@ try
                                 <script type="text/javascript" src="js/datatables.min.js"></script>
                                 <!-- jquery Confirm -->
                                 <script type="text/javascript" src="js/jquery-confirm.js"></script>
-                                <!-- InView JS-->
+                                <!-- InView JS -->
                                 <script type="text/javascript" src="js/in-view.min.js"></script>
-                                <!-- Include SmartWizard JavaScript source -->
-                                <script type="text/javascript" src="dist/js/jquery.smartWizard.min.js"></script>
+                                <!-- SmartWizard -->
+                                <script type="text/javascript" src="js/jquery.smartWizard.min.js"></script>
+                                <!-- JSON Filter -->
+                                <script type="text/javascript" src="js/filterJSON.plugin.min.js"</script>
 
                                 <script type="text/javascript">
                                     $(document).ready(function(){
