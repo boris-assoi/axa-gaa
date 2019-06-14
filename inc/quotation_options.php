@@ -121,7 +121,7 @@ try {
 
             $data['bg']['lib'] = "bg";
             $data['bg']['name'] = "Bris de glace";
-            $data['bg']['value'] = $prime_bg;
+            $data['bg']['value'] =(string)($prime_bg);
             $data['bg']['option'] = "";
 
             /*

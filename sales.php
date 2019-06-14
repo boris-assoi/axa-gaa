@@ -285,7 +285,7 @@ try
                                 <!-- SmartWizard -->
                                 <script type="text/javascript" src="js/jquery.smartWizard.min.js"></script>
                                 <!-- JSON Filter -->
-                                <script type="text/javascript" src="js/filterJSON.plugin.min.js"</script>
+                                <script type="text/javascript" src="js/filterJSON.plugin.min.js"></script>
 
                                 <script type="text/javascript">
                                     $(document).ready(function(){

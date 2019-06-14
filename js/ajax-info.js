@@ -100,14 +100,17 @@ $(document).ready(function () {
     //Variable contenant les garanties sélectionnées
     let waranties = [];
 
+    //Variable contenant le total des primes de garanties
+    let totalFormula = 0;
+
     //Tableaux de garanties par formule
-    var f_all = ['rc', 'dr', 'ra', 'secu', 'vol_ma', 'vol_accessoires', 'van', 'incendie', 'bg', 'im', 'dommage'];
+    var f_all = ['rc', 'dr', 'ra', 'sr', 'vol_ma', 'vol_acc', 'van', 'inc', 'bg', 'im'];
     var f_t_base = ['rc', 'dr', 'ra'];
-    var f_t_simple = ['rc', 'dr', 'ra', 'secu'];
-    var f_t_ameliore = ['rc', 'dr', 'ra', 'secu', 'vol_ma', 'vol_accessoires', 'van', 'incendie'];
-    var f_t_complet = ['rc', 'dr', 'ra', 'secu', 'vol_ma', 'vol_accessoires', 'van', 'incendie', 'bg'];
-    var f_tc_complete = ['rc', 'dr', 'ra', 'secu', 'vol_ma', 'vol_accessoires', 'van', 'incendie', 'bg', 'im', 'dommage'];
-    var f_tc_collision = ['rc', 'dr', 'ra', 'secu', 'vol_ma', 'vol_accessoires', 'van', 'incendie', 'bg', 'im', 'dommage'];
+    var f_t_simple = ['rc', 'dr', 'ra', 'sr'];
+    var f_t_ameliore = ['rc', 'dr', 'ra', 'sr', 'vol_ma', 'vol_acc', 'van', 'inc'];
+    var f_t_complet = ['rc', 'dr', 'ra', 'sr', 'vol_ma', 'vol_acc', 'van', 'inc', 'bg'];
+    var f_tc_complete = ['rc', 'dr', 'ra', 'sr', 'vol_ma', 'vol_acc', 'van', 'inc', 'bg', 'im'];
+    var f_tc_collision = ['rc', 'dr', 'ra', 'sr', 'vol_ma', 'vol_acc', 'van', 'inc', 'bg', 'im'];
 
     //Affichage des champs selon les formules
     $('input[name=formule]').click(function afficherGaranties() {
@@ -238,11 +241,11 @@ $(document).ready(function () {
         }
     });
 
-    //Calcul de la prime de garantie SECURITE ROUTIERE
+    //Calcul de la prime de garantie srURITE ROUTIERE
     $('#sec_route').change(function calculPrimeSR() {
-        var sec_route = $(this).val();
+        var sr_route = $(this).val();
         var poltime = $('#poltime').val();
-        var type = 'opt_securite_routiere';
+        var type = 'opt_srurite_routiere';
         $.ajax({
             url: "inc/quotation_options.php",
             method: "POST",
@@ -352,79 +355,26 @@ $(document).ready(function () {
         $('#sum_formula').html(formule);
 
         /**
-        * Fonction d'affichage des résumés de garanties
-        * @param    {JSON}  warants    Tableau des résultats de calculs des garanties
-        * @param    {Array} formula    Tableau de garanties dans une formule
-        */
-        function showWarantiesResults(warants, formula) {
-            let warantieFiltered = JSON.stringify(warants, formula);
-            let warantiesParsed = JSON.parse(warantieFiltered);
-            console.log(warantiesParsed.length);
-            for (let index = 0; index < formula.length; index++) {
-                $('#summary_waranties').append(
-                    '<tr id="summary_' + formula[index] + '"><td>' + "OPTION" + '</td><td>' + + '</td><td>' + + '</td></tr >'
-                );
-            }
-        }
-
-        /** 
         * Fonction réalisant le filtre du tableau des résultats de garantie et les affichant
-        * @param    {JSON}  warants    Tableau des résultats de calculs des garanties
-        * @param    {Array} formula    Tableau de garanties dans une formule
-        */
-        function resultatFormule(warants, formula) {
-            var warantieFiltered = [];
-            for (let index = 0; index < warants.length; index++) {
-                var obj = warants;
-                //Tri avec le tableau des formules
-                for (let index = 0; index < formula.length; index++) {
-                    warantieFiltered.push(obj);
-                }
-            }
-            console.log(warantieFiltered);
-            for (let index = 0; index < formula.length; index++) {
-                $('#summary_waranties').append(
-                    '<tr id="summary_' + formula[index] + '"><td>' + "OPTION" + '</td><td>' + + '</td><td>' + + '</td></tr >'
-                );
-            }
-        }
-
-        /**
-        * Fonction réalisant le filtre du tableau des résultats de garantie et les affichant
-        * @param    {JSON}  warants    Tableau des résultats de calculs des garanties
-        * @param    {Array} formula    Tableau de garanties dans une formule
-        */
-       function resultat(warants, formula){
-            var warantieFiltered = jQuery.grep(warants, function(n,i){
-                return n == formula[i];
-            });
-            console.log(warantieFiltered);
-            for (let index = 0; index < formula.length; index++) {
-                $('#summary_waranties').append(
-                    '<tr id="summary_' + warantieFiltered + '"><td>' + "OPTION" + '</td><td>' + + '</td><td>' + + '</td></tr >'
-                );
-            }
-        }
-
-        /**
-        * Fonction réalisant le filtre du tableau des résultats de garantie et les affichant
-        * @param    {JSON}  warants    Tableau des résultats de calculs des garanties
-        * @param    {Array} formula    Tableau de garanties dans une formule
+        * @param    {JSON}      warants         Tableau des résultats de calculs des garanties
+        * @param    {Array}     formula         Tableau de garanties dans une formule
         */
         function showResults(warants, formula) {
-            var warantieFiltered = $.fn.filterJSON(warants,{
+            var warantieFiltered = $.fn.filterJSON(warants, {
                 property: "lib",
-                wrapper : true,
+                wrapper: true,
                 value: formula,
-                    checkContains: false,
-                    startsWith: true,
-                    matchCase: true,
-                    avoidDuplicates: true
+                checkContains: false,
+                startsWith: true,
+                matchCase: true,
+                avoidDuplicates: true
             });
-
+            console.log(warantieFiltered);
             for (let index = 0; index < formula.length; index++) {
+                totalFormula += parseInt(warantieFiltered[index].value);
+                console.log(totalFormula);
                 $('#summary_waranties').append(
-                    '<tr id="summary_' + warantieFiltered[lib] + '"><td>' + warantieFiltered[name] + '</td><td>' + warantieFiltered[value] + '</td><td>' + warantieFiltered[option] + '</td></tr >'
+                    '<tr id="summary_' + warantieFiltered[index].lib + '"><td>' + warantieFiltered[index].name + '</td><td>' + warantieFiltered[index].option + '</td><td>' + warantieFiltered[index].value + '</td></tr >'
                 );
             }
         }
@@ -461,7 +411,7 @@ $(document).ready(function () {
 
         //Ajout de la ligne du total
         $('#summary_waranties').append(
-            '<tr id="summary_total"><td colspan="2" class="info">Total</td><td>' + waranties.rc.value + '</td></tr >'
+            '<tr id="summary_total"><td colspan="2" class="info">Total</td><td>' + totalFormula + '</td></tr >'
         );
     });
 

@@ -322,7 +322,7 @@
                                                                         </fieldset>
                                                                     </div>
                                                                     <!-- Détails de la garantie VOL D'ACCESSOIRES -->
-                                                                    <div class="flex-container" id="vol_accessoires" style="display: none">
+                                                                    <div class="flex-container" id="vol_acc" style="display: none">
                                                                         <fieldset>
                                                                             <legend>Vol d'accessoires, autoradio et climatiseur </legend>
                                                                             <div class="flex-container">
@@ -356,7 +356,7 @@
                                                                         </fieldset>
                                                                     </div>
                                                                     <!-- Détails de la garantie SECURITE ROUTIERE -->
-                                                                    <div class="flex-container" id="secu" style="display: none">
+                                                                    <div class="flex-container" id="sr" style="display: none">
                                                                         <fieldset>
                                                                             <legend>Sécurité routière</legend>
                                                                             <div class="flex-container">
