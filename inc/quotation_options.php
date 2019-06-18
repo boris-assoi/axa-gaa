@@ -18,7 +18,7 @@ try {
 		* INFORMATIONS SUR LES GARANTIES A AJOUTER 
 		*/
     //Récupération du type de garantie DEFENSE ET RECOURS
-    (!empty($_POST['defense'])) ? $defense = 1 : $defense = 2;
+    (!empty($_POST['defense'])) ? $defense = 2 : $defense = 1;
 
     //Récupération de l'option de la garantie SECURITE ROUTIERE
     (!empty($_POST['sec_route'])) ? $sec_route = $_POST['sec_route'] : $sec_route = 2;
@@ -100,7 +100,7 @@ try {
             $data['sr']['lib'] = "sr";
             $data['sr']['name'] = "Sécurité routière";
             $data['sr']['value'] = (string)($prime_sr);
-            $data['sr']['option'] = "";
+            $data['sr']['option'] = "Option ".$sec_route;
 
             /*
                 * FIN DE CALCUL DE LA GARANTIE SECURITE ROUTIERE
@@ -111,18 +111,22 @@ try {
             /*
                 * CALCUL DE LA GARANTIE BRIS DE GLACE : prime_bg
                 */
+
+            //Variable contenant l'option
+            $opt_bg = "";
             //Récupération du paramètre dans le formulaire
-            $req = $bdd->prepare("SELECT prime FROM g_bri_gla, option_g_bri_gla WHERE `g_bri_gla`.`option` = `option_g_bri_gla`.`id` AND `option_g_bri_gla`.`id` = ?");
+            $req = $bdd->prepare("SELECT prime, lib FROM g_bri_gla, option_g_bri_gla WHERE `g_bri_gla`.`option` = `option_g_bri_gla`.`id` AND `option_g_bri_gla`.`id` = ?");
             $req->execute(array($bris));
             while ($ok = $req->fetch()) {
                 $prime_bg = $valCat * $ok['prime'] / 100;
+                $opt_bg = $ok['lib'];
             }
             $req->closeCursor();
 
             $data['bg']['lib'] = "bg";
             $data['bg']['name'] = "Bris de glace";
             $data['bg']['value'] =(string)($prime_bg);
-            $data['bg']['option'] = "";
+            $data['bg']['option'] = $opt_bg;
 
             /*
                 * FIN DE CALCUL DE LA GARANTIE BRIS DE GLACE
@@ -133,17 +137,21 @@ try {
             /* 
                 * CALCUL DE LA GARANTIE VOL ACCESSOIRES
                 */
+
+            //Variable contenant l'option
+            $opt_vol_acc = "";
             //Récupération du paramètre dans le formulaire
-            $req = $bdd->prepare("SELECT prime FROM g_vol_acc WHERE id = ?");
+            $req = $bdd->prepare("SELECT prime, assiette FROM g_vol_acc WHERE id = ?");
             $req->execute(array($option_vol_acc));
             $ok = $req->fetch();
             $prime_vol_acc = $ok['prime'];
+            $opt_vol_acc = $ok['assiette'];
             $req->closeCursor();
 
             $data['vol_acc']['lib'] = "vol_acc";
             $data['vol_acc']['name'] = "Vol d'accessoires";
             $data['vol_acc']['value'] = $prime_vol_acc;
-            $data['vol_acc']['option'] = "";
+            $data['vol_acc']['option'] = $opt_vol_acc;
 
             /* 
                 * FIN DE CALCUL DE LA GARANTIE VOL ACCESSOIRES

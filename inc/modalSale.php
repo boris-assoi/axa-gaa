@@ -476,7 +476,7 @@
 																									<th>Prime</th>
 																								</tr>
 																							</thead>
-																							<tbody id="summary_waranties">
+																							<tbody id="summary_waranties" class="text-uppercase">
                                                                                                 <tr id="summary_total">
                                                                                                     <td colspan="2" class="info">Total</td>
                                                                                                     <td></td>

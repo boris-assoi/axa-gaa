@@ -4,6 +4,42 @@
  */
 
 $(document).ready(function () {
+    //Initialisation des champs
+    inView('#step-1').on('enter', function initFields() {
+        var classe = $('#classe-permis').val();
+        var spro = $('#statut-pro').val();
+        var catcar = $('#catcar').val();
+        $.ajax({
+            url: "inc/fetch_data.php",
+            method: "POST",
+            data: {
+                classe: classe,
+                type: "cls-pc"
+            },
+            dataType: "text",
+            success: function (data) {
+                $('#classe-desc').html(data);
+            }
+        });
+        $.ajax({
+            url: "inc/fetch_data.php",
+            method: "POST",
+            data: { stat: spro, type: "socio-pro" },
+            dataType: "text",
+            success: function (data) {
+                $('#statut-desc').html(data);
+            }
+        });
+        $.ajax({
+            url: "inc/fetch_data.php",
+            method: "POST",
+            data: { cat: catcar, type: "cat" },
+            dataType: "text",
+            success: function (data) {
+                $('#cat-desc').html(data);
+            }
+        });
+    });
     //Statut socio-professionnel
     $('#statut-pro').change(function afficherInfoStatutPro() {
         var spro = $(this).val();
@@ -101,7 +137,7 @@ $(document).ready(function () {
     let waranties = [];
 
     //Variable contenant le total des primes de garanties
-    let totalFormula = 0;
+    let totalFormula;
 
     //Tableaux de garanties par formule
     var f_all = ['rc', 'dr', 'ra', 'sr', 'vol_ma', 'vol_acc', 'van', 'inc', 'bg', 'im'];
@@ -243,9 +279,9 @@ $(document).ready(function () {
 
     //Calcul de la prime de garantie srURITE ROUTIERE
     $('#sec_route').change(function calculPrimeSR() {
-        var sr_route = $(this).val();
+        var sec_route = $(this).val();
         var poltime = $('#poltime').val();
-        var type = 'opt_srurite_routiere';
+        var type = 'opt_securite_routiere';
         $.ajax({
             url: "inc/quotation_options.php",
             method: "POST",
@@ -360,7 +396,9 @@ $(document).ready(function () {
         * @param    {Array}     formula         Tableau de garanties dans une formule
         */
         function showResults(warants, formula) {
-            var warantieFiltered = $.fn.filterJSON(warants, {
+            var warantieFiltered = {};
+            totalFormula = 0;
+            warantieFiltered = $.fn.filterJSON(warants, {
                 property: "lib",
                 wrapper: true,
                 value: formula,
@@ -411,7 +449,7 @@ $(document).ready(function () {
 
         //Ajout de la ligne du total
         $('#summary_waranties').append(
-            '<tr id="summary_total"><td colspan="2" class="info">Total</td><td>' + totalFormula + '</td></tr >'
+            '<tr id="summary_total"><td colspan="2" class="info">Total</td><td>' + Math.round(totalFormula) + '</td></tr >'
         );
     });
 
