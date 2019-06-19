@@ -37,6 +37,7 @@ $(document).ready(function () {
             dataType: "text",
             success: function (data) {
                 $('#cat-desc').html(data);
+                $('#sum_category').html(data);
             }
         });
     });
@@ -66,6 +67,7 @@ $(document).ready(function () {
             dataType: "text",
             success: function (data) {
                 $('#cat-desc').html(data);
+                $('#sum_category').html(data);
             }
         });
     });
@@ -371,7 +373,6 @@ $(document).ready(function () {
         $('#sum_drive_age').html(classe_permis);
 
         //Véhicule
-        $('#sum_category').html(catCar);
         $('#sum_imat').html(imat);
         $('#sum_energy').html(pf);
         $('#sum_pfValue').html(pfValue);
