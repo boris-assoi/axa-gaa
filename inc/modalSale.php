@@ -471,6 +471,7 @@
 																						<table class="table table-bordered table-hover table-striped">
 																							<thead>
 																								<tr>
+                                                                                                    <th>N°</th>
 																									<th>Garantie</th>
 																									<th>Option</th>
 																									<th>Prime</th>
@@ -478,7 +479,7 @@
 																							</thead>
 																							<tbody id="summary_waranties" class="text-uppercase">
                                                                                                 <tr id="summary_total">
-                                                                                                    <td colspan="2" class="info">Total</td>
+                                                                                                    <td colspan="3" class="info">Total</td>
                                                                                                     <td></td>
                                                                                                 </tr>
 																							</tbody>

@@ -7008,6 +7008,7 @@ a.list-group-item-danger.active,a.list-group-item-danger.active:focus,a.list-gro
 .panel-default
 {
     border-color: #ddd;
+    border-top: solid 4px #213683;
 }
 
 .panel-default>.panel-heading

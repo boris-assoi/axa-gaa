@@ -413,7 +413,7 @@ $(document).ready(function () {
                 totalFormula += parseInt(warantieFiltered[index].value);
                 console.log(totalFormula);
                 $('#summary_waranties').append(
-                    '<tr id="summary_' + warantieFiltered[index].lib + '"><td>' + warantieFiltered[index].name + '</td><td>' + warantieFiltered[index].option + '</td><td>' + warantieFiltered[index].value + '</td></tr >'
+                    '<tr id="summary_' + warantieFiltered[index].lib + '"><td>' + (index+1) + '</td><td>' + warantieFiltered[index].name + '</td><td>' + warantieFiltered[index].option + '</td><td>' + warantieFiltered[index].value + '</td></tr >'
                 );
             }
         }
@@ -450,7 +450,7 @@ $(document).ready(function () {
 
         //Ajout de la ligne du total
         $('#summary_waranties').append(
-            '<tr id="summary_total"><td colspan="2" class="info">Total</td><td>' + Math.round(totalFormula) + '</td></tr >'
+            '<tr id="summary_total"><td colspan="3" class="info text-right lead">Prime nette</td><td class="lead"><b>' + Math.round(totalFormula) + '</b></td></tr >'
         );
     });
 
