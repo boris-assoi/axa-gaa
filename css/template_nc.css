@@ -1,0 +1,60 @@
+
+
+.centered
+{
+    margin: auto;
+    width: 70%;
+}
+
+.blocCentered
+{
+    width: 100%;
+    margin: auto;
+}
+
+.titre
+{
+    width: 70%;
+    font-family: Segoe UI;
+    font-size: 12px;
+    color: #000;
+    text-align: center;
+    font-weight: 700;
+    margin: auto;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    border: solid 0.5px #213683;
+    box-shadow: 2px 3px 10px #ddd;
+}
+
+.ligneInfo
+{
+    margin: auto:;
+}
+
+.bloc
+{
+    border-top: solid 3px #213683;
+    border-radius: 10px;
+    margin-right: 10px;
+    margin-left: 10px;
+    margin: auto;
+    box-shadow: 2px 4px 10px #DDD;
+    display: block;
+}
+
+
+.text-input
+{
+    font-size: 12px;
+    color: #999;
+    display: block;
+    margin-top: 5px;
+    padding-left: 10px;
+}
+
+.legend-print
+{
+    font-size: 80%;
+}
+
