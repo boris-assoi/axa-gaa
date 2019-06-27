@@ -141,6 +141,9 @@ $(document).ready(function () {
     //Variable contenant le total des primes de garanties
     let totalFormula;
 
+    //Variable contenant les informations de la souscription
+    let info;
+
     //Tableaux de garanties par formule
     var f_all = ['rc', 'dr', 'ra', 'sr', 'vol_ma', 'vol_acc', 'van', 'inc', 'bg', 'im'];
     var f_t_base = ['rc', 'dr', 'ra'];
@@ -365,6 +368,33 @@ $(document).ready(function () {
         var rem = $('input[name=rem]:checked').val();
         var formule = $('input[name=formule]:checked').val();
 
+        info = {
+            "typAtt": typAtt,
+            "typeClient": typeClient,
+            "nomClient": nomClient,
+            "classe_permis": classe_permis,
+            "status_pro": statut_pro,
+            "pro": pro,
+            "adresse": adresse,
+            "contact": contact,
+            "pol": pol,
+            "poldf": poldf,
+            "poldt": poldt,
+            "poltime": poltime,
+            "catcar": catcar,
+            "carGenre": carGenre,
+            "carMake": carMake,
+            "imat": imat,
+            "chassis": chassis,
+            "dateCirc": dateCirc,
+            "pf": pf,
+            "pfValue": pfValue,
+            "valCat": valCat,
+            "valVen": valVen,
+            "rem": rem,
+            "formule": formule
+        }
+
         //Souscripteur
         $('#sum_nom').html(nomClient);
         $('#sum_statut').html(statut_pro);
@@ -452,6 +482,21 @@ $(document).ready(function () {
         $('#summary_waranties').append(
             '<tr id="summary_total"><td colspan="3" class="info text-right lead">Prime nette</td><td class="lead"><b>' + Math.round(totalFormula) + '</b></td></tr >'
         );
+
+        //Impression de la note de couverture
+        $('#print-nc').click(function imprimerNC() {
+            var results = waranties;
+            $.ajax({
+                url: "inc/print_nc.php",
+                method: "POST",
+                data: { results: results},
+                dataType: "application/pdf",
+                success: function (data) {
+                    var blob = new Bloc([data], {type: 'application/pdf'});
+                    console.log(blob);
+                }
+            });
+        });
     });
 
 });

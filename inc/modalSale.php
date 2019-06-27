@@ -487,7 +487,7 @@
 																					</div>
 																				</div>
                                                                             </div>
-                                                                            <span class="btn btn-info"><i class="fa fa-fw fa-print"></i> Imprimer la note de couverture</span>
+                                                                            <span class="btn btn-info" id="print-nc"><i class="fa fa-fw fa-print"></i> Imprimer la note de couverture</span>
                                                                         </div>
                                                                     </div>
                                                                 </div>
