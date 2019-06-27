@@ -492,8 +492,8 @@ $(document).ready(function () {
                 data: { results: results},
                 dataType: "application/pdf",
                 success: function (data) {
-                    var blob = new Bloc([data], {type: 'application/pdf'});
-                    console.log(blob);
+                    var blob = new Blob([data], {type: 'application/pdf'});
+                    windows.open(blob);
                 }
             });
         });
