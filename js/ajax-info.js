@@ -487,7 +487,7 @@ $(document).ready(function () {
         $('#print-nc').click(function imprimerNC() {
             var results = waranties;
             $.ajax({
-                url: "inc/print_nc.php",
+                url: "inc/print_nc_2.php",
                 method: "POST",
                 data: { results: results},
                 dataType: "application/pdf",

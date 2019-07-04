@@ -12,7 +12,8 @@ use Dompdf\Dompdf;
 
 //Instance de Dompdf
 $dompdf = new Dompdf();
-$dompdf->load_html($template);
+//$dompdf->load_html($template); 
+$dompdf->load_html_file('http://localhost/');
 
 //Ajustement de la page
 $dompdf->setPaper('A4', 'portrait');
