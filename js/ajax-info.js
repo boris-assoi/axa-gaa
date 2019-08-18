@@ -443,7 +443,7 @@ $(document).ready(function () {
                 totalFormula += parseInt(warantieFiltered[index].value);
                 console.log(totalFormula);
                 $('#summary_waranties').append(
-                    '<tr id="summary_' + warantieFiltered[index].lib + '"><td>' + (index+1) + '</td><td>' + warantieFiltered[index].name + '</td><td>' + warantieFiltered[index].option + '</td><td>' + warantieFiltered[index].value + '</td></tr >'
+                    '<tr id="summary_' + warantieFiltered[index].lib + '"><td>' + (index + 1) + '</td><td>' + warantieFiltered[index].name + '</td><td>' + warantieFiltered[index].option + '</td><td>' + warantieFiltered[index].value + '</td></tr >'
                 );
             }
         }
@@ -489,10 +489,10 @@ $(document).ready(function () {
             $.ajax({
                 url: "inc/print_nc_2.php",
                 method: "POST",
-                data: { results: results},
+                data: { results: results },
                 dataType: "application/pdf",
                 success: function (data) {
-                    var blob = new Blob([data], {type: 'application/pdf'});
+                    var blob = new Blob([data], { type: 'application/pdf' });
                     windows.open(blob);
                 }
             });
