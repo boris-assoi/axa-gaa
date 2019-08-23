@@ -482,21 +482,6 @@ $(document).ready(function () {
         $('#summary_waranties').append(
             '<tr id="summary_total"><td colspan="3" class="info text-right lead">Prime nette</td><td class="lead"><b>' + Math.round(totalFormula) + '</b></td></tr >'
         );
-
-        //Impression de la note de couverture
-        $('#print-nc').click(function imprimerNC() {
-            var results = waranties;
-            $.ajax({
-                url: "inc/print_nc_2.php",
-                method: "POST",
-                data: { results: results },
-                dataType: "application/pdf",
-                success: function (data) {
-                    var blob = new Blob([data], { type: 'application/pdf' });
-                    windows.open(blob);
-                }
-            });
-        });
     });
 
 });
