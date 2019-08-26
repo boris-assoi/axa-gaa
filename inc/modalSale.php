@@ -478,12 +478,36 @@
 																								</tr>
 																							</thead>
 																							<tbody id="summary_waranties" class="text-uppercase">
-                                                                                                <tr id="summary_total">
+                                                                                                <tr id="summary_net">
                                                                                                     <td colspan="3" class="info">Total</td>
                                                                                                     <td></td>
                                                                                                 </tr>
 																							</tbody>
-																						</table>
+                                                                                        </table>
+                                                                                        <table class="table table-bordered table-hover table-stripped">
+                                                                                            <tbody id="summary_sup" class="text-uppercase">
+                                                                                                <tr>
+                                                                                                    <td>Cout de police</td>
+                                                                                                    <td id="sup_pcost"></td>
+                                                                                                </tr>
+                                                                                                <tr>
+                                                                                                    <td>Taxes</td>
+                                                                                                    <td id="sup_tax"></td>
+                                                                                                </tr>
+                                                                                                <tr>
+                                                                                                    <td>Fonds de garantie auto</td>
+                                                                                                    <td id="sup_fnd"></td>
+                                                                                                </tr>
+                                                                                                <tr>
+                                                                                                    <td>Carte brune</td>
+                                                                                                    <td id="sup_cbcost"></td>
+                                                                                                </tr>
+                                                                                                <tr>
+                                                                                                    <td class="info lead text-right">Prime TTC</td>
+                                                                                                    <td id="sup_total" class="lead"></td>
+                                                                                                </tr>
+                                                                                            </tbody>
+                                                                                        </table>
 																					</div>
 																				</div>
                                                                             </div>

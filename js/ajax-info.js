@@ -343,6 +343,13 @@ $(document).ready(function () {
         //Initialisation du tableau des garanties
         $('#summary_waranties').empty();
 
+        //Initialisation des champs des valeurs supplémentaires
+        $('#sup_pcost').empty();
+        $('#sup_tax').empty();
+        $('#sup_fnd').empty();
+        $('#sup_cbcost').empty();
+        $('#sup_total').empty();
+
         var typAtt = $('#typAtt').val();
         var typeClient = $('#typeClient').val();
         var nomClient = $('#nomClient').val();
@@ -480,8 +487,48 @@ $(document).ready(function () {
 
         //Ajout de la ligne du total
         $('#summary_waranties').append(
-            '<tr id="summary_total"><td colspan="3" class="info text-right lead">Prime nette</td><td class="lead"><b>' + Math.round(totalFormula) + '</b></td></tr >'
+            '<tr id="summary_net"><td colspan="3" class="info text-right lead">Prime nette</td><td class="lead"><b>' + Math.round(totalFormula) + '</b></td></tr >'
         );
+
+        //CALCUL DES TAXES SUPPLEMENTAIRES
+        var sup_pcost, sup_tax, sup_fnd, sup_cbcost, sup_total;
+
+        //Calcul de la valeur du coût de la police
+        if (totalFormula < 100000) {
+            sup_pcost = 5000;
+        }
+        if (totalFormula >= 100000 && totalFormula < 500000) {
+            sup_pcost = 10000;
+        }
+        if (totalFormula >= 500000 && totalFormula < 1000000) {
+            sup_pcost = 15000;
+        }
+        if (totalFormula > 1000000) {
+            sup_pcost = 20000;
+        }
+
+        //Calcul de la valeur des taxes
+        sup_tax = Math.round((totalFormula + sup_pcost) * 0.145);
+
+        //Calcul de la valeur du fonds de garantie auto
+        sup_fnd = waranties.dr.value * 0.02;
+
+        //Calcul de la valeur de la carte brune
+        if (sup_fnd == 0) {
+            sup_cbcost = 0;
+        } else {
+            sup_cbcost = 1000;
+        }
+
+        //Calcul du cout total de la prime
+        sup_total = totalFormula + sup_pcost + sup_tax + sup_fnd + sup_cbcost;
+
+        //Affichage dans le tableau
+        $('#sup_pcost').append(sup_pcost);
+        $('#sup_tax').append(sup_tax);
+        $('#sup_fnd').append(sup_fnd);
+        $('#sup_cbcost').append(sup_cbcost);
+        $('#sup_total').append(sup_total);
     });
 
 });
