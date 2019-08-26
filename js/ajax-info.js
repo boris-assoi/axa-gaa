@@ -528,7 +528,7 @@ $(document).ready(function () {
         $('#sup_tax').append(sup_tax);
         $('#sup_fnd').append(sup_fnd);
         $('#sup_cbcost').append(sup_cbcost);
-        $('#sup_total').append(sup_total);
+        $('#sup_total').append('<b>' + sup_total + '</b>');
     });
 
 });
