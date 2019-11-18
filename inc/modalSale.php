@@ -77,7 +77,7 @@
                                                                             </div>
                                                                             <div class="form-group">                                                     
                                                                                 <input type="text" name="nomClient" id="nomClient">      
-                                                                                <label class="text-input">Nom et prénoms</label>    
+                                                                                <label class="text-input">Nom et prénoms / Raison social</label>    
                                                                             </div>
                                                                         </div>        
                                                                         <select id="classe-permis" class="text-uppercase" name="classe_permis">
