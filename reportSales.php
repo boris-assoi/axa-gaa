@@ -31,7 +31,7 @@ try
         <meta name="viewport" content="width=device-width, initial-scale=1"> 
         <meta name="description" content=""> 
         <meta name="author" content=""> 
-        <title>AXA | LG2A</title>         
+        <title>LG2A</title>         
         <!-- Bootstrap Core CSS -->         
         <link rel="shortcut icon" type="image/x-icon" href="images/logo_32_32.ico" /> 
         <link href="css/jquery-confirm.css" rel="stylesheet">

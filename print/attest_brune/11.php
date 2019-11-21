@@ -123,7 +123,7 @@
 <div id="t1_1" class="t s1_1">NOM DU CLIENT</div>
 <div id="t2_1" class="t s1_1">MATRICULE</div>
 <div id="t3_1" class="t s1_1">MARQUE</div>
-<div id="t4_1" class="t s1_1">AXA Côte d'Ivoire</div>
+<div id="t4_1" class="t s1_1">INSURANCE COMPANY</div>
 <div id="t5_1" class="t s1_1">Bureau National Ivoirien</div>
 <div id="t6_1" class="t s1_1">01 BP 378 ABJ 01</div>
 <div id="t7_1" class="t s1_1">POLICE</div>
@@ -133,7 +133,7 @@
 <div id="tb_1" class="t s1_1">NOM DU CLIENT</div>
 <div id="tc_1" class="t s1_1">MATRICULE</div>
 <div id="td_1" class="t s1_1">MARQUE</div>
-<div id="te_1" class="t s1_1">AXA Côte d'Ivoire</div>
+<div id="te_1" class="t s1_1">INSURANCE COMPANY</div>
 <div id="tf_1" class="t s1_1">Bureau National Ivoirien</div>
 <div id="tg_1" class="t s1_1">POLICE</div>
 <div id="th_1" class="t s1_1">01-sept.-17</div>
@@ -152,7 +152,7 @@
 <div id="tu_1" class="t s1_1">NUM CHASSIS</div>
 <div id="tv_1" class="t s2_1">EDITION CARTE BRUNE CEDEAO</div>
 <div id="tw_1" class="t s1_1">30-nov.-17</div>
-<div id="tx_1" class="t s1_1">AXA Côte d'Ivoire</div>
+<div id="tx_1" class="t s1_1">INSURANCE COMPANY</div>
 <div id="ty_1" class="t s1_1">ADRESSE CLIENT</div>
 <div id="tz_1" class="t s1_1">ADRESSE CLIENT</div>
 <div id="t10_1" class="t s1_1">ADRESSE CLIENT</div>

@@ -16,7 +16,7 @@ try
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <meta name="description" content="">
             <meta name="author" content="">
-            <title>Accès refusé | AXA LG2A</title>
+            <title>Accès refusé | LG2A</title>
             <!-- Bootstrap Core CSS -->
             <link href="css/bootstrap.min.css" rel="stylesheet">
             <!-- Custom CSS -->

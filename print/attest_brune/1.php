@@ -162,7 +162,7 @@ try
 <div id="t1_1" class="t s1_1"><?php echo htmlspecialchars($ok['client_nom']); ?></div>
 <div id="t2_1" class="t s1_1"><?php echo htmlspecialchars($ok['vehicule_mat']); ?></div>
 <div id="t3_1" class="t s1_1"><?php echo htmlspecialchars($ok['vehicule_marque']); ?></div>
-<div id="t4_1" class="t s1_1">AXA Côte d'Ivoire</div>
+<div id="t4_1" class="t s1_1">INSURANCE COMPANY</div>
 <div id="t5_1" class="t s1_1">Bureau National Ivoirien</div>
 <div id="t6_1" class="t s1_1">01 BP 378 ABJ 01</div>
 <div id="t7_1" class="t s1_1"><?php echo htmlspecialchars($ok['police_num']); ?></div>
@@ -172,7 +172,7 @@ try
 <div id="tb_1" class="t s1_1"><?php echo htmlspecialchars($ok['client_nom']); ?></div>
 <div id="tc_1" class="t s1_1"><?php echo htmlspecialchars($ok['vehicule_mat']); ?></div>
 <div id="td_1" class="t s1_1"><?php echo htmlspecialchars($ok['vehicule_marque']); ?></div>
-<div id="te_1" class="t s1_1">AXA Côte d'Ivoire</div>
+<div id="te_1" class="t s1_1">INSURANCE COMPANY</div>
 <div id="tf_1" class="t s1_1">Bureau National Ivoirien</div>
 <div id="tg_1" class="t s1_1"><?php echo htmlspecialchars($ok['police_num']); ?></div>
 <div id="th_1" class="t s1_1"><?php echo htmlspecialchars($ok['dateDf']); ?></div>
@@ -190,7 +190,7 @@ try
 <div id="tt_1" class="t s1_1">01 BP 3878 ABJ 01</div>
 <div id="tu_1" class="t s1_1"><?php echo htmlspecialchars($ok['vehicule_chassis']); ?></div>
 <div id="tw_1" class="t s1_1"><?php echo htmlspecialchars($ok['dateDt']); ?></div>
-<div id="tx_1" class="t s1_1">AXA Côte d'Ivoire</div>
+<div id="tx_1" class="t s1_1">INSURANCE COMPANY</div>
 <div id="ty_1" class="t s1_1"><?php echo htmlspecialchars($ok['client_adresse']); ?></div>
 <div id="tz_1" class="t s1_1"><?php echo htmlspecialchars($ok['client_adresse']); ?></div>
 <div id="t10_1" class="t s1_1"><?php echo htmlspecialchars($ok['client_adresse']); ?></div>
