@@ -52,6 +52,12 @@ try {
         <link href="css/jquery-confirm.css" rel="stylesheet">
         <script src="js/jquery-confirm.js"></script>
         <link href="css/bootstrap.min.css" rel="stylesheet">
+        <!-- Include SmartWizard CSS -->
+        <link href="css/smart_wizard.css" rel="stylesheet" type="text/css" />
+        <!-- Optional SmartWizard theme -->
+        <link href="css/smart_wizard_theme_circles.min.css" rel="stylesheet" type="text/css" />
+        <link href="css/smart_wizard_theme_arrows.min.css" rel="stylesheet" type="text/css" />
+        <link href="css/smart_wizard_theme_dots.min.css" rel="stylesheet" type="text/css" />
         <!-- Custom CSS -->
         <link href="css/sb-admin.css" rel="stylesheet">
         <!-- Custom Fonts -->
@@ -100,12 +106,17 @@ try {
                                                     <input type="text" class="form-control" name="find" value=<?php echo "\"" . $find . "\"" ?>>
                                                 </div>
                                                 <button type="submit" class="btn btn-warning"><i class="fa fa-fw fa-search"></i></button>
-                                                <a href="sellCert.php" class="hidden-print">
-                                                    <button type="button" class="btn btn-success"><i class="fa fa-fw fa-plus"></i> Nouvelle vente</button>
-                                                </a>
-                                                <a href="sales.php" class="hidden-print">
-                                                    <button type="button" class="btn btn-info"><i class="fa fa-fw fa-shopping-cart"></i> Toutes les ventes</button>
-                                                </a>
+                                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalTest" id="testPHP"><i class="fa fa-fw fa-plus"></i> Nouvelle vente</button>
+                                                <?php include 'inc/modalSale.php'; ?>
+                                                <?php
+                                                    if (in_array($_SESSION['type'], $acl_sales)) {
+                                                        ?>
+                                                    <a href="sales.php" class="hidden-print">
+                                                        <button type="button" class="btn btn-info"><i class="fa fa-fw fa-shopping-cart"></i> Toutes les ventes</button>
+                                                    </a>
+                                                <?php
+                                                    }
+                                                    ?>
                                             </form>
                                         </div>
                                         <div class="panel-body">
@@ -274,6 +285,61 @@ try {
                             <script type="text/javascript" src="js/datatables.min.js"></script>
                             <!-- jquery Confirm -->
                             <script type="text/javascript" src="js/jquery-confirm.js"></script>
+                            <!-- InView JS -->
+                            <script type="text/javascript" src="js/in-view.min.js"></script>
+                            <!-- Smart Wizard -->
+                            <script type="text/javascript" src="js/jquery.smartWizard.min.js"></script>
+                            <!-- JSON Filter -->
+                            <script type="text/javascript" src="js/filterJSON.plugin.min.js"></script>
+                            <!-- Smart Wizard Configuration -->
+                            <script type="text/javascript">
+                                $(document).ready(function() {
+                                    // Step show event
+                                    $("#smartwizard").on("showStep", function(e, anchorObject, stepNumber, stepDirection, stepPosition) {
+                                        //alert("You are on step "+stepNumber+" now");
+                                        if (stepPosition === 'first') {
+                                            $("#prev-btn").addClass('disabled');
+                                        } else if (stepPosition === 'final') {
+                                            $("#next-btn").addClass('disabled');
+                                        } else {
+                                            $("#prev-btn").removeClass('disabled');
+                                            $("#next-btn").removeClass('disabled');
+                                        }
+                                    });
+
+                                    // Toolbar extra buttons
+                                    var btnFinish = $('<button></button>').text('Valider la vente')
+                                        .addClass('btn btn-info')
+                                        .on('click', function() {
+                                            alert('Finish Clicked');
+                                        });
+                                    var btnCancel = $('<button></button>').text('Annuler')
+                                        .addClass('btn btn-danger')
+                                        .on('click', function() {
+                                            $('#smartwizard').smartWizard("reset");
+                                        });
+
+                                    // Smart Wizard 1
+                                    $('#smartwizard').smartWizard({
+                                        selected: 0,
+                                        theme: 'arrows',
+                                        transitionEffect: 'fade',
+                                        showStepURLhash: false,
+                                        toolbarSettings: {
+                                            toolbarPosition: 'bottom',
+                                            toolbarExtraButtons: [btnFinish, btnCancel]
+                                        },
+                                        lang: {
+                                            next: "Suivant",
+                                            previous: "Précédent"
+                                        }
+                                    });
+
+                                });
+                            </script>
+                            <!-- Message informations -->
+                            <script type="text/javascript" src="js/ajax-info.js"></script>
+                            <!-- JQuery Confirm-->
                             <script type="text/javascript">
                                 $('a.printatt').confirm({
                                     //var att = document.getElementByClassName();

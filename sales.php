@@ -282,14 +282,13 @@ try {
                             <script type="text/javascript" src="js/jquery-confirm.js"></script>
                             <!-- InView JS -->
                             <script type="text/javascript" src="js/in-view.min.js"></script>
-                            <!-- SmartWizard -->
+                            <!-- Smart Wizard -->
                             <script type="text/javascript" src="js/jquery.smartWizard.min.js"></script>
                             <!-- JSON Filter -->
                             <script type="text/javascript" src="js/filterJSON.plugin.min.js"></script>
-
+                            <!-- Smart Wizard Configuration -->
                             <script type="text/javascript">
                                 $(document).ready(function() {
-
                                     // Step show event
                                     $("#smartwizard").on("showStep", function(e, anchorObject, stepNumber, stepDirection, stepPosition) {
                                         //alert("You are on step "+stepNumber+" now");
@@ -333,6 +332,8 @@ try {
 
                                 });
                             </script>
+                            <!-- Message informations -->
+                            <script type="text/javascript" src="js/ajax-info.js"></script>
                             <!-- JQuery Confirm-->
                             <script type="text/javascript">
                                 $('a.printatt').confirm({
@@ -426,8 +427,6 @@ try {
                                     });
                                 });
                             </script>
-                            <!-- Message informations -->
-                            <script type="text/javascript" src="js/ajax-info.js"></script>
     </body>
 
     </html>
